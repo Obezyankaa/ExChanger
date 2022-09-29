@@ -7,6 +7,8 @@ import PersonalArea from './components/pages/PersonalArea';
 import AllProduct from './components/pages/AllProduct';
 
 function App() {
+  const [user, setUser] = useState(false);
+  const [modalActive, setModalActive] = useState(false);
   return (
     <>
       <Navbar />
