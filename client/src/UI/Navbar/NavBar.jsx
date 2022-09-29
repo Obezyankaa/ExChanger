@@ -35,7 +35,7 @@ export default function Navbar() {
               textDecoration: 'none',
             }}
           >
-            LOGO
+            ExChanger.
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -89,13 +89,21 @@ export default function Navbar() {
             LOGO
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            <Link to="/main">
-              <Button
-                sx={{ my: 2, color: 'white', display: 'block' }}
-              >
-                Main
-              </Button>
-            </Link>
+            <Button
+              sx={{ my: 2, color: 'white', display: 'block' }}
+            >
+              Main
+            </Button>
+            <Button
+              sx={{ my: 2, color: 'white', display: 'block' }}
+            >
+              Регистрация
+            </Button>
+            <Button
+              sx={{ my: 2, color: 'white', display: 'block' }}
+            >
+              Авторизация
+            </Button>
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>

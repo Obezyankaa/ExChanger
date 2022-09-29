@@ -7,6 +7,7 @@ import StarUserRating from './UI/StarUserRating';
 
 function App() {
   const [user, setUser] = useState(false);
+  const [modalActive, setModalActive] = useState(false);
   return (
     <>
       <Navbar />
