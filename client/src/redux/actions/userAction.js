@@ -5,7 +5,7 @@ export const setAuthUser = (payload) => ({ type: SET_AUTH, payload });
 export const logoutUser = () => ({ type: LOGOUT });
 
 export const checkAuth = () => (dispatch) => {
-  axios.post(`${process.env.REACT_APP_BASEURL}/api/user/check`)
+  axios.post('/api/user/check')
     .then((res) => dispatch(setAuthUser(res.data)))
     .catch(console.log);
 };
@@ -13,7 +13,7 @@ export const checkAuth = () => (dispatch) => {
 export const loginUser = (e, inputs) => (dispatch) => {
   console.log(inputs);
   e.preventDefault();
-  axios.post(`${process.env.REACT_APP_BASEURL}/user/login`, inputs)
+  axios.post('/user/login', inputs)
     .then((res) => dispatch(setAuthUser(res.data)))
     .catch(console.log);
 };
@@ -28,13 +28,13 @@ export const signupUser = (e, inputs) => (dispatch) => {
   data.append('photo', inputs.photo);
   data.append('telegram', inputs.telegram);
   data.append('phone', inputs.phone);
-  axios.post(`${process.env.REACT_APP_BASEURL}/auth/registration`, data)
+  axios.post('/auth/registration', data)
     .then((res) => dispatch(setAuthUser(res.data)))
     .catch(console.log);
 };
 
 export const logoutUserAsync = () => (dispatch) => {
-  axios(`${process.env.REACT_APP_BASEURL}/user/logout`)
+  axios('/user/logout')
     .then(() => dispatch(logoutUser()))
     .catch(console.log);
 };
