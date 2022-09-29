@@ -29,5 +29,10 @@ module.exports = {
     'jsx-a11y/no-static-element-interactions': 0,
     'max-len': 0,
     'default-param-last': 0,
+    'no-restricted-exports': 0,
+    'no-console': 0,
+    'no-alert': 0,
+    'jsx-a11y/no-noninteractive-element-interactions': 0,
+    'import/prefer-default-export': 0,
   },
 };
