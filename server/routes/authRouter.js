@@ -13,7 +13,7 @@ router.post('/registration', fileMiddleware.single('photo'), async (req, res) =>
   console.log(req.file, '-----');
   const hashedPass = await bcrypt.hash(password, 10);
   const newUser = await User.create({
-    f_name, l_name, password: hashedPass, email, photo, telegram, phone,
+    f_name, l_name, password: hashedPass, email, photo: req.file.originalname, telegram, phone,
   });
   req.session.userSession = { name: newUser.name, login: newUser.login, id: newUser.id };
   res.json(req.session.userSession).status(200);

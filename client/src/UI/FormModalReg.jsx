@@ -29,7 +29,6 @@ export default function FormModalReg() {
     <form onSubmit={(e) => dispatch(signupUser(e, inputs))}>
       <div className="form-conatainer" style={{ display: 'flex', flexDirection: 'column' }}>
         <Box
-          component="form"
           sx={{
             '& > :not(style)': { m: 1, width: '25ch' },
           }}
@@ -47,9 +46,6 @@ export default function FormModalReg() {
         </Box>
         <Button type="submit" variant="contained" endIcon={<SendIcon />}>
           Отправить
-        </Button>
-        <Button type="reset" variant="contained" endIcon={<DeleteIcon />}>
-          Очистить
         </Button>
       </div>
     </form>
