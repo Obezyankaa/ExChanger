@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import Navbar from './components/Navbar';
+import Navbar from './UI/Navbar';
 import ModalLog from './UI/ModalLog';
 import ModalRegistration from './UI/ModalRegistration';
 import StarUserRating from './UI/StarUserRating';
