@@ -20,8 +20,15 @@ export const loginUser = (e, inputs) => (dispatch) => {
 
 export const signupUser = (e, inputs) => (dispatch) => {
   e.preventDefault();
-  console.log(inputs);
-  axios.post(`${process.env.REACT_APP_BASEURL}/user/signup`, inputs)
+  const data = new FormData();
+  data.append('f_name', inputs.f_name);
+  data.append('l_name', inputs.l_name);
+  data.append('password', inputs.password);
+  data.append('email', inputs.email);
+  data.append('photo', inputs.photo);
+  data.append('telegram', inputs.telegram);
+  data.append('phone', inputs.phone);
+  axios.post(`${process.env.REACT_APP_BASEURL}/auth/registration`, data)
     .then((res) => dispatch(setAuthUser(res.data)))
     .catch(console.log);
 };
