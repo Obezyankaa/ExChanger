@@ -1,9 +1,14 @@
 import React from 'react';
+import { Route, Routes } from 'react-router-dom';
+import ModalLog from './UI/ModalLog';
+import ModalRegistration from './UI/ModalRegistration';
 
 function App() {
   return (
-    <div className="App">
-    </div>
+    <>
+      <ModalRegistration />
+      <ModalLog />
+    </>
   );
 }
 
