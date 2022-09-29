@@ -3,7 +3,7 @@ import { Route, Routes } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import ModalLog from './UI/ModalLog';
 import ModalRegistration from './UI/ModalRegistration';
-import Main from './components/Main';
+import StarUserRating from './UI/StarUserRating';
 
 function App() {
   const [user, setUser] = useState(false);
@@ -12,9 +12,7 @@ function App() {
       <Navbar />
       <ModalRegistration />
       <ModalLog />
-      <Routes>
-        <Route path="/main" element={<Main />} />
-      </Routes>
+      <StarUserRating />
     </>
   );
 }
