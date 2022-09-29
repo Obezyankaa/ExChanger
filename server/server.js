@@ -1,12 +1,18 @@
 const express = require('express');
 const morgan = require('morgan');
 const cors = require('cors');
-const { default: axios } = require('axios');
+const session = require('express-session');
+const FileStore = require('session-file-store')(session);
+const authRouter = require('./routes/authRouter');
+const apiRouter = require('./routes/apiRouter');
 
 const app = express();
-const PORT = process.env.PORT || 3001;
+const PORT = 3001;
 
-app.use(cors());
+app.use(cors({
+  credentials: true,
+  origin: true,
+}));
 app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -36,5 +42,20 @@ app.post('/coordinates', async (req, res) => {
     console.log(err);
   }
 });
+
+app.use(session({
+  name: 'user_sid',
+  secret: process.env.SESSION_SECRET ?? 'test',
+  resave: false,
+  saveUninitialized: false,
+  store: new FileStore(),
+  cookie: {
+    maxAge: 1000 * 60 * 60 * 12,
+    httpOnly: true,
+  },
+}));
+
+app.use('/auth', authRouter);
+app.use('/api/v1', apiRouter);
 
 app.listen(PORT, () => console.log(`Server has started on PORT ${PORT}`));

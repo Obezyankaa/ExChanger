@@ -1,24 +1,14 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
-import Map from './components/Map';
+import ModalLog from './UI/ModalLog';
+import ModalRegistration from './UI/ModalRegistration';
 
 function App() {
   return (
-    <Routes>
-      <Route
-        index
-        path="/"
-        element={(
-          <p style={{
-            height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center',
-          }}
-          >
-            Hello world
-          </p>
-)}
-      />
-      <Route index path="/map" element={<Map />} />
-    </Routes>
+    <>
+      <ModalRegistration />
+      <ModalLog />
+    </>
   );
 }
 
