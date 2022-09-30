@@ -8,6 +8,7 @@ import Map from './components/Map/Map';
 import Settings from './components/pages/Settings';
 import Main from './components/pages/Main';
 import './styles.css';
+import OneCartForm from './UI/MainCartForm/OneCartForm';
 
 function App() {
   const [regActive, setRegActive] = useState(false);
@@ -22,6 +23,7 @@ function App() {
         <Route path="/settings" element={<Settings />} />
         <Route path="/all-product" element={<AllProduct />} />
         <Route path="*" element={<Page404 to="/404" replace />} />
+        <Route path="/product" element={<OneCartForm />} />
       </Routes>
     </>
   );
