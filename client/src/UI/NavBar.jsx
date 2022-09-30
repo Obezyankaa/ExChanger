@@ -16,7 +16,7 @@ import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { logoutUserAsync } from '../redux/actions/userAction';
 
-export default function Navbar() {
+export default function Navbar({ setLogActive, setRegActive }) {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const dispatch = useDispatch();
@@ -111,16 +111,13 @@ export default function Navbar() {
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             <Button
               sx={{ my: 2, color: 'white', display: 'block' }}
-            >
-              Main
-            </Button>
-            <Button
-              sx={{ my: 2, color: 'white', display: 'block' }}
+              onClick={() => setRegActive(true)}
             >
               Регистрация
             </Button>
             <Button
               sx={{ my: 2, color: 'white', display: 'block' }}
+              onClick={() => setLogActive(true)}
             >
               Авторизация
             </Button>
@@ -158,7 +155,7 @@ export default function Navbar() {
                   <Typography textAlign="center" value="1">Настройки профиля</Typography>
                 </MenuItem>
               </Link>
-              <Link to="/logout" onClick={() => dispatch(logoutUserAsync())}>
+              <Link to="/" onClick={() => dispatch(logoutUserAsync())}>
                 <MenuItem onClick={handleCloseUserMenu}>
                   <Typography textAlign="center">Выйти</Typography>
                 </MenuItem>

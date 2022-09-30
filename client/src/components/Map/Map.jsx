@@ -10,7 +10,7 @@ export default function Map() {
         const x = resp.data.lon;
         const y = resp.data.lat;
         const { metro } = resp.data;
-        // console.log(metro);
+        console.log(metro);
         let map;
         load().then((mapglAPI) => {
           map = new mapglAPI.Map('map-container', {
@@ -21,6 +21,7 @@ export default function Map() {
           const marker = new mapglAPI.Marker(map, { // маркеры
             coordinates: [x, y],
           });
+          console.log(marker);
         });
         return () => map && map.destroy();
       });

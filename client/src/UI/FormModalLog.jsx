@@ -7,7 +7,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { loginUser } from '../redux/actions/userAction';
 
-export default function FormModalLog() {
+export default function FormModalLog({ setLogActive }) {
   const [inputs, setInputs] = useState({ email: '', password: '' });
   const dispatch = useDispatch();
   const changeHandler = (e) => {
@@ -17,7 +17,7 @@ export default function FormModalLog() {
     }));
   };
   return (
-    <form onSubmit={(e) => dispatch(loginUser(e, inputs))}>
+    <form onSubmit={(e) => dispatch(loginUser(e, inputs, setLogActive))}>
       <div className="form-conatainer" style={{ display: 'flex', flexDirection: 'column' }}>
         <Box
           sx={{

@@ -11,6 +11,7 @@ import Main from './components/pages/Main';
 import LK from './components/pages/LK';
 import { fetchFavorites } from './redux/actions/favoritesAction';
 import { checkAuth } from './redux/actions/userAction';
+import './styles.css';
 
 function App() {
   const dispatch = useDispatch();
@@ -24,9 +25,9 @@ function App() {
     <>
       <Navbar setLogActive={setLogActive} setRegActive={setRegActive} />
       <Routes>
+        <Route path="/" element={<Main regActive={regActive} setRegActive={setRegActive} setLogActive={setLogActive} logActive={logActive} />} />
         <Route path="/map" element={<Map />} />
         <Route path="/lk" element={<LK />} />
-        <Route path="/" element={<Main regActive={regActive} logActive={logActive} />} />
         <Route path="/personal-area" element={<PersonalArea />} />
         <Route path="/settings" element={<Settings />} />
         <Route path="/all-product" element={<AllProduct />} />
