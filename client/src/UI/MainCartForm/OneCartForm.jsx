@@ -34,56 +34,64 @@ export default function OneCartForm() {
   const [value, setValue] = React.useState(2);
   const [hover, setHover] = React.useState(-1);
   return (
-    <div className="one-Cart-Block">
-      <Swiper
-        slidesPerView={1}
-        spaceBetween={30}
-        loop
-        pagination={{
-          clickable: true,
-        }}
-        navigation
-        modules={[Pagination, Navigation]}
-        className="mySwiper"
-      >
-        <SwiperSlide>
-          <img src="../../img/image.png" alt="..." />
+    <div className="oneCatrBlock">
 
-        </SwiperSlide>
-        <SwiperSlide>Slide 2</SwiperSlide>
-        <SwiperSlide>Slide 3</SwiperSlide>
-        <SwiperSlide>Slide 4</SwiperSlide>
-      </Swiper>
-      <div className="oneCart">
-        <img src="../../img/image.png" alt="..." />
-        <h5 className="one-cart-zagolovok">Сумка</h5>
-        <span className="one-cart-span">Сдам в аредну сумку </span>
-        <div>$ 39.90</div>
+      <div className="one-Cart-Block">
+        <div className="oneCart">
+          <Swiper
+            slidesPerView={1}
+            spaceBetween={30}
+            loop
+            pagination={{
+              clickable: true,
+            }}
+            navigation
+            modules={[Pagination, Navigation]}
+            className="mySwiper"
+          >
+            <SwiperSlide>
+              <img src="../../img/image.png" alt="..." />
+            </SwiperSlide>
+            <SwiperSlide>
+              <img src="../../img/image2.png" alt="..." />
+            </SwiperSlide>
+            <SwiperSlide>
+              <img src="../../img/image3.png" alt="..." />
+            </SwiperSlide>
+            <SwiperSlide>
+              <img src="../../img/image4.png" alt="..." />
+            </SwiperSlide>
+          </Swiper>
+
+          <h5 className="one-cart-zagolovok">Сумка</h5>
+          <span className="one-cart-span">Сдам в аредну сумку </span>
+          <div>$ 39.90</div>
+        </div>
+        <Box
+          sx={{
+            width: 200,
+            display: 'flex',
+            alignItems: 'center',
+          }}
+        >
+          <Rating
+            name="hover-feedback"
+            value={value}
+            precision={0.5}
+            getLabelText={getLabelText}
+            onChange={(event, newValue) => {
+              setValue(newValue);
+            }}
+            onChangeActive={(event, newHover) => {
+              setHover(newHover);
+            }}
+            emptyIcon={<StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />}
+          />
+          {value !== null && (
+          <Box sx={{ ml: 2 }}>{labels[hover !== -1 ? hover : value]}</Box>
+          )}
+        </Box>
       </div>
-      <Box
-        sx={{
-          width: 200,
-          display: 'flex',
-          alignItems: 'center',
-        }}
-      >
-        <Rating
-          name="hover-feedback"
-          value={value}
-          precision={0.5}
-          getLabelText={getLabelText}
-          onChange={(event, newValue) => {
-            setValue(newValue);
-          }}
-          onChangeActive={(event, newHover) => {
-            setHover(newHover);
-          }}
-          emptyIcon={<StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />}
-        />
-        {value !== null && (
-        <Box sx={{ ml: 2 }}>{labels[hover !== -1 ? hover : value]}</Box>
-        )}
-      </Box>
     </div>
 
   );
