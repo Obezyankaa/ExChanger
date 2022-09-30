@@ -5,6 +5,7 @@ import Page404 from './components/pages/Page404';
 import PersonalArea from './components/pages/PersonalArea';
 import AllProduct from './components/pages/AllProduct';
 import Settings from './components/pages/Settings';
+import Main from './components/pages/Main';
 
 function App() {
   const [regActive, setRegActive] = useState(false);
