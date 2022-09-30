@@ -8,11 +8,15 @@ export default function Main({
   return (
     <>
       <div>Main</div>
-      {regActive === true && (
+      {regActive === true ? (
         <ModalRegistration setRegActive={setRegActive} />
+      ) : (
+        <></>
       )}
-      {logActive === true && (
+      {logActive === true ? (
         <ModalLog setLogActive={setLogActive} />
+      ) : (
+        <></>
       )}
     </>
   );
