@@ -7,6 +7,7 @@ import AllProduct from './components/pages/AllProduct';
 import Map from './components/Map/Map';
 import Settings from './components/pages/Settings';
 import Main from './components/pages/Main';
+import './styles.css';
 
 function App() {
   const [regActive, setRegActive] = useState(false);

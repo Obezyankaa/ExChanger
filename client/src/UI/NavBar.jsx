@@ -111,11 +111,6 @@ export default function Navbar({ setLogActive, setRegActive }) {
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             <Button
               sx={{ my: 2, color: 'white', display: 'block' }}
-            >
-              Main
-            </Button>
-            <Button
-              sx={{ my: 2, color: 'white', display: 'block' }}
               onClick={() => setRegActive(true)}
             >
               Регистрация
