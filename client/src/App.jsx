@@ -20,7 +20,6 @@ function App() {
         <Route path="/all-product" element={<AllProduct />} />
         <Route path="*" element={<Page404 to="/404" replace />} />
       </Routes>
-
     </>
   );
 }
