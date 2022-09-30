@@ -9,7 +9,6 @@ export default function Main({
   return (
     <>
       <div>
-        {/* <img src="../../../img/hero.jpg" alt="..." className="img_home" /> */}
         <Slider />
       </div>
       {regActive === true ? (
