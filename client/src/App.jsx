@@ -5,10 +5,11 @@ import Page404 from './components/pages/Page404';
 import Main from './components/pages/Main';
 import PersonalArea from './components/pages/PersonalArea';
 import AllProduct from './components/pages/AllProduct';
+import HomePage from './UI/Home/HomePage';
 
 function App() {
-  const [user, setUser] = useState(false);
-  const [modalActive, setModalActive] = useState(false);
+  // const [user, setUser] = useState(false);
+  // const [modalActive, setModalActive] = useState(false);
   return (
     <>
       <Navbar />
@@ -17,6 +18,7 @@ function App() {
         <Route path="/personal-area" element={<PersonalArea />} />
         <Route path="/all-product" element={<AllProduct />} />
         <Route path="*" element={<Page404 to="/404" replace />} />
+        <Route path="/home" element={<HomePage />} />
       </Routes>
 
     </>
