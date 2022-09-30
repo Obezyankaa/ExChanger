@@ -1,0 +1,12 @@
+.fourfour {
+    background-image: url(https://freefrontend.com/assets/img/html-funny-404-pages/SVG-Animation-404-Page.gif);
+    height: 100vh;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    width: 100%;
+    background-size: 100%;
+}
+
+.fourfourtext h1 {
+    text-align: center;
+}
