@@ -3,7 +3,6 @@ import Button from '@mui/material/Button';
 import SendIcon from '@mui/icons-material/Send';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
-import DeleteIcon from '@mui/icons-material/Delete';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { loginUser } from '../redux/actions/userAction';
