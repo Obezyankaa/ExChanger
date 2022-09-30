@@ -8,7 +8,7 @@ import { useDispatch } from 'react-redux';
 import { useState } from 'react';
 import { signupUser } from '../redux/actions/userAction';
 
-export default function FormModalReg() {
+export default function FormModalReg({ setRegActive }) {
   const dispatch = useDispatch();
   const [inputs, setInputs] = useState({
     f_name: '', l_name: '', password: '', email: '', photo: null, telegram: '', phone: '',
@@ -26,7 +26,7 @@ export default function FormModalReg() {
     }));
   };
   return (
-    <form onSubmit={(e) => dispatch(signupUser(e, inputs))}>
+    <form onSubmit={(e) => dispatch(signupUser(e, inputs, setRegActive))}>
       <div className="form-conatainer" style={{ display: 'flex', flexDirection: 'column' }}>
         <Box
           sx={{
