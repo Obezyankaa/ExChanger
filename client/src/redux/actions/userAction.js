@@ -1,12 +1,16 @@
 import axios from 'axios';
 import { LOGOUT, SET_AUTH } from '../types';
+import { fetchFavorites } from './favoritesAction';
 
 export const setAuthUser = (payload) => ({ type: SET_AUTH, payload });
 export const logoutUser = () => ({ type: LOGOUT });
 
 export const checkAuth = () => (dispatch) => {
   axios.post('/auth/check')
-    .then((res) => dispatch(setAuthUser(res.data)))
+    .then((res) => {
+      dispatch(fetchFavorites(res.data.id));
+      dispatch(setAuthUser(res.data));
+    })
     .catch(console.log);
 };
 

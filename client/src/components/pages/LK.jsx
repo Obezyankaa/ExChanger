@@ -12,12 +12,15 @@ export default function LK() {
             className="avatarImg"
           />
           <div style={{ marginLeft: '1rem' }}><h4>Чебурашка Алексеевич</h4></div>
+          <div>
+            <h5 style={{ marginLeft: '1rem' }}>Rate: 5.0</h5>
+          </div>
         </div>
         <div className="linkList" style={{ margin: '1rem' }}>
-          <div><Link to="1">My goods</Link></div>
-          <div><Link to="1">Reviews</Link></div>
-          <div><Link to="1">Favorites</Link></div>
-          <div><Link to="1">Ny messages</Link></div>
+          <div><Link to="1">Мои товары</Link></div>
+          <div><Link to="1">Мои отзывы</Link></div>
+          <div><Link to="1">Любимое</Link></div>
+          <div><Link to="1">Мои сообщения</Link></div>
         </div>
       </div>
       <div style={{ width: '100%', margin: '1rem' }}>

@@ -21,6 +21,12 @@
     margin: 3vh;
 }
 
+:root {
+	--stars: 20; /* How many stars are there */
+	--votes: 20; /* How many people have voted? */
+	--score: 70; /* ...out of (stars * votes) */
+}
+
 /* .navbar {
     display: flex;
     width: 100%;

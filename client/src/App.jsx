@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import Navbar from './UI/NavBar';
 import Page404 from './components/pages/Page404';
 import PersonalArea from './components/pages/PersonalArea';
@@ -8,8 +9,15 @@ import Map from './components/Map/Map';
 import Settings from './components/pages/Settings';
 import Main from './components/pages/Main';
 import LK from './components/pages/LK';
+import { fetchFavorites } from './redux/actions/favoritesAction';
+import { checkAuth } from './redux/actions/userAction';
 
 function App() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(checkAuth());
+    dispatch(fetchFavorites());
+  }, []);
   const [regActive, setRegActive] = useState(false);
   const [logActive, setLogActive] = useState(false);
   return (
