@@ -20,11 +20,17 @@ router.post('/registration', fileMiddleware.single('photo'), async (req, res) =>
 });
 
 router.post('/authorization', async (req, res) => {
-  const { login, pass } = req.body;
-  const newUser = await User.findOne({ where: { login } });
-  const compare = await bcrypt.compare(pass, newUser.pass);
+  const { email, password } = req.body;
+  const newUser = await User.findOne({ where: { email } });
+  const compare = await bcrypt.compare(password, newUser.password);
   if (compare) {
-    req.session.userSession = { login: newUser.login, name: newUser.name, id: newUser.id };
+    req.session.userSession = {
+      email: newUser.email,
+      f_name: newUser.fname,
+      l_name: newUser.lname,
+      id: newUser.id,
+      img: newUser.photo,
+    };
     res.json(req.session.userSession).status(200);
   } else {
     res.sendStatus(401);

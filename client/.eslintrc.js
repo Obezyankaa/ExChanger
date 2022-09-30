@@ -23,5 +23,8 @@ module.exports = {
     'no-console': 0,
     'react/jsx-no-constructed-context-values': 0,
     'default-param-last': 0,
+    'jsx-a11y/click-events-have-key-events': 0,
+    'jsx-a11y/no-static-element-interactions': 0,
+    'react/jsx-no-useless-fragment': 0,
   },
 };

@@ -5,20 +5,23 @@ export const setAuthUser = (payload) => ({ type: SET_AUTH, payload });
 export const logoutUser = () => ({ type: LOGOUT });
 
 export const checkAuth = () => (dispatch) => {
-  axios.post('/api/user/check')
+  axios.post('/auth/check')
     .then((res) => dispatch(setAuthUser(res.data)))
     .catch(console.log);
 };
 
-export const loginUser = (e, inputs) => (dispatch) => {
+export const loginUser = (e, inputs, setModal) => (dispatch) => {
   console.log(inputs);
   e.preventDefault();
-  axios.post('/user/login', inputs)
-    .then((res) => dispatch(setAuthUser(res.data)))
+  axios.post('/auth/authorization', inputs)
+    .then((res) => {
+      setModal(false);
+      dispatch(setAuthUser(res.data));
+    })
     .catch(console.log);
 };
 
-export const signupUser = (e, inputs) => (dispatch) => {
+export const signupUser = (e, inputs, setModal) => (dispatch) => {
   e.preventDefault();
   const data = new FormData();
   data.append('f_name', inputs.f_name);
@@ -29,12 +32,15 @@ export const signupUser = (e, inputs) => (dispatch) => {
   data.append('telegram', inputs.telegram);
   data.append('phone', inputs.phone);
   axios.post('/auth/registration', data)
-    .then((res) => dispatch(setAuthUser(res.data)))
+    .then((res) => {
+      setModal(false);
+      dispatch(setAuthUser(res.data));
+    })
     .catch(console.log);
 };
 
 export const logoutUserAsync = () => (dispatch) => {
-  axios('/user/logout')
+  axios('/auth/logout')
     .then(() => dispatch(logoutUser()))
     .catch(console.log);
 };
