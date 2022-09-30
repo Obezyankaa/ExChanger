@@ -14,7 +14,10 @@ export const loginUser = (e, inputs) => (dispatch) => {
   console.log(inputs);
   e.preventDefault();
   axios.post('/user/login', inputs)
-    .then((res) => dispatch(setAuthUser(res.data)))
+    .then((res) => {
+      // setModal(false)
+      dispatch(setAuthUser(res.data));
+    })
     .catch(console.log);
 };
 
