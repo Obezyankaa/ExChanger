@@ -13,10 +13,12 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import CachedOutlinedIcon from '@mui/icons-material/CachedOutlined';
 import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { logoutUserAsync } from '../redux/actions/userAction';
 
 export default function Navbar({ setLogActive, setRegActive }) {
+  const user = useSelector((state) => state.user);
+  console.log(user);
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const dispatch = useDispatch();
@@ -35,136 +37,148 @@ export default function Navbar({ setLogActive, setRegActive }) {
     setAnchorElUser(null);
   };
   return (
-    <AppBar position="static">
-      <Container maxWidth="xl">
-        <Toolbar disableGutters>
-          <CachedOutlinedIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
-          <Typography
-            variant="h6"
-            noWrap
-            component="a"
-            href="/"
-            sx={{
-              mr: 2,
-              display: { xs: 'none', md: 'flex' },
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
-            }}
-          >
-            ExChanger.
-          </Typography>
-
-          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
-            <IconButton
-              size="large"
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              onClick={handleOpenNavMenu}
-              color="inherit"
-            >
-              <MenuIcon />
-            </IconButton>
-            <Menu
-              id="menu-appbar"
-              anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'left',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'left',
-              }}
-              open={Boolean(anchorElNav)}
-              onClose={handleCloseNavMenu}
+    <>
+      <AppBar position="static" color="">
+        <Container maxWidth="xl">
+          <Toolbar disableGutters>
+            <CachedOutlinedIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1, color: '#17494D' }} />
+            <Typography
+              style={{ textDecoration: 'none', color: '#17494D' }}
+              variant="h6"
+              noWrap
+              component="a"
+              href="/"
               sx={{
-                display: { xs: 'block', md: 'none' },
+                mr: 2,
+                display: { xs: 'none', md: 'flex' },
+                fontFamily: '',
+                fontWeight: 700,
+                letterSpacing: '.3rem',
+                color: '#17494D',
+                textDecoration: 'none',
               }}
             >
-              <MenuItem>
-                <Typography textAlign="center">Main</Typography>
-              </MenuItem>
-            </Menu>
-          </Box>
-          <Typography
-            variant="h5"
-            noWrap
-            component="a"
-            href=""
-            sx={{
-              mr: 2,
-              display: { xs: 'flex', md: 'none' },
-              flexGrow: 1,
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
-            }}
-          >
-            LOGO
-          </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            <Button
-              sx={{ my: 2, color: 'white', display: 'block' }}
-              onClick={() => setRegActive(true)}
-            >
-              Регистрация
-            </Button>
-            <Button
-              sx={{ my: 2, color: 'white', display: 'block' }}
-              onClick={() => setLogActive(true)}
-            >
-              Авторизация
-            </Button>
-          </Box>
+              ExChanger.
+            </Typography>
 
-          <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+            <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+              <IconButton
+                size="large"
+                aria-label="account of current user"
+                aria-controls="menu-appbar"
+                aria-haspopup="true"
+                onClick={handleOpenNavMenu}
+                color="inherit"
+              >
+                <MenuIcon />
               </IconButton>
-            </Tooltip>
-            <Menu
-              sx={{ mt: '45px' }}
-              id="menu-appbar"
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
+              <Menu
+                id="menu-appbar"
+                anchorOrigin={{
+                  vertical: 'bottom',
+                  horizontal: 'left',
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: 'top',
+                  horizontal: 'left',
+                }}
+                open={Boolean(anchorElNav)}
+                onClose={handleCloseNavMenu}
+                sx={{
+                  display: { xs: 'block', md: 'none' },
+                }}
+              >
+                <MenuItem>
+                  <Typography textAlign="center">Main</Typography>
+                </MenuItem>
+              </Menu>
+            </Box>
+            <Typography
+              variant="h5"
+              noWrap
+              component="a"
+              href=""
+              sx={{
+                mr: 2,
+                display: { xs: 'flex', md: 'none' },
+                flexGrow: 1,
+                fontFamily: 'monospace',
+                fontWeight: 700,
+                letterSpacing: '.3rem',
+                color: 'inherit',
+                textDecoration: 'none',
               }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
             >
-              <Link to="/personal-area">
-                <MenuItem onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">Профиль</Typography>
-                </MenuItem>
-              </Link>
-              <Link to="/settings">
-                <MenuItem onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center" value="1">Настройки профиля</Typography>
-                </MenuItem>
-              </Link>
-              <Link to="/" onClick={() => dispatch(logoutUserAsync())}>
-                <MenuItem onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">Выйти</Typography>
-                </MenuItem>
-              </Link>
-
-            </Menu>
-          </Box>
-        </Toolbar>
-      </Container>
-    </AppBar>
+              LOGO
+            </Typography>
+            {!user.id ? (
+              <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+                <Button
+                  sx={{ my: 2, color: '#17494D', display: 'block' }}
+                  onClick={() => setRegActive(true)}
+                  s
+                >
+                  Регистрация
+                </Button>
+                <Button
+                  sx={{ my: 2, color: '#17494D', display: 'block' }}
+                  onClick={() => setLogActive(true)}
+                >
+                  Авторизация
+                </Button>
+              </Box>
+            ) : (
+              <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }} />
+            ) }
+            {user.id ? (
+              <>
+                <Box sx={{ flexGrow: 0 }}>
+                  <Tooltip title="Open settings">
+                    <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                      <Avatar alt="Remy Sharp" src={`http://localhost:3001/images/${user.img}`} />
+                    </IconButton>
+                  </Tooltip>
+                  <Menu
+                    sx={{ mt: '45px' }}
+                    id="menu-appbar"
+                    anchorEl={anchorElUser}
+                    anchorOrigin={{
+                      vertical: 'top',
+                      horizontal: 'right',
+                    }}
+                    keepMounted
+                    transformOrigin={{
+                      vertical: 'top',
+                      horizontal: 'right',
+                    }}
+                    open={Boolean(anchorElUser)}
+                    onClose={handleCloseUserMenu}
+                  >
+                    <Link to="/personal-area" style={{ textDecoration: 'none', color: '#17494D' }}>
+                      <MenuItem onClick={handleCloseUserMenu}>
+                        <Typography textAlign="center">Профиль</Typography>
+                      </MenuItem>
+                    </Link>
+                    <Link to="/settings" style={{ textDecoration: 'none', color: '#17494D' }}>
+                      <MenuItem onClick={handleCloseUserMenu}>
+                        <Typography textAlign="center" value="1">Настройки профиля</Typography>
+                      </MenuItem>
+                    </Link>
+                    <Link to="/" onClick={() => dispatch(logoutUserAsync())} style={{ textDecoration: 'none', color: '#17494D' }}>
+                      <MenuItem onClick={handleCloseUserMenu}>
+                        <Typography textAlign="center">Выйти</Typography>
+                      </MenuItem>
+                    </Link>
+                  </Menu>
+                </Box>
+              </>
+            ) : (
+              <Box sx={{ flexGrow: 0 }} />
+            )}
+          </Toolbar>
+        </Container>
+      </AppBar>
+    </>
   );
 }
