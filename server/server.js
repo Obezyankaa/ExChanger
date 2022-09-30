@@ -4,9 +4,9 @@ const cors = require('cors');
 const path = require('path');
 const session = require('express-session');
 const FileStore = require('session-file-store')(session);
+const { default: axios } = require('axios');
 const authRouter = require('./routes/authRouter');
 const apiRouter = require('./routes/apiRouter');
-const { default: axios } = require('axios');
 
 const app = express();
 const PORT = 3001;
@@ -25,7 +25,7 @@ app.post('/coordinates', async (req, res) => {
     const { address } = req.body;
     const token = '8abf2516c963dfbfe7e8033ee347b1a9420b60e8';
     const secret = 'b54649db1261aab4bfc4c828656fa8670a524bac';
-    const query = address ?? 'москва сухонская 11';
+    const query = address;
 
     const options = {
       url: 'https://cleaner.dadata.ru/api/v1/clean/address',
@@ -40,7 +40,11 @@ app.post('/coordinates', async (req, res) => {
     };
 
     const response = await axios(options);
-    res.json({ lat: response.data[0].geo_lat, lon: response.data[0].geo_lon });
+    res.json({
+      lat: response.data[0].geo_lat,
+      lon: response.data[0].geo_lon,
+      metro: response.data[0].metro,
+    });
   } catch (err) {
     console.log(err);
   }

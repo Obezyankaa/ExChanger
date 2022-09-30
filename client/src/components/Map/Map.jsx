@@ -6,15 +6,9 @@ import MapWrapper from './MapWrapper';
 export default function Map({ address }) {
   useEffect(() => {
     axios.post('/coordinates', { address: 'москва ощепкова 1' })
-    // fetch('/coordinates', {
-    //   method: 'POST',
-    //   headers: { 'Content-Type': 'application/json' },
-    //   body: JSON.stringify({ address: 'москва ощепкова 1' }),
-    // })
-    //   .then((resp) => resp.json())
-      .then((data) => {
-        const x = data.lon;
-        const y = data.lat;
+      .then((resp) => {
+        const x = resp.data.lon;
+        const y = resp.data.lat;
         let map;
         load().then((mapglAPI) => {
           map = new mapglAPI.Map('map-container', {
@@ -23,7 +17,7 @@ export default function Map({ address }) {
             key: 'ee12180b-57c5-4c59-b3a2-6a198e86bf66',
           });
           const marker = new mapglAPI.Marker(map, { // маркеры
-            coordinates: [x ?? 37.59958, y ?? 55.70574],
+            coordinates: [x, y],
           });
         });
         return () => map && map.destroy();
