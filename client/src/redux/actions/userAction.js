@@ -5,7 +5,7 @@ export const setAuthUser = (payload) => ({ type: SET_AUTH, payload });
 export const logoutUser = () => ({ type: LOGOUT });
 
 export const checkAuth = () => (dispatch) => {
-  axios.post('/api/user/check')
+  axios.post('/auth/check')
     .then((res) => dispatch(setAuthUser(res.data)))
     .catch(console.log);
 };
@@ -13,7 +13,7 @@ export const checkAuth = () => (dispatch) => {
 export const loginUser = (e, inputs) => (dispatch) => {
   console.log(inputs);
   e.preventDefault();
-  axios.post('/user/login', inputs)
+  axios.post('/auth/authorization', inputs)
     .then((res) => dispatch(setAuthUser(res.data)))
     .catch(console.log);
 };
@@ -34,7 +34,7 @@ export const signupUser = (e, inputs) => (dispatch) => {
 };
 
 export const logoutUserAsync = () => (dispatch) => {
-  axios('/user/logout')
+  axios('/auth/logout')
     .then(() => dispatch(logoutUser()))
     .catch(console.log);
 };
