@@ -14,7 +14,7 @@ import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import { Link } from 'react-router-dom';
 
-export default function Navbar() {
+export default function Navbar({ setLogActive, setRegActive }) {
   return (
     <AppBar position="static">
       <Container maxWidth="xl">
@@ -95,11 +95,13 @@ export default function Navbar() {
               Main
             </Button>
             <Button
+              onClick={() => setRegActive(true)}
               sx={{ my: 2, color: 'white', display: 'block' }}
             >
               Регистрация
             </Button>
             <Button
+              onClick={() => setLogActive(true)}
               sx={{ my: 2, color: 'white', display: 'block' }}
             >
               Авторизация
