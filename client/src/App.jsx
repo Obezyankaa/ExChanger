@@ -12,6 +12,7 @@ import LK from './components/pages/LK';
 import { fetchFavorites } from './redux/actions/favoritesAction';
 import { checkAuth } from './redux/actions/userAction';
 import './styles.css';
+import ItemPage from './components/pages/ItemPage';
 import OneCartForm from './UI/MainCartForm/OneCartForm';
 
 function App() {
@@ -33,6 +34,7 @@ function App() {
         <Route path="/settings" element={<Settings />} />
         <Route path="/all-product" element={<AllProduct />} />
         <Route path="*" element={<Page404 to="/404" replace />} />
+        <Route path="/item" element={<ItemPage />} />
         <Route path="/product" element={<OneCartForm />} />
       </Routes>
     </>
