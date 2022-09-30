@@ -16,7 +16,7 @@ import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { logoutUserAsync } from '../redux/actions/userAction';
 
-export default function Navbar() {
+export default function Navbar({ setLogActive, setRegActive}) {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const dispatch = useDispatch();
@@ -116,11 +116,13 @@ export default function Navbar() {
             </Button>
             <Button
               sx={{ my: 2, color: 'white', display: 'block' }}
+              onClick={() => setRegActive(true)}
             >
               Регистрация
             </Button>
             <Button
               sx={{ my: 2, color: 'white', display: 'block' }}
+              onClick={() => setLogActive(true)}
             >
               Авторизация
             </Button>
