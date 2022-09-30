@@ -7,6 +7,7 @@ import AllProduct from './components/pages/AllProduct';
 import Map from './components/Map/Map';
 import Settings from './components/pages/Settings';
 import Main from './components/pages/Main';
+import LK from './components/pages/LK';
 
 function App() {
   const [regActive, setRegActive] = useState(false);
@@ -16,6 +17,7 @@ function App() {
       <Navbar setLogActive={setLogActive} setRegActive={setRegActive} />
       <Routes>
         <Route path="/map" element={<Map />} />
+        <Route path="/lk" element={<LK />} />
         <Route path="/" element={<Main regActive={regActive} logActive={logActive} />} />
         <Route path="/personal-area" element={<PersonalArea />} />
         <Route path="/settings" element={<Settings />} />
