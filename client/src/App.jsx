@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Navbar from './UI/Navbar';
 import Page404 from './components/pages/Page404';
 import Main from './components/pages/Main';
 import PersonalArea from './components/pages/PersonalArea';
 import AllProduct from './components/pages/AllProduct';
+import Map from './components/Map/Map';
 
 function App() {
   const [user, setUser] = useState(false);
@@ -14,6 +15,7 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<Main />} />
+        <Route path="/map" element={<Map />} />
         <Route path="/personal-area" element={<PersonalArea />} />
         <Route path="/all-product" element={<AllProduct />} />
         <Route path="*" element={<Page404 to="/404" replace />} />

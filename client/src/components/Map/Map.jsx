@@ -1,15 +1,17 @@
 import React, { useEffect } from 'react';
 import { load } from '@2gis/mapgl';
+import axios from 'axios';
 import MapWrapper from './MapWrapper';
 
 export default function Map({ address }) {
   useEffect(() => {
-    fetch('/coordinates', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ address: 'москва ощепкова 1' }),
-    })
-      .then((resp) => resp.json())
+    axios.post('/coordinates', { address: 'москва ощепкова 1' })
+    // fetch('/coordinates', {
+    //   method: 'POST',
+    //   headers: { 'Content-Type': 'application/json' },
+    //   body: JSON.stringify({ address: 'москва ощепкова 1' }),
+    // })
+    //   .then((resp) => resp.json())
       .then((data) => {
         const x = data.lon;
         const y = data.lat;

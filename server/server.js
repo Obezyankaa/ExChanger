@@ -6,6 +6,7 @@ const session = require('express-session');
 const FileStore = require('session-file-store')(session);
 const authRouter = require('./routes/authRouter');
 const apiRouter = require('./routes/apiRouter');
+const { default: axios } = require('axios');
 
 const app = express();
 const PORT = 3001;
