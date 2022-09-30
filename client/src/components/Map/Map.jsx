@@ -9,6 +9,8 @@ export default function Map({ address }) {
       .then((resp) => {
         const x = resp.data.lon;
         const y = resp.data.lat;
+        const { metro } = resp.data;
+        console.log(resp.data);
         let map;
         load().then((mapglAPI) => {
           map = new mapglAPI.Map('map-container', {
