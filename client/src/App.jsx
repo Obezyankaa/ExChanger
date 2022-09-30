@@ -1,14 +1,12 @@
 import React, { useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import Navbar from './UI/Navbar';
+import Navbar from './UI/NavBar';
 import Page404 from './components/pages/Page404';
-import Main from './components/pages/Main';
 import PersonalArea from './components/pages/PersonalArea';
 import AllProduct from './components/pages/AllProduct';
-import './styles.css';
+import Settings from './components/pages/Settings';
 
 function App() {
-  const [user, setUser] = useState(false);
   const [regActive, setRegActive] = useState(false);
   const [logActive, setLogActive] = useState(false);
   return (
@@ -17,6 +15,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Main regActive={regActive} logActive={logActive} />} />
         <Route path="/personal-area" element={<PersonalArea />} />
+        <Route path="/settings" element={<Settings />} />
         <Route path="/all-product" element={<AllProduct />} />
         <Route path="*" element={<Page404 to="/404" replace />} />
       </Routes>

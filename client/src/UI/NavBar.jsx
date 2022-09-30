@@ -11,15 +11,34 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import AdbIcon from '@mui/icons-material/Adb';
+import CachedOutlinedIcon from '@mui/icons-material/CachedOutlined';
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { logoutUserAsync } from '../redux/actions/userAction';
 
-export default function Navbar({ setLogActive, setRegActive }) {
+export default function Navbar() {
+  const [anchorElNav, setAnchorElNav] = React.useState(null);
+  const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const dispatch = useDispatch();
+  const handleOpenNavMenu = (event) => {
+    setAnchorElNav(event.currentTarget);
+  };
+  const handleOpenUserMenu = (event) => {
+    setAnchorElUser(event.currentTarget);
+  };
+
+  const handleCloseNavMenu = () => {
+    setAnchorElNav(null);
+  };
+
+  const handleCloseUserMenu = () => {
+    setAnchorElUser(null);
+  };
   return (
     <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+          <CachedOutlinedIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
           <Typography
             variant="h6"
             noWrap
@@ -44,6 +63,7 @@ export default function Navbar({ setLogActive, setRegActive }) {
               aria-label="account of current user"
               aria-controls="menu-appbar"
               aria-haspopup="true"
+              onClick={handleOpenNavMenu}
               color="inherit"
             >
               <MenuIcon />
@@ -59,17 +79,17 @@ export default function Navbar({ setLogActive, setRegActive }) {
                 vertical: 'top',
                 horizontal: 'left',
               }}
+              open={Boolean(anchorElNav)}
+              onClose={handleCloseNavMenu}
               sx={{
                 display: { xs: 'block', md: 'none' },
               }}
             >
-
               <MenuItem>
                 <Typography textAlign="center">Main</Typography>
               </MenuItem>
             </Menu>
           </Box>
-          <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
           <Typography
             variant="h5"
             noWrap
@@ -95,13 +115,11 @@ export default function Navbar({ setLogActive, setRegActive }) {
               Main
             </Button>
             <Button
-              onClick={() => setRegActive(true)}
               sx={{ my: 2, color: 'white', display: 'block' }}
             >
               Регистрация
             </Button>
             <Button
-              onClick={() => setLogActive(true)}
               sx={{ my: 2, color: 'white', display: 'block' }}
             >
               Авторизация
@@ -110,13 +128,14 @@ export default function Navbar({ setLogActive, setRegActive }) {
 
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
-              <IconButton sx={{ p: 0 }}>
+              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                 <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
               </IconButton>
             </Tooltip>
             <Menu
               sx={{ mt: '45px' }}
               id="menu-appbar"
+              anchorEl={anchorElUser}
               anchorOrigin={{
                 vertical: 'top',
                 horizontal: 'right',
@@ -126,10 +145,25 @@ export default function Navbar({ setLogActive, setRegActive }) {
                 vertical: 'top',
                 horizontal: 'right',
               }}
+              open={Boolean(anchorElUser)}
+              onClose={handleCloseUserMenu}
             >
-              <MenuItem>
-                <Typography textAlign="center">setting</Typography>
-              </MenuItem>
+              <Link to="/personal-area">
+                <MenuItem onClick={handleCloseUserMenu}>
+                  <Typography textAlign="center">Профиль</Typography>
+                </MenuItem>
+              </Link>
+              <Link to="/settings">
+                <MenuItem onClick={handleCloseUserMenu}>
+                  <Typography textAlign="center" value="1">Настройки профиля</Typography>
+                </MenuItem>
+              </Link>
+              <Link to="/logout" onClick={() => dispatch(logoutUserAsync())}>
+                <MenuItem onClick={handleCloseUserMenu}>
+                  <Typography textAlign="center">Выйти</Typography>
+                </MenuItem>
+              </Link>
+
             </Menu>
           </Box>
         </Toolbar>
