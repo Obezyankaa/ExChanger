@@ -18,6 +18,7 @@ import OneCartForm from './UI/MainCartForm/OneCartForm';
 import Profile from './components/pages/Profile';
 import Loading from './UI/Loading';
 import Card from './UI/Card';
+import UserProfile from './components/pages/UserProfile';
 import AllProducts from './components/pages/AllProducts';
 
 function App() {
@@ -50,6 +51,7 @@ function App() {
         <Route path="/profile" element={<Profile />} />
         <Route path="/load" element={<Loading />} />
         <Route path="/card" element={<Card />} />
+        <Route path="/user/:id" element={<UserProfile />} />
         <Route path="/allproducts" element={<AllProducts />} />
       </Routes>
     </>

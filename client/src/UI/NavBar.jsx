@@ -160,9 +160,9 @@ export default function Navbar({ setLogActive, setRegActive, setAddProdActive })
                     open={Boolean(anchorElUser)}
                     onClose={handleCloseUserMenu}
                   >
-                    <Link to="/personal-area" style={{ textDecoration: 'none', color: '#17494D' }}>
+                    <Link to="/profile" style={{ textDecoration: 'none', color: '#17494D' }}>
                       <MenuItem onClick={handleCloseUserMenu}>
-                        <Typography textAlign="center">Профиль</Typography>
+                        <Typography textAlign="center">Личный кабинет</Typography>
                       </MenuItem>
                     </Link>
                     <Link to="/settings" style={{ textDecoration: 'none', color: '#17494D' }}>
