@@ -30,8 +30,17 @@ export const deleteProductAsync = (id) => (dispatch) => {
     .catch(console.log);
 };
 
-export const updateProductAsync = (prod) => (dispatch) => {
-  axios.put('/product')
-    .then(() => dispatch(updateProduct(prod)))
+// id,
+// name,
+// category_id,
+// description,
+// status,
+// price,
+// user_id,
+// location,
+// timing,
+export const updateProductAsync = (product) => (dispatch) => {
+  axios.put('/product', { changedProduct: product }, { withCredentials: true })
+    .then(() => dispatch(updateProduct(product)))
     .catch(console.log);
 };
