@@ -1,6 +1,6 @@
 const express = require('express');
 const {
-  Product, User, View, ProductPhoto,
+  Product, User, View, ProductPhoto, Category,
 } = require('../db/models');
 
 const router = express.Router();
@@ -25,6 +25,7 @@ router.post('/', async (req, res) => {
       raw: true,
       include: [
         { raw: true, model: User },
+        { raw: true, model: Category },
         { raw: true, model: View },
         { raw: true, model: ProductPhoto }],
     });
@@ -41,6 +42,7 @@ router.get('/', async (req, res) => {
       raw: true,
       include: [
         { raw: true, model: User },
+        { raw: true, model: Category },
         { raw: true, model: View },
         { raw: true, model: ProductPhoto }],
     });
@@ -62,26 +64,29 @@ router.delete('/:id', async (req, res) => {
   }
 });
 
-router.put('/', async (req, res) => {
+router.put('/:id', async (req, res) => {
   try {
     const { changedProduct } = req.body;
+
+    await Product.update({ where: { id: req.params.id } }, changedProduct);
+    // updatedProduct.name = changedProduct.name;
+    // updatedProduct.category_id = changedProduct.category_id;
+    // updatedProduct.description = changedProduct.description;
+    // updatedProduct.status = changedProduct.status;
+    // updatedProduct.price = changedProduct.price;
+    // updatedProduct.user_id = changedProduct.user_id;
+    // updatedProduct.location = changedProduct.location;
+    // updatedProduct.timing = changedProduct.timing;
+    // updatedProduct.save();
     const updatedProduct = await Product.findOne({
       where: { id: changedProduct.id },
       raw: true,
       include: [
         { raw: true, model: User },
+        { raw: true, model: Category },
         { raw: true, model: View },
         { raw: true, model: ProductPhoto }],
     });
-    updatedProduct.name = changedProduct.name;
-    updatedProduct.category_id = changedProduct.category_id;
-    updatedProduct.description = changedProduct.description;
-    updatedProduct.status = changedProduct.status;
-    updatedProduct.price = changedProduct.price;
-    updatedProduct.user_id = changedProduct.user_id;
-    updatedProduct.location = changedProduct.location;
-    updatedProduct.timing = changedProduct.timing;
-    updatedProduct.save();
     res.json(updatedProduct);
   } catch (e) {
     console.log(e);
