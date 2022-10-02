@@ -70,6 +70,7 @@ export default function FormModalReg({ setRegActive }) {
               name="photo"
               type="file"
               hidden
+              onChange={changeHandlerPhoto}
             />
           </Button>
         </Box>
