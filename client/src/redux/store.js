@@ -3,6 +3,7 @@ import userReducer from './reducers/userReducer';
 import favoritesReducer from './reducers/favoritesReducer';
 import categoriesReducer from './reducers/categoriesReducer';
 import productReducer from './reducers/productReducer';
+import usersReducer from './reducers/usersReducer';
 
 export default configureStore({
   reducer: {
@@ -10,5 +11,6 @@ export default configureStore({
     favorite: favoritesReducer,
     categories: categoriesReducer,
     product: productReducer,
+    users: usersReducer,
   },
 });

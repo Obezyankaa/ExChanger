@@ -365,6 +365,8 @@
   .first-screen-profile__rightblock {
     width: 563px;
     height: 563px;
+    display: flex;
+    align-items: center;
   }
   .first-screen-profile__rightblock-photo {
     -webkit-transition: all 0.8s ease-in 0s;
