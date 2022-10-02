@@ -15,7 +15,6 @@ export const checkAuth = () => (dispatch) => {
 };
 
 export const loginUser = (e, inputs, setModal) => (dispatch) => {
-  console.log(inputs);
   e.preventDefault();
   axios.post('/auth/authorization', inputs)
     .then((res) => {

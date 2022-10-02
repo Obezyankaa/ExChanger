@@ -16,9 +16,8 @@ import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { logoutUserAsync } from '../redux/actions/userAction';
 
-export default function Navbar({ setLogActive, setRegActive }) {
+export default function Navbar({ setLogActive, setRegActive, setAddProdActive }) {
   const user = useSelector((state) => state.user);
-  console.log(user);
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const dispatch = useDispatch();
@@ -98,7 +97,6 @@ export default function Navbar({ setLogActive, setRegActive }) {
               variant="h5"
               noWrap
               component="a"
-              href=""
               sx={{
                 mr: 2,
                 display: { xs: 'flex', md: 'none' },
@@ -129,7 +127,14 @@ export default function Navbar({ setLogActive, setRegActive }) {
                 </Button>
               </Box>
             ) : (
-              <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }} />
+              <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+                <Button
+                  sx={{ my: 2, color: '#17494D', display: 'block' }}
+                  onClick={() => setAddProdActive(true)}
+                >
+                  Добавить объявление
+                </Button>
+              </Box>
             ) }
             {user.id ? (
               <>

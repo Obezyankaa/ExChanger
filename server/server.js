@@ -8,6 +8,8 @@ const { default: axios } = require('axios');
 const authRouter = require('./routes/authRouter');
 const apiRouter = require('./routes/apiRouter');
 const favoriteRouter = require('./routes/favoriteRouter');
+const categoriesRouter = require('./routes/categoriesRouter');
+const productRouter = require('./routes/productRouter');
 
 const app = express();
 const PORT = 3001;
@@ -66,5 +68,7 @@ app.use(session({
 app.use('/auth', authRouter);
 app.use('/api/v1', apiRouter);
 app.use('/favorite', favoriteRouter);
+app.use('/categories', categoriesRouter);
+app.use('/product', productRouter);
 
 app.listen(PORT, () => console.log(`Server has started on PORT ${PORT}`));

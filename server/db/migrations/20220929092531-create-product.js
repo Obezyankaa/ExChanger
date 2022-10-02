@@ -48,6 +48,9 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE,
       },
+      photo: {
+        type: Sequelize.TEXT,
+      },
     });
   },
   async down(queryInterface, Sequelize) {

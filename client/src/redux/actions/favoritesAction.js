@@ -8,7 +8,6 @@ export const deleteFavorite = (payload) => ({ type: DELETE_FAVORITE, payload });
 export const submitFavorite = (favorite) => (dispatch) => {
   axios.post('/favorite', { favorite }, { withCredentials: true })
     .then((res) => {
-    //   console.log(res);
       dispatch(addFavorite(res.data));
     })
     .catch(console.log);

@@ -1,10 +1,8 @@
-import * as React from 'react';
-import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
-import DialogTitle from '@mui/material/DialogTitle';
-import FormModalLog from './FormModalLog';
+import { DialogContent, DialogContentText, DialogTitle } from '@mui/material';
+import React from 'react';
+import FormModalAddProd from './FormModalAddProd';
 
-export default function ModalLog({ setLogActive }) {
+export default function ModalAddProd({ setAddProdActive }) {
   return (
     <div
       style={{
@@ -12,7 +10,7 @@ export default function ModalLog({ setLogActive }) {
       }}
       onClick={(e) => {
         e.stopPropagation();
-        setLogActive(false);
+        setAddProdActive(false);
       }}
     >
       <div
@@ -24,10 +22,10 @@ export default function ModalLog({ setLogActive }) {
           e.stopPropagation();
         }}
       >
-        <DialogTitle style={{ textAlign: 'center' }}>Авторизация</DialogTitle>
+        <DialogTitle style={{ textAlign: 'center' }}>Добавить товар</DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-slide-description">
-            <FormModalLog setLogActive={setLogActive} />
+            <FormModalAddProd setAddProdActive={setAddProdActive} />
           </DialogContentText>
         </DialogContent>
       </div>
