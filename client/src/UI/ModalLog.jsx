@@ -8,7 +8,7 @@ export default function ModalLog({ setLogActive }) {
   return (
     <div
       style={{
-        height: '100vh', width: '100%', backgroundColor: 'black', opacity: '0.7', position: 'fixed', top: '0', left: '0',
+        height: '100vh', width: '100%', backgroundColor: 'black', opacity: '0.9', position: 'fixed', top: '0', left: '0',
       }}
       onClick={(e) => {
         e.stopPropagation();
