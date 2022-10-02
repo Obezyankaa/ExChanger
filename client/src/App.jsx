@@ -12,6 +12,7 @@ import LK from './components/pages/LK';
 import { fetchFavorites } from './redux/actions/favoritesAction';
 import { checkAuth } from './redux/actions/userAction';
 import './styles.css';
+import { allCategories } from './redux/actions/categoriesAction';
 import ItemPage from './components/pages/ItemPage';
 import OneCartForm from './UI/MainCartForm/OneCartForm';
 import Profile from './components/pages/Profile';
@@ -23,14 +24,21 @@ function App() {
   useEffect(() => {
     dispatch(checkAuth());
     dispatch(fetchFavorites());
+    dispatch(allCategories());
   }, []);
   const [regActive, setRegActive] = useState(false);
   const [logActive, setLogActive] = useState(false);
+  const [addProdActive, setAddProdActive] = useState(false);
+
   return (
     <>
-      <Navbar setLogActive={setLogActive} setRegActive={setRegActive} />
+      <Navbar
+        setLogActive={setLogActive}
+        setRegActive={setRegActive}
+        setAddProdActive={setAddProdActive}
+      />
       <Routes>
-        <Route path="/" element={<Main regActive={regActive} setRegActive={setRegActive} setLogActive={setLogActive} logActive={logActive} />} />
+        <Route path="/" element={<Main regActive={regActive} setRegActive={setRegActive} setLogActive={setLogActive} logActive={logActive} setAddProdActive={setAddProdActive} addProdActive={addProdActive} />} />
         <Route path="/map" element={<Map />} />
         <Route path="/lk" element={<LK />} />
         <Route path="/personal-area" element={<PersonalArea />} />

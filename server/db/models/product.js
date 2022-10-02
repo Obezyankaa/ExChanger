@@ -27,6 +27,7 @@ module.exports = (sequelize, DataTypes) => {
     user_id: DataTypes.INTEGER,
     location: DataTypes.TEXT,
     timing: DataTypes.TEXT,
+    photo: DataTypes.TEXT,
   }, {
     sequelize,
     modelName: 'Product',
