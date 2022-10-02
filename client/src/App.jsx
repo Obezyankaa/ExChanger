@@ -13,6 +13,11 @@ import { fetchFavorites } from './redux/actions/favoritesAction';
 import { checkAuth } from './redux/actions/userAction';
 import './styles.css';
 import { allCategories } from './redux/actions/categoriesAction';
+import ItemPage from './components/pages/ItemPage';
+import OneCartForm from './UI/MainCartForm/OneCartForm';
+import Profile from './components/pages/Profile';
+import Loading from './UI/Loading';
+import Card from './UI/Card';
 
 function App() {
   const dispatch = useDispatch();
@@ -40,6 +45,11 @@ function App() {
         <Route path="/settings" element={<Settings />} />
         <Route path="/all-product" element={<AllProduct />} />
         <Route path="*" element={<Page404 to="/404" replace />} />
+        <Route path="/item" element={<ItemPage />} />
+        <Route path="/product" element={<OneCartForm />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/load" element={<Loading />} />
+        <Route path="/card" element={<Card />} />
       </Routes>
     </>
   );

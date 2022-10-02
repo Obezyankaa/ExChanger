@@ -5,7 +5,7 @@ import MapWrapper from './MapWrapper';
 
 export default function Map() {
   useEffect(() => {
-    axios.post('/coordinates', { address: 'москва ощепкова 1' })
+    axios.post('/coordinates', { address: 'москва сергея эйзенштейна 2' })
       .then((resp) => {
         const x = resp.data.lon;
         const y = resp.data.lat;

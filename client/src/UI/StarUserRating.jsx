@@ -7,10 +7,10 @@ export default function StarUserRating() {
     <div
       className="modalwindow"
       style={{
-        width: '40%', height: '60%', marginLeft: 'auto', marginRight: 'auto', marginTop: '10%',
+        width: '40%', height: '60%',
       }}
     >
-      <Typography component="legend">Рейтинг пользователя</Typography>
+      <Typography component="legend">(250) Оценок пользователей</Typography>
       <Rating
         name="simple-controlled"
         value={star}
