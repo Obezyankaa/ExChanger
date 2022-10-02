@@ -19,6 +19,7 @@ import Profile from './components/pages/Profile';
 import Loading from './UI/Loading';
 import Card from './UI/Card';
 import UserProfile from './components/pages/UserProfile';
+import AllProducts from './components/pages/AllProducts';
 
 function App() {
   const dispatch = useDispatch();
@@ -44,7 +45,6 @@ function App() {
         <Route path="/lk" element={<LK />} />
         <Route path="/personal-area" element={<PersonalArea />} />
         <Route path="/settings" element={<Settings />} />
-        <Route path="/all-product" element={<AllProduct />} />
         <Route path="*" element={<Page404 to="/404" replace />} />
         <Route path="/item" element={<ItemPage />} />
         <Route path="/product" element={<OneCartForm />} />
@@ -52,6 +52,7 @@ function App() {
         <Route path="/load" element={<Loading />} />
         <Route path="/card" element={<Card />} />
         <Route path="/user/:id" element={<UserProfile />} />
+        <Route path="/allproducts" element={<AllProducts />} />
       </Routes>
     </>
   );

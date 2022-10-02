@@ -10,12 +10,13 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate({
-      User, View, Category, Favorit,
+      User, View, Category, Favorit, ProductPhoto,
     }) {
       this.belongsTo(User, { foreignKey: 'user_id' });
       this.belongsTo(Category, { foreignKey: 'category_id' });
       this.hasMany(View, { foreignKey: 'product_id' });
       this.hasMany(Favorit, { foreignKey: 'product_id' });
+      this.hasMany(ProductPhoto, { foreignKey: 'product_id' });
     }
   }
   Product.init({
@@ -27,7 +28,6 @@ module.exports = (sequelize, DataTypes) => {
     user_id: DataTypes.INTEGER,
     location: DataTypes.TEXT,
     timing: DataTypes.TEXT,
-    photo: DataTypes.TEXT,
   }, {
     sequelize,
     modelName: 'Product',
