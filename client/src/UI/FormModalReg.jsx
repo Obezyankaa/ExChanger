@@ -36,16 +36,52 @@ export default function FormModalReg({ setRegActive }) {
           style={{ display: 'flex', flexDirection: 'column' }}
         >
           <TextField name="f_name" onChange={changeHandler} id="standard-basic" label="Ваше имя" variant="standard" style={{ width: '100%' }} />
-          <TextField name="l_name" onChange={changeHandler} id="standard-basic" label="Ваша фамилия" variant="standard" style={{ width: '100%' }} />
-          <TextField name="email" onChange={changeHandler} id="standard-basic" label="Ваш e-mail" variant="standard" style={{ width: '100%' }} />
-          <TextField type="password" name="password" onChange={changeHandler} id="standard-basic" label="Ваш пароль" variant="standard" style={{ width: '100%' }} />
-          <TextField name="phone" onChange={changeHandler} id="standard-basic" label="Ваш номер телефона" variant="standard" style={{ width: '100%' }} />
-          <TextField name="telegram" onChange={changeHandler} id="standard-basic" label="Ваш Telegram" variant="standard" style={{ width: '100%' }} />
-          <input type="file" name="photo" onChange={changeHandlerPhoto} />
+          {inputs.f_name.length < 3 ? (
+            <TextField disabled name="l_name" onChange={changeHandler} id="standard-basic" label="Ваша фамилия" variant="standard" style={{ width: '100%' }} />
+          ) : (
+            <TextField name="l_name" onChange={changeHandler} id="standard-basic" label="Ваша фамилия" variant="standard" style={{ width: '100%' }} />
+          )}
+          {inputs.l_name.length < 1 ? (
+            <TextField disabled name="email" onChange={changeHandler} id="standard-basic" label="Ваш e-mail" variant="standard" style={{ width: '100%' }} />
+          ) : (
+            <TextField name="email" onChange={changeHandler} id="standard-basic" label="Ваш e-mail" variant="standard" style={{ width: '100%' }} />
+          )}
+          {!inputs.email.includes('@') && inputs.email.length < 4 ? (
+            <TextField disabled type="password" name="password" onChange={changeHandler} id="standard-basic" label="Ваш пароль" variant="standard" style={{ width: '100%' }} />
+          ) : (
+            <TextField type="password" name="password" onChange={changeHandler} id="standard-basic" label="Ваш пароль" variant="standard" style={{ width: '100%' }} />
+          )}
+          {inputs.password.length < 6 ? (
+            <TextField disabled name="phone" onChange={changeHandler} id="standard-basic" label="Ваш номер телефона" variant="standard" style={{ width: '100%' }} />
+          ) : (
+            <TextField name="phone" onChange={changeHandler} id="standard-basic" label="Ваш номер телефона" variant="standard" style={{ width: '100%' }} />
+          )}
+          {inputs.phone.length < 5 ? (
+            <TextField disabled name="telegram" onChange={changeHandler} id="standard-basic" label="Ваш Telegram" variant="standard" style={{ width: '100%' }} />
+          ) : (
+            <TextField name="telegram" onChange={changeHandler} id="standard-basic" label="Ваш Telegram" variant="standard" style={{ width: '100%' }} />
+          )}
+          <Button
+            variant="contained"
+            component="label"
+          >
+            Загрузите фото
+            <input
+              name="photo"
+              type="file"
+              hidden
+            />
+          </Button>
         </Box>
-        <Button type="submit" variant="contained" endIcon={<SendIcon />}>
-          Отправить
-        </Button>
+        {inputs.telegram.length === 0 && inputs.phone.length === 0 ? (
+          <Button disabled type="submit" variant="contained" endIcon={<SendIcon />}>
+            Отправить
+          </Button>
+        ) : (
+          <Button type="submit" variant="contained" endIcon={<SendIcon />}>
+            Отправить
+          </Button>
+        )}
       </div>
     </form>
   );
