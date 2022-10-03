@@ -1,17 +1,14 @@
 /* eslint-disable guard-for-in */
 import axios from 'axios';
-import { ADD_PRODUCT, SET_PRODUCT } from '../types';
+import {
+  SET_PRODUCTS, DELETE_PRODUCT, UPDATE_PRODUCT,
+} from '../types';
 
-export const addCategories = (payload) => ({ type: ADD_PRODUCT, payload });
-export const setCategories = (payload) => ({ type: SET_PRODUCT, payload });
+export const setProducts = (payload) => ({ type: SET_PRODUCTS, payload });
+export const deleteProduct = (payload) => ({ type: DELETE_PRODUCT, payload });
+export const updateProduct = (payload) => ({ type: UPDATE_PRODUCT, payload });
 
-export const fetchCategories = () => (dispatch) => {
-  axios('/product')
-    .then((res) => dispatch(setCategories(res.data)))
-    .catch(console.log);
-};
-
-export const addProduct = (e, inputs, setInputs) => (dispatch) => {
+export const addProduct = (e, inputs, setInputs) => () => {
   e.preventDefault();
   const formData = new FormData();
   for (const key in inputs) {
@@ -24,11 +21,21 @@ export const addProduct = (e, inputs, setInputs) => (dispatch) => {
     }
   }
   axios.post('/product', formData)
-    .then((res) => {
-      dispatch(addCategories(res.data));
+    .then(() => {
       setInputs({
         dropPhoto: [], name: '', category: '', description: '', price: '', location: '', timing: '',
       });
-    })
+    });
+};
+
+export const deleteProductAsync = (id) => (dispatch) => {
+  axios.delete(`/product/${id}`)
+    .then(() => dispatch(deleteProduct(id)))
+    .catch(console.log);
+};
+
+export const updateProductAsync = (product) => (dispatch) => {
+  axios.put('/product', { changedProduct: product }, { withCredentials: true })
+    .then(() => dispatch(updateProduct(product)))
     .catch(console.log);
 };

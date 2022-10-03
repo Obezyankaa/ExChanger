@@ -1,6 +1,8 @@
 const express = require('express');
 const axios = require('axios');
-const { Product, Category, ProductPhoto } = require('../db/models');
+const {
+  Product, Category, ProductPhoto, User, View,
+} = require('../db/models');
 const fileMiddleware = require('../middlewares/file');
 
 const router = express.Router();
@@ -8,7 +10,7 @@ const router = express.Router();
 router.post('/', fileMiddleware.array('dropPhoto', 2), async (req, res) => {
   try {
     const category = await Category.findOne({ where: { name: req.body.category } });
-    const resultGeocoder = await axios.get(`https://catalog.api.2gis.com/3.0/items/geocode?q=${encodeURIComponent(inputs.location)}&fields=items.point&key=ruqevb3357`);
+    const resultGeocoder = await axios.get(`https://catalog.api.2gis.com/3.0/items/geocode?q=${encodeURIComponent(req.body.location)}&fields=items.point&key=ruqevb3357`);
     const newProduct = await Product.create({
       name: req.body.name,
       category_id: category.id,
@@ -30,4 +32,63 @@ router.post('/', fileMiddleware.array('dropPhoto', 2), async (req, res) => {
     console.log(e);
   }
 });
+
+// router.get('/', async (req, res) => {
+//   try {
+//     const AllProds = await Product.findAll({
+//       raw: true,
+//       include: [
+//         { raw: true, model: User },
+//         { raw: true, model: Category },
+//         { raw: true, model: View },
+//         { raw: true, model: ProductPhoto }],
+//     });
+//     res.json(AllProds);
+//   } catch (e) {
+//     console.log(e);
+//     res.sendStatus(500);
+//   }
+// });
+
+router.delete('/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    await Product.destroy({ where: { id } });
+    res.sendStatus(200);
+  } catch (e) {
+    console.log(e);
+    res.sendStatus(500);
+  }
+});
+
+router.put('/:id', async (req, res) => {
+  try {
+    const { changedProduct } = req.body;
+
+    await Product.update({ where: { id: req.params.id } }, changedProduct);
+    // updatedProduct.name = changedProduct.name;
+    // updatedProduct.category_id = changedProduct.category_id;
+    // updatedProduct.description = changedProduct.description;
+    // updatedProduct.status = changedProduct.status;
+    // updatedProduct.price = changedProduct.price;
+    // updatedProduct.user_id = changedProduct.user_id;
+    // updatedProduct.location = changedProduct.location;
+    // updatedProduct.timing = changedProduct.timing;
+    // updatedProduct.save();
+    const updatedProduct = await Product.findOne({
+      where: { id: changedProduct.id },
+      raw: true,
+      include: [
+        { raw: true, model: User },
+        { raw: true, model: Category },
+        { raw: true, model: View },
+        { raw: true, model: ProductPhoto }],
+    });
+    res.json(updatedProduct);
+  } catch (e) {
+    console.log(e);
+    res.sendStatus(500);
+  }
+});
+
 module.exports = router;

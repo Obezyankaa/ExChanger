@@ -3,9 +3,10 @@ import Button from '@mui/material/Button';
 import SendIcon from '@mui/icons-material/Send';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
-import { Autocomplete } from '@mui/material';
+import { Autocomplete, Chip, ListItem } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { v4 as uuidv4 } from 'uuid';
 import { allCategories } from '../redux/actions/categoriesAction';
 import { addProduct } from '../redux/actions/productAction';
 
@@ -86,16 +87,17 @@ export default function FormModalAddProd() {
               onChange={changeHandler}
             />
           </Button>
-          {/* <ListItem style={{ marginTop: '1px', overflow: 'hidden', width: '100%' }}>
-            {inputs.dropPhoto?.map((el) => (
+          <ListItem style={{ marginTop: '1px', overflow: 'hidden', width: '100%' }}>
+            {Object.values(inputs.dropPhoto).map((el) => (
               <Chip
-                label={el}
+                label={Object.values(el.name)}
                 variant="outlined"
                 style={{ marginRight: '5px' }}
                 key={uuidv4()}
               />
             ))}
-          </ListItem> */}
+
+          </ListItem>
         </Box>
         <Button type="submit" variant="contained" endIcon={<SendIcon />}>
           Отправить
