@@ -42,6 +42,7 @@ router.get('/', async (req, res) => {
         { model: View },
         { model: ProductPhoto },
       ],
+      order: [['createdAt', 'DESC']],
     });
     res.json(AllProds);
   } catch (e) {

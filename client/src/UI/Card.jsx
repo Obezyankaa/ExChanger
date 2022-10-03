@@ -24,7 +24,7 @@ export default function Card({ product }) {
               className="mySwiper"
             >
               {photos.map((el) => (
-                <SwiperSlide style={{ borderRadius: '1rem' }}>
+                <SwiperSlide key={el} style={{ borderRadius: '1rem' }}>
                   <img
                     className="item__img"
                     src={`http://localhost:3001/images/${el}`}

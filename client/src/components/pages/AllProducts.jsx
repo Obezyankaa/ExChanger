@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useSelector } from 'react-redux';
 import Card from '../../UI/Card';
 
 export default function AllProducts() {
@@ -8,7 +9,6 @@ export default function AllProducts() {
     axios.get('/product').then((response) => {
       setProducts(response.data.map((prod) => {
         const images = prod.ProductPhotos.map((el) => el.photo);
-        console.log(prod);
         return ({
           photos: images,
           userName: prod.User.f_name,
@@ -22,17 +22,48 @@ export default function AllProducts() {
       }));
     });
   }, []);
+  const categories = useSelector((state) => state.categories);
+  const [input, setInput] = useState({ minRange: 0, maxRange: 0 });
+  const changeHandler = (e) => {
+    setInput((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  };
+  console.log(input);
   return (
-    <div style={{ width: '100%' }}>
-      <div style={{
-        display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'center',
-      }}
-      >
-        {products.map((el) => (
-          <Card product={el} key={el.id} />
+    <div style={{ display: 'flex', marginLeft: '1rem' }}>
+      <div>
+        <p style={{ marginTop: '1rem' }}>Категория</p>
+        {categories.map((el) => (
+          <div className="form-check">
+            <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault" onChange={changeHandler} name={el.name} value={input.name} />
+            <label className="form-check-label" htmlFor="flexCheckDefault">
+              {el.name}
+            </label>
+          </div>
         ))}
+        <p style={{ marginTop: '1rem' }}>Диапазон цены</p>
+
+        <div className="range-slider">
+          <input className="range-slider__range" type="range" name="minRange" value={input.minRange} onChange={changeHandler} min="0" max="10000" step="50" />
+          <span className="range-slider__value">{input.minRange}</span>
+        </div>
+
+        <div className="range-slider">
+          <input className="range-slider__range" type="range" name="maxRange" value={input.maxRange} onChange={changeHandler} min="0" max="10000" step="50" />
+          <span className="range-slider__value">{input.maxRange}</span>
+        </div>
       </div>
-      <div style={{ height: '3rem' }} />
+
+      <div style={{ width: '100%' }}>
+        <div style={{
+          display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'center',
+        }}
+        >
+          {products.map((el, i) => (
+            <Card product={el} key={i} />
+          ))}
+        </div>
+        <div style={{ height: '3rem' }} />
+      </div>
     </div>
   );
 }
