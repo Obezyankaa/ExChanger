@@ -41,7 +41,7 @@ export default function Profile() {
             </div>
             <div className="first-screen-profile__rightblock">
               <div className="first-screen-profile__rightblock-photo">
-                <img src={`http://localhost:3001/images/${user.img}`} alt="" />
+                <img src={`http://localhost:3001/images/${user.photo}`} alt="" />
               </div>
             </div>
           </div>

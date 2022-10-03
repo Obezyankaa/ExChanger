@@ -26,16 +26,19 @@ function App() {
     dispatch(fetchFavorites());
     dispatch(allCategories());
   }, []);
+  const [night, setNight] = useState(true);
   const [regActive, setRegActive] = useState(false);
   const [logActive, setLogActive] = useState(false);
   const [addProdActive, setAddProdActive] = useState(false);
 
   return (
-    <>
+    <div style={night === true ? ({ backgroundColor: 'white', height: '100vh' }) : ({ backgroundColor: 'black', height: '100vh' })}>
       <Navbar
         setLogActive={setLogActive}
         setRegActive={setRegActive}
         setAddProdActive={setAddProdActive}
+        setNight={setNight}
+        night={night}
       />
       <Routes>
         <Route path="/" element={<Main regActive={regActive} setRegActive={setRegActive} setLogActive={setLogActive} logActive={logActive} setAddProdActive={setAddProdActive} addProdActive={addProdActive} />} />
@@ -51,7 +54,7 @@ function App() {
         <Route path="/card" element={<Card />} />
         <Route path="/user/:id" element={<UserProfile />} />
       </Routes>
-    </>
+    </div>
   );
 }
 
