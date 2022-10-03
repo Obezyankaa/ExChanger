@@ -33,17 +33,31 @@ router.post('/', fileMiddleware.array('dropPhoto', 2), async (req, res) => {
   }
 });
 
-// router.get('/', async (req, res) => {
+router.get('/', async (req, res) => {
+  try {
+    const AllProds = await Product.findAll({
+      include: [
+        { model: User },
+        { model: Category },
+        { model: View },
+        { model: ProductPhoto },
+      ],
+      order: [['createdAt', 'DESC']],
+    });
+    res.json(AllProds);
+  } catch (e) {
+    console.log(e);
+    res.sendStatus(500);
+  }
+});
+
+// router.get('/photo/:id', async (req, res) => {
 //   try {
-//     const AllProds = await Product.findAll({
-//       raw: true,
-//       include: [
-//         { raw: true, model: User },
-//         { raw: true, model: Category },
-//         { raw: true, model: View },
-//         { raw: true, model: ProductPhoto }],
+//     const { id } = req.params;
+//     const AllPhotos = await ProductPhoto.findAll({
+//       where: { product_id: id },
 //     });
-//     res.json(AllProds);
+//     res.json(AllPhotos);
 //   } catch (e) {
 //     console.log(e);
 //     res.sendStatus(500);
@@ -79,10 +93,10 @@ router.put('/:id', async (req, res) => {
       where: { id: changedProduct.id },
       raw: true,
       include: [
-        { raw: true, model: User },
-        { raw: true, model: Category },
-        { raw: true, model: View },
-        { raw: true, model: ProductPhoto }],
+        { model: User },
+        { model: Category },
+        { model: View },
+        { model: ProductPhoto }],
     });
     res.json(updatedProduct);
   } catch (e) {
