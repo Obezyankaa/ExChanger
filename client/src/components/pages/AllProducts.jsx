@@ -11,6 +11,7 @@ export default function AllProducts() {
       description: 'Продам четкий чайник',
       productName: 'Чайник',
       date: (new Date()).toLocaleDateString([], { hour: '2-digit', minute: '2-digit' }),
+      userId: 1,
     },
     {
       photos: ['https://vsegda-pomnim.com/uploads/posts/2022-05/1651426887_2-vsegda-pomnim-com-p-vulkani-mira-foto-2.jpg'],
@@ -20,6 +21,7 @@ export default function AllProducts() {
       description: 'Отобрала у сына, много играет',
       productName: 'GTA 6',
       date: (new Date()).toLocaleDateString([], { hour: '2-digit', minute: '2-digit' }),
+      userId: 1,
     },
     {
       photos: ['https://mykitai.ru/wp-content/uploads/2019/03/Velikaya-Kitajskaya-stena-1.jpg'],
@@ -29,6 +31,7 @@ export default function AllProducts() {
       description: 'Отличные часы, есть незначительные царапины сзади',
       productName: 'Часы',
       date: (new Date()).toLocaleDateString([], { hour: '2-digit', minute: '2-digit' }),
+      userId: 1,
     },
     {
       photos: ['https://spb.zvetnoe.ru/upload/catalog/2019/02/ZX10121.jpg'],
@@ -38,6 +41,7 @@ export default function AllProducts() {
       description: 'Подарили на день рождения, не пользовался',
       productName: 'Iphone 15',
       date: (new Date()).toLocaleDateString([], { hour: '2-digit', minute: '2-digit' }),
+      userId: 1,
     },
     {
       photos: ['https://en.rusunion.com/img/news/2018/11/02/amur-forest-cat-for-the-first-time-in-30-years-appeared-in-the-moscow-zoo-blog.png', 'https://bugaga.ru/uploads/posts/2017-03/1489052030_kotik-hosiko-12.jpg', 'https://leafclover.club/wp-content/uploads/2021/09/meet-pisco-the-cat-whoo-looks-like-a-real-life-puss-in-boots-05.jpg'],
@@ -47,6 +51,7 @@ export default function AllProducts() {
       description: 'Продам четкий чайник',
       productName: 'Чайник',
       date: (new Date()).toLocaleDateString([], { hour: '2-digit', minute: '2-digit' }),
+      userId: 1,
     },
     {
       photos: ['https://vsegda-pomnim.com/uploads/posts/2022-05/1651426887_2-vsegda-pomnim-com-p-vulkani-mira-foto-2.jpg'],
@@ -56,6 +61,7 @@ export default function AllProducts() {
       description: 'Отобрала у сына, много играет',
       productName: 'GTA 6',
       date: (new Date()).toLocaleDateString([], { hour: '2-digit', minute: '2-digit' }),
+      userId: 1,
     },
     {
       photos: ['https://mykitai.ru/wp-content/uploads/2019/03/Velikaya-Kitajskaya-stena-1.jpg'],
@@ -65,6 +71,7 @@ export default function AllProducts() {
       description: 'Отличные часы, есть незначительные царапины сзади',
       productName: 'Часы',
       date: (new Date()).toLocaleDateString([], { hour: '2-digit', minute: '2-digit' }),
+      userId: 1,
     },
     {
       photos: ['https://spb.zvetnoe.ru/upload/catalog/2019/02/ZX10121.jpg'],
@@ -74,6 +81,7 @@ export default function AllProducts() {
       description: 'Подарили на день рождения, не пользовался',
       productName: 'Iphone 15',
       date: (new Date()).toLocaleDateString([], { hour: '2-digit', minute: '2-digit' }),
+      userId: 1,
     },
     {
       photos: ['https://en.rusunion.com/img/news/2018/11/02/amur-forest-cat-for-the-first-time-in-30-years-appeared-in-the-moscow-zoo-blog.png', 'https://bugaga.ru/uploads/posts/2017-03/1489052030_kotik-hosiko-12.jpg', 'https://leafclover.club/wp-content/uploads/2021/09/meet-pisco-the-cat-whoo-looks-like-a-real-life-puss-in-boots-05.jpg'],
@@ -83,6 +91,7 @@ export default function AllProducts() {
       description: 'Продам четкий чайник',
       productName: 'Чайник',
       date: (new Date()).toLocaleDateString([], { hour: '2-digit', minute: '2-digit' }),
+      userId: 1,
     },
     {
       photos: ['https://vsegda-pomnim.com/uploads/posts/2022-05/1651426887_2-vsegda-pomnim-com-p-vulkani-mira-foto-2.jpg'],
@@ -92,6 +101,7 @@ export default function AllProducts() {
       description: 'Отобрала у сына, много играет',
       productName: 'GTA 6',
       date: (new Date()).toLocaleDateString([], { hour: '2-digit', minute: '2-digit' }),
+      userId: 1,
     },
     {
       photos: ['https://mykitai.ru/wp-content/uploads/2019/03/Velikaya-Kitajskaya-stena-1.jpg'],
@@ -101,6 +111,7 @@ export default function AllProducts() {
       description: 'Отличные часы, есть незначительные царапины сзади',
       productName: 'Часы',
       date: (new Date()).toLocaleDateString([], { hour: '2-digit', minute: '2-digit' }),
+      userId: 1,
     },
     {
       photos: ['https://spb.zvetnoe.ru/upload/catalog/2019/02/ZX10121.jpg'],
@@ -110,6 +121,7 @@ export default function AllProducts() {
       description: 'Подарили на день рождения, не пользовался',
       productName: 'Iphone 15',
       date: (new Date()).toLocaleDateString([], { hour: '2-digit', minute: '2-digit' }),
+      userId: 1,
     },
   ];
   return (

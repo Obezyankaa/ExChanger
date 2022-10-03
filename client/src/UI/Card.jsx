@@ -5,7 +5,7 @@ import { Pagination, Navigation } from 'swiper';
 
 export default function Card({ product }) {
   const {
-    photos, userName, userPhoto, description, productName, price, date,
+    photos, userName, userPhoto, description, productName, price, date, userId,
   } = product;
   return (
     <div style={{ margin: '2rem 2rem 0rem 2rem' }}>
@@ -52,10 +52,10 @@ export default function Card({ product }) {
             <div className="item__price__time">
               <div className="item__price" style={{ alignItems: 'center', display: 'flex' }}>
                 {/* <img className="item__icon" style={{ width: '1rem' }} src="https://st3.depositphotos.com/4326917/14193/v/600/depositphotos_141937226-stock-illustration-ruble-sign-dark-green-icon.jpg" alt="ethereum-icon" /> */}
-                <p style={{ color: 'aqua', margin: '0rem 0.5rem 0rem 0rem' }}>
-                  Руб/сут
-                </p>
                 <span className="price-eth">{price}</span>
+                <p style={{ color: 'aqua', margin: '0rem 0rem 0rem 0,5rem' }}>
+                  руб/сут
+                </p>
               </div>
               <div className="item__time">
                 <img className="item__icon" src="https://kellychi22.github.io/frontend-mentor-solutions/04-nft-preview-card-component/images/icon-clock.svg" alt="clock-icon" />
@@ -67,7 +67,7 @@ export default function Card({ product }) {
               <p className="creator__info" style={{ color: 'aqua' }}>
                 Владелец
                 {' '}
-                <Link className="creator__name" to="/">{userName}</Link>
+                <Link className="creator__name" to={`/user/${userId}`}>{userName}</Link>
               </p>
             </div>
           </div>
