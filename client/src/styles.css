@@ -187,32 +187,32 @@
         -ms-flex-pack: start;
             justify-content: start;
   }
-  .first-screen__right-bottom button {
-    background: hsl(0deg, 0%, 100%);
+  .turbobuttons {
     padding: 16px 24px;
     position: relative;
     width: 400px;
+    color:white;
+    opacity: 0.95;
     font-family: "Inter", sans-serif;
-    color: black;
     border-radius: 8px;
     -webkit-transition: all 0.8s ease 0s;
     transition: all 0.8s ease 0s;
     -webkit-box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.01);
             box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.01);
   }
-  .first-screen__right-bottom button::after {
+  .turbobuttons::after {
     position: absolute;
     content: "";
-    top: 15px;
-    left: 0;
+    top: 0px;
+    left: -20px;
     right: 0;
     z-index: -1;
     height: 100%;
-    width: 100%;
+    width: 110%;
     -webkit-transform: scale(0.9) translateZ(0);
             transform: scale(0.9) translateZ(0);
-    -webkit-filter: blur(15px);
-            filter: blur(15px);
+    -webkit-filter: blur(11px);
+            filter: blur(10px);
     background: -webkit-gradient(linear, right top, left top, from(#ff5770), color-stop(#e4428d), color-stop(#c42da8), color-stop(#9e16c3), color-stop(#6501de), color-stop(#9e16c3), color-stop(#c42da8), color-stop(#e4428d), to(#ff5770));
     background: linear-gradient(to left, #ff5770, #e4428d, #c42da8, #9e16c3, #6501de, #9e16c3, #c42da8, #e4428d, #ff5770);
     background-size: 200% 200%;
@@ -857,7 +857,7 @@
 }
 .intro__content-btn {
   margin-top: 30px;
-=======
+}
 
 /* <<<<<< ------------- >>>>>>  Mobilka */
 

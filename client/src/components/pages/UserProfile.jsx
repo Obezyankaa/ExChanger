@@ -3,10 +3,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import { fetchUsers } from '../../redux/actions/usersAction';
 import ModalAddProd from '../../UI/ModalAddProd';
+import ModalLog from '../../UI/ModalLog';
+import ModalRegistration from '../../UI/ModalRegistration';
 import StarUserRating from '../../UI/StarUserRating';
 import Telega from '../../UI/Telega';
 
-export default function UserProfile({ setAddProdActive, addProdActive }) {
+export default function UserProfile({
+  setAddProdActive, addProdActive, regActive, setRegActive, logActive, setLogActive,
+}) {
   const [btn, setBtn] = useState(false);
   const [num, setNum] = useState(true);
   const navigate = useNavigate();
@@ -77,6 +81,16 @@ export default function UserProfile({ setAddProdActive, addProdActive }) {
       <Telega btn={btn} setBtn={setBtn} name={users.f_name} telega={users.telegram} />
       {addProdActive === true ? (
         <ModalAddProd setAddProdActive={setAddProdActive} />
+      ) : (
+        <></>
+      )}
+      {regActive === true ? (
+        <ModalRegistration setRegActive={setRegActive} />
+      ) : (
+        <></>
+      )}
+      {logActive === true ? (
+        <ModalLog setLogActive={setLogActive} />
       ) : (
         <></>
       )}

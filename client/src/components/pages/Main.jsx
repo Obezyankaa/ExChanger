@@ -17,8 +17,8 @@ export default function Main({
           <p>ExChanger</p>
           <p>Доступный шеринг для обычных людей</p>
           <div className="intro__content-btn">
-            <button>Войти</button>
-            <button>Регистрация</button>
+            <button type="button" className="turbobuttons" style={{ marginRight: '10px' }}>Войти</button>
+            <button type="button" className="turbobuttons" style={{ marginLeft: '10px' }}>Регистрация</button>
           </div>
         </div>
       </div>

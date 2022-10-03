@@ -46,13 +46,13 @@ function App() {
         <Route path="/lk" element={<LK />} />
         <Route path="/personal-area" element={<PersonalArea />} />
         <Route path="/settings" element={<Settings setAddProdActive={setAddProdActive} addProdActive={addProdActive} />} />
-        <Route path="*" element={<Page404 setAddProdActive={setAddProdActive} addProdActive={addProdActive} to="/404" replace />} />
-        <Route path="/item/:id" element={<ItemPage setAddProdActive={setAddProdActive} addProdActive={addProdActive} />} />
+        <Route path="*" element={<Page404 regActive={regActive} setRegActive={setRegActive} setLogActive={setLogActive} logActive={logActive} setAddProdActive={setAddProdActive} addProdActive={addProdActive} to="/404" replace />} />
+        <Route path="/item/:id" element={<ItemPage regActive={regActive} setRegActive={setRegActive} setLogActive={setLogActive} logActive={logActive} setAddProdActive={setAddProdActive} addProdActive={addProdActive} />} />
         <Route path="/product" element={<OneCartForm />} />
         <Route path="/profile" element={<Profile setAddProdActive={setAddProdActive} addProdActive={addProdActive} />} />
         <Route path="/load" element={<Loading />} />
         <Route path="/card" element={<Card />} />
-        <Route path="/user/:id" element={<UserProfile setAddProdActive={setAddProdActive} addProdActive={addProdActive} />} />
+        <Route path="/user/:id" element={<UserProfile regActive={regActive} setRegActive={setRegActive} setLogActive={setLogActive} logActive={logActive} setAddProdActive={setAddProdActive} addProdActive={addProdActive} />} />
       </Routes>
     </div>
   );

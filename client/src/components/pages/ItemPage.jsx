@@ -8,8 +8,12 @@ import Days from '../../UI/Days';
 import BreadCrumps from '../../UI/BreadCrumps';
 import { productArg } from '../../redux/actions/prodItemPageAction';
 import Loading from '../../UI/Loading';
+import ModalRegistration from '../../UI/ModalRegistration';
+import ModalLog from '../../UI/ModalLog';
 
-function ItemPage() {
+function ItemPage({
+  regActive, setRegActive, logActive, setLogActive,
+}) {
   const dispatch = useDispatch();
   const argProduct = useSelector((state) => state.prodItemPage);
 
@@ -105,8 +109,8 @@ function ItemPage() {
 
             </div>
             <div className="first-screen__right-bottom">
-              <button type="button">Взять в аренду</button>
-              <button type="button">Добавить в избранное</button>
+              <button className="turbobuttons" type="button">Взять в аренду</button>
+              <button className="turbobuttons" type="button">Добавить в избранное</button>
             </div>
           </div>
         </div>
@@ -114,6 +118,16 @@ function ItemPage() {
       <div className="map">
         {/* <Map /> */}
       </div>
+      {regActive === true ? (
+        <ModalRegistration setRegActive={setRegActive} />
+      ) : (
+        <></>
+      )}
+      {logActive === true ? (
+        <ModalLog setLogActive={setLogActive} />
+      ) : (
+        <></>
+      )}
     </>
   );
 }
