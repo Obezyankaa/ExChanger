@@ -4,7 +4,6 @@ import { useDispatch } from 'react-redux';
 import Navbar from './UI/NavBar';
 import Page404 from './components/pages/Page404';
 import PersonalArea from './components/pages/PersonalArea';
-import AllProduct from './components/pages/AllProduct';
 import Map from './components/Map/Map';
 import Settings from './components/pages/Settings';
 import Main from './components/pages/Main';
