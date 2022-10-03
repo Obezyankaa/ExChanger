@@ -41,25 +41,26 @@ export default function Navbar({ setLogActive, setRegActive, setAddProdActive })
         <Container maxWidth="xl">
           <Toolbar disableGutters>
             <CachedOutlinedIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1, color: '#17494D' }} />
-            <Typography
-              style={{ textDecoration: 'none', color: '#17494D' }}
-              variant="h6"
-              noWrap
-              component="a"
-              href="/"
-              sx={{
-                mr: 2,
-                display: { xs: 'none', md: 'flex' },
-                fontFamily: '',
-                fontWeight: 700,
-                letterSpacing: '.3rem',
-                color: '#17494D',
-                textDecoration: 'none',
-              }}
-            >
-              ExChanger.
-            </Typography>
-
+            <Link to="/" style={{ textDecoration: 'none' }}>
+              <Typography
+                style={{ textDecoration: 'none', color: '#17494D' }}
+                variant="h6"
+                noWrap
+                component="a"
+                link="/"
+                sx={{
+                  mr: 2,
+                  display: { xs: 'none', md: 'flex' },
+                  fontFamily: '',
+                  fontWeight: 700,
+                  letterSpacing: '.3rem',
+                  color: '#17494D',
+                  textDecoration: 'none',
+                }}
+              >
+                ExChanger.
+              </Typography>
+            </Link>
             <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
               <IconButton
                 size="large"

@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import StarUserRating from '../../UI/StarUserRating';
 
 export default function Profile() {
+  const [btn, setBtn] = useState(true);
   const user = useSelector((state) => state.user);
   return (
     <>
@@ -21,8 +22,20 @@ export default function Profile() {
               </div>
               <div className="first-screen-profile__leftblock-form">
                 <form action="form\thanks\thanks.html">
-                  <button type="button">Напишите мне в Telegram</button>
-                  <button type="button">Позвоните мне</button>
+                  <a href={`https://t.me/${user.telegram}`}>
+                    <button type="button">
+                      Вы указали профиль
+                      {' '}
+                      {user.telegram}
+                    </button>
+                  </a>
+                  <>
+                    {btn === true ? (
+                      <button onClick={() => setBtn(false)} type="button">Показать номер</button>
+                    ) : (
+                      <button onClick={() => setBtn(true)} type="button">{user.phone}</button>
+                    )}
+                  </>
                 </form>
               </div>
             </div>

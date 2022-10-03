@@ -21,7 +21,7 @@ router.post('/registration', fileMiddleware.single('photo'), async (req, res) =>
       id: newUser.id,
       telegram: newUser.telegram,
       phone: newUser.phone,
-      img: newUser.photo,
+      photo: newUser.photo,
     };
     res.json(req.session.userSession).status(200);
   } catch (e) {
@@ -42,7 +42,7 @@ router.post('/authorization', async (req, res) => {
         id: newUser.id,
         telegram: newUser.telegram,
         phone: newUser.phone,
-        img: newUser.photo,
+        photo: newUser.photo,
       };
       res.json(req.session.userSession).status(200);
     } else {
