@@ -11,8 +11,6 @@ export default function Slider() {
       <Swiper
         spaceBetween={50}
         slidesPerView={3}
-        onSlideChange={() => console.log('slide change')}
-        onSwiper={(swiper) => console.log(swiper)}
         style={{ zIndex: '0' }}
       >
         <SwiperSlide>Slide 1</SwiperSlide>
@@ -26,8 +24,6 @@ export default function Slider() {
       <Swiper
         spaceBetween={50}
         slidesPerView={3}
-        onSlideChange={() => console.log('slide change')}
-        onSwiper={(swiper) => console.log(swiper)}
         style={{ zIndex: '0' }}
       >
         <SwiperSlide>Slide 1</SwiperSlide>

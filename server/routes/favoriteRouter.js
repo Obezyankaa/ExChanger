@@ -18,7 +18,6 @@ router.get('/', async (req, res) => {
 //     },
 //   });
 //   res.json(favorites);
-  console.log(req.session);
   res.sendStatus(200);
 });
 

@@ -2,7 +2,7 @@ import {
   ADD_PRODUCT, SET_PRODUCTS, DELETE_PRODUCT, UPDATE_PRODUCT,
 } from '../types';
 
-export default function productReducer(state = {}, action) {
+export default function productReducer(state = [], action) {
   const { type, payload } = action;
   switch (type) {
     case ADD_PRODUCT:

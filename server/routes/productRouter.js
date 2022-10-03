@@ -1,57 +1,54 @@
 const express = require('express');
+const axios = require('axios');
 const {
-  Product, User, View, ProductPhoto, Category,
+  Product, Category, ProductPhoto, User, View,
 } = require('../db/models');
+const fileMiddleware = require('../middlewares/file');
 
 const router = express.Router();
 
-router.post('/', async (req, res) => {
+router.post('/', fileMiddleware.array('dropPhoto', 2), async (req, res) => {
   try {
-    const {
-      name, category_id, description, status, price, user_id, location, timing,
-    } = req.body;
+    const category = await Category.findOne({ where: { name: req.body.category } });
+    const resultGeocoder = await axios.get(`https://catalog.api.2gis.com/3.0/items/geocode?q=${encodeURIComponent(req.body.location)}&fields=items.point&key=ruqevb3357`);
     const newProduct = await Product.create({
-      name,
-      category_id,
-      description,
-      status,
-      price,
-      user_id,
-      location,
-      timing,
+      name: req.body.name,
+      category_id: category.id,
+      description: req.body.description,
+      status: true,
+      price: req.body.price,
+      user_id: req.session.userSession.id,
+      location: `${resultGeocoder.data.result.items[0].point.lat}, ${resultGeocoder.data.result.items[0].point.lon}`,
+      timing: req.body.timing,
     });
-    const createdProd = await Product.findOne({
-      where: { id: newProduct.id },
-      raw: true,
-      include: [
-        { raw: true, model: User },
-        { raw: true, model: Category },
-        { raw: true, model: View },
-        { raw: true, model: ProductPhoto }],
-    });
-    res.json(createdProd);
+    for (let i = 0; i < req.files.length; i += 1) {
+      const result = await ProductPhoto.create({
+        photo: req.files[i].originalname,
+        product_id: newProduct.dataValues.id,
+      });
+    }
+    res.sendStatus(200);
   } catch (e) {
     console.log(e);
-    res.sendStatus(500);
   }
 });
 
-router.get('/', async (req, res) => {
-  try {
-    const AllProds = await Product.findAll({
-      raw: true,
-      include: [
-        { raw: true, model: User },
-        { raw: true, model: Category },
-        { raw: true, model: View },
-        { raw: true, model: ProductPhoto }],
-    });
-    res.json(AllProds);
-  } catch (e) {
-    console.log(e);
-    res.sendStatus(500);
-  }
-});
+// router.get('/', async (req, res) => {
+//   try {
+//     const AllProds = await Product.findAll({
+//       raw: true,
+//       include: [
+//         { raw: true, model: User },
+//         { raw: true, model: Category },
+//         { raw: true, model: View },
+//         { raw: true, model: ProductPhoto }],
+//     });
+//     res.json(AllProds);
+//   } catch (e) {
+//     console.log(e);
+//     res.sendStatus(500);
+//   }
+// });
 
 router.delete('/:id', async (req, res) => {
   try {

@@ -3,9 +3,10 @@ import Button from '@mui/material/Button';
 import SendIcon from '@mui/icons-material/Send';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
-import { Autocomplete } from '@mui/material';
+import { Autocomplete, Chip, ListItem } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { v4 as uuidv4 } from 'uuid';
 import { allCategories } from '../redux/actions/categoriesAction';
 import { addProduct } from '../redux/actions/productAction';
 
@@ -16,16 +17,24 @@ export default function FormModalAddProd() {
     dispatch(allCategories());
   }, []);
   const [inputs, setInputs] = useState({
-    name: '', category: '', description: '', price: '', location: '', timing: '',
+    dropPhoto: [], name: '', category: '', description: '', price: '', location: '', timing: '',
   });
   const changeHandler = (e) => {
-    setInputs((prev) => ({
-      ...prev,
-      [e.target.name]: e.target.value,
-    }));
+    if (e.target.files) {
+      setInputs((prev) => ({
+        ...prev,
+        dropPhoto: e.target.files,
+      }));
+    } else {
+      setInputs((prev) => ({
+        ...prev,
+        [e.target.name]: e.target.value,
+      }));
+    }
   };
-  const submitHendler = (e) => dispatch(addProduct(e, inputs, setInputs));
-
+  const submitHendler = (e) => (
+    dispatch(addProduct(e, inputs, setInputs))
+  );
   return (
     <form onSubmit={submitHendler}>
       <div className="form-conatainer" style={{ display: 'flex', flexDirection: 'column' }}>
@@ -63,7 +72,32 @@ export default function FormModalAddProd() {
           <TextField name="price" value={inputs.price} onChange={changeHandler} label="Цена за день использования" variant="standard" style={{ width: '100%', backgroundColor: 'white' }} type="text" />
           <TextField name="location" value={inputs.location} onChange={changeHandler} label="Адрес" variant="standard" style={{ width: '100%', backgroundColor: 'white' }} type="text" />
           <TextField name="timing" value={inputs.timing} onChange={changeHandler} label="Максимальное время аренды" variant="standard" style={{ width: '100%', backgroundColor: 'white' }} type="text" />
+          <Button
+            variant="contained"
+            component="label"
+          >
+            Добавить фото
+            <input
+              id="foto"
+              name="dropPhoto"
+              type="file"
+              hidden
+              multiple
+              value={inputs?.dropPhoto?.name}
+              onChange={changeHandler}
+            />
+          </Button>
+          <ListItem style={{ marginTop: '1px', overflow: 'hidden', width: '100%' }}>
+            {Object.values(inputs.dropPhoto).map((el) => (
+              <Chip
+                label={Object.values(el.name)}
+                variant="outlined"
+                style={{ marginRight: '5px' }}
+                key={uuidv4()}
+              />
+            ))}
 
+          </ListItem>
         </Box>
         <Button type="submit" variant="contained" endIcon={<SendIcon />}>
           Отправить
