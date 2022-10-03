@@ -45,7 +45,7 @@ function App() {
         <Route path="/personal-area" element={<PersonalArea />} />
         <Route path="/settings" element={<Settings />} />
         <Route path="*" element={<Page404 to="/404" replace />} />
-        <Route path="/item" element={<ItemPage />} />
+        <Route path="/item/:id" element={<ItemPage />} />
         <Route path="/product" element={<OneCartForm />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/load" element={<Loading />} />
