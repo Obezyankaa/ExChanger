@@ -3,9 +3,12 @@ import { Link } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination, Navigation } from 'swiper';
 
-export default function Card() {
+export default function Card({ product }) {
+  const {
+    photos, userName, userPhoto, description, productName, price, date
+  } = product;
   return (
-    <div>
+    <div style={{ margin: '3rem 3rem 0rem 3rem' }}>
       <main>
         <article className="card">
           <div className="item__img__container">
@@ -20,7 +23,16 @@ export default function Card() {
               modules={[Pagination, Navigation]}
               className="mySwiper"
             >
-              <SwiperSlide>
+              {photos.map((el) => (
+                <SwiperSlide>
+                  <img
+                    className="item__img"
+                    src={el}
+                    alt="..."
+                  />
+                </SwiperSlide>
+              ))}
+              {/* <SwiperSlide>
                 <img className="item__img" src="../../img/image.png" alt="..." />
               </SwiperSlide>
               <SwiperSlide>
@@ -31,28 +43,31 @@ export default function Card() {
               </SwiperSlide>
               <SwiperSlide>
                 <img className="item__img" src="../../img/image4.png" alt="..." />
-              </SwiperSlide>
+              </SwiperSlide> */}
             </Swiper>
           </div>
           <div className="item__info">
-            <h1 className="item__title">Equilibrium #3429</h1>
-            <p className="item__desc">Our Equilibrium collection promotes balance and calm.</p>
+            <h1 className="item__title">{productName}</h1>
+            <p className="item__desc" style={{ color: 'aqua' }}>{description}</p>
             <div className="item__price__time">
-              <div className="item__price">
-                <img className="item__icon" src="https://kellychi22.github.io/frontend-mentor-solutions/04-nft-preview-card-component/images/icon-ethereum.svg" alt="ethereum-icon" />
-                <span className="price-eth">0.041 ETH</span>
+              <div className="item__price" style={{ alignItems: 'center', display: 'flex' }}>
+                {/* <img className="item__icon" style={{ width: '1rem' }} src="https://st3.depositphotos.com/4326917/14193/v/600/depositphotos_141937226-stock-illustration-ruble-sign-dark-green-icon.jpg" alt="ethereum-icon" /> */}
+                <p style={{ color: 'aqua', margin: '0rem 0.5rem 0rem 0rem' }}>
+                  Руб/сут
+                </p>
+                <span className="price-eth">{price}</span>
               </div>
               <div className="item__time">
                 <img className="item__icon" src="https://kellychi22.github.io/frontend-mentor-solutions/04-nft-preview-card-component/images/icon-clock.svg" alt="clock-icon" />
-                <span className="days-left" style={{ color: 'white' }}>3 days left</span>
+                <span className="days-left" style={{ color: 'white' }}>{date}</span>
               </div>
             </div>
             <div className="item__creator">
-              <img className="creator__img" src="https://kellychi22.github.io/frontend-mentor-solutions/04-nft-preview-card-component/images/image-avatar.png" alt="creator_avator" />
-              <p className="creator__info">
-                Creation of
+              <img className="creator__img" src={userPhoto} alt="creator_avator" />
+              <p className="creator__info" style={{ color: 'aqua' }}>
+                Владелец
                 {' '}
-                <Link className="creator__name" to="/">Jules Wyvern</Link>
+                <Link className="creator__name" to="/">{userName}</Link>
               </p>
             </div>
           </div>
