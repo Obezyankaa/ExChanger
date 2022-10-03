@@ -3,6 +3,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination, Navigation } from 'swiper';
 // import Map from '../Map/Map';
 import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
 import StarUserRating from '../../UI/StarUserRating';
 import Days from '../../UI/Days';
 import BreadCrumps from '../../UI/BreadCrumps';
@@ -25,8 +26,9 @@ function ItemPage({
     }));
   };
   const priceCalculate = argProduct.price * inputs.timing;
+  const { id } = useParams();
   useEffect(() => {
-    dispatch(productArg(5));
+    dispatch(productArg(id));
   }, []);
   return (
     <>
