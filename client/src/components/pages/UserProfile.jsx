@@ -1,10 +1,13 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import { fetchUsers } from '../../redux/actions/usersAction';
 import StarUserRating from '../../UI/StarUserRating';
+import Telega from '../../UI/Telega';
 
 export default function UserProfile() {
+  const [btn, setBtn] = useState(false);
+  const [num, setNum] = useState(true);
   const navigate = useNavigate();
   const { id } = useParams();
   const users = useSelector((state) => state.users);
@@ -35,10 +38,14 @@ export default function UserProfile() {
                 <p>Свяжитесь с пользователем</p>
               </div>
               <div className="first-screen-profile__leftblock-form">
-                <form action="form\thanks\thanks.html">
-                  <button type="button">Напишите мне в Telegram</button>
-                  <button type="button">Позвоните мне</button>
-                </form>
+                <button onClick={() => setBtn(true)} type="button">Напишите мне в Telegram</button>
+                <>
+                  {num === true ? (
+                    <button onClick={() => setNum(false)} type="button">Показать номер</button>
+                  ) : (
+                    <button onClick={() => setNum(true)} type="button">{users.phone}</button>
+                  )}
+                </>
               </div>
             </div>
             <div className="first-screen-profile__rightblock">
@@ -66,6 +73,7 @@ export default function UserProfile() {
           </div>
         </div>
       </div>
+      <Telega btn={btn} setBtn={setBtn} name={users.f_name} telega={users.telegram} />
     </>
   );
 }

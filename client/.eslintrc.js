@@ -28,5 +28,6 @@ module.exports = {
     'react/jsx-no-useless-fragment': 0,
     'react/jsx-props-no-spreading': 0,
     'eslint-disable-next-line': 0,
+    'max-len': 0,
   },
 };

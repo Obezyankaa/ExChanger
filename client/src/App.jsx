@@ -4,7 +4,6 @@ import { useDispatch } from 'react-redux';
 import Navbar from './UI/NavBar';
 import Page404 from './components/pages/Page404';
 import PersonalArea from './components/pages/PersonalArea';
-import AllProduct from './components/pages/AllProduct';
 import Map from './components/Map/Map';
 import Settings from './components/pages/Settings';
 import Main from './components/pages/Main';
@@ -19,7 +18,6 @@ import Profile from './components/pages/Profile';
 import Loading from './UI/Loading';
 import Card from './UI/Card';
 import UserProfile from './components/pages/UserProfile';
-import AllProducts from './components/pages/AllProducts';
 
 function App() {
   const dispatch = useDispatch();
@@ -52,7 +50,6 @@ function App() {
         <Route path="/load" element={<Loading />} />
         <Route path="/card" element={<Card />} />
         <Route path="/user/:id" element={<UserProfile />} />
-        <Route path="/allproducts" element={<AllProducts />} />
       </Routes>
     </>
   );
