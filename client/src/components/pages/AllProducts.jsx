@@ -23,18 +23,20 @@ export default function AllProducts() {
     });
   }, []);
   const categories = useSelector((state) => state.categories);
-  const [input, setInput] = useState({ minRange: 0, maxRange: 0 });
+  const [findInput, setFindInput] = useState({ minRange: 0, maxRange: 0 });
   const changeHandler = (e) => {
-    setInput((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    setFindInput((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
-  console.log(input);
+  console.log(findInput);
+  console.log(products);
+  // console.log(categories);
   return (
     <div style={{ display: 'flex', marginLeft: '1rem' }}>
       <div>
         <p style={{ marginTop: '1rem' }}>Категория</p>
         {categories.map((el) => (
           <div className="form-check">
-            <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault" onChange={changeHandler} name={el.name} value={input.name} />
+            <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault" onChange={changeHandler} name={el.id} value={findInput[el.id]} />
             <label className="form-check-label" htmlFor="flexCheckDefault">
               {el.name}
             </label>
@@ -43,21 +45,21 @@ export default function AllProducts() {
         <p style={{ marginTop: '1rem' }}>Диапазон цены</p>
 
         <div className="range-slider">
-          <input className="range-slider__range" type="range" name="minRange" value={input.minRange} onChange={changeHandler} min="0" max="10000" step="50" />
-          <span className="range-slider__value">{input.minRange}</span>
+          <input className="range-slider__range" type="range" name="minRange" value={findInput.minRange} onChange={changeHandler} min="0" max="10000" step="50" />
+          <span className="range-slider__value">{findInput.minRange}</span>
         </div>
 
         <div className="range-slider">
-          <input className="range-slider__range" type="range" name="maxRange" value={input.maxRange} onChange={changeHandler} min="0" max="10000" step="50" />
-          <span className="range-slider__value">{input.maxRange}</span>
+          <input className="range-slider__range" type="range" name="maxRange" value={findInput.maxRange} onChange={changeHandler} min="0" max="10000" step="50" />
+          <span className="range-slider__value">{findInput.maxRange}</span>
         </div>
       </div>
-
       <div style={{ width: '100%' }}>
         <div style={{
           display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'center',
         }}
         >
+          {products ? products.filter((el) => (findInput ? Object.keys(el).includes(findInput) : true)).map((el, i) => <Card product={el} key={i} />) : 'Товары не отобразились (('}
           {products.map((el, i) => (
             <Card product={el} key={i} />
           ))}
