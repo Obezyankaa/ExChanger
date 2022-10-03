@@ -27,7 +27,7 @@ export default function Card({ product }) {
                 <SwiperSlide style={{ borderRadius: '1rem' }}>
                   <img
                     className="item__img"
-                    src={el}
+                    src={`http://localhost:3001/images/${el}`}
                     alt="..."
                   />
                 </SwiperSlide>
@@ -53,7 +53,7 @@ export default function Card({ product }) {
               <div className="item__price" style={{ alignItems: 'center', display: 'flex' }}>
                 {/* <img className="item__icon" style={{ width: '1rem' }} src="https://st3.depositphotos.com/4326917/14193/v/600/depositphotos_141937226-stock-illustration-ruble-sign-dark-green-icon.jpg" alt="ethereum-icon" /> */}
                 <span className="price-eth">{price}</span>
-                <p style={{ color: 'aqua', margin: '0rem 0rem 0rem 0,5rem' }}>
+                <p style={{ color: 'aqua', margin: '0rem 0rem 0rem 0.5rem' }}>
                   руб/сут
                 </p>
               </div>
@@ -63,7 +63,7 @@ export default function Card({ product }) {
               </div>
             </div>
             <div className="item__creator">
-              <img className="creator__img" src={userPhoto} alt="creator_avator" />
+              <img className="creator__img" src={`http://localhost:3001/images/${userPhoto}`} alt="creator_avator" />
               <p className="creator__info" style={{ color: 'aqua' }}>
                 Владелец
                 {' '}
