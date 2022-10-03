@@ -1,9 +1,24 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate, useParams } from 'react-router-dom';
+import { fetchUsers } from '../../redux/actions/usersAction';
 import StarUserRating from '../../UI/StarUserRating';
 
-export default function Profile() {
+export default function UserProfile() {
+  const navigate = useNavigate();
+  const { id } = useParams();
+  const users = useSelector((state) => state.users);
   const user = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchUsers(id));
+  }, []);
+  useEffect(() => {
+    if (user && Number(id) === Number(user.id)) {
+      navigate('/profile');
+    }
+  }, [user]);
+
   return (
     <>
       <div className="first-screen-profile">
@@ -12,8 +27,8 @@ export default function Profile() {
             <div className="first-screen-profile__leftblock">
               <div className="first-screen-profile__leftblock-textarea">
                 <p />
-                <p>{user.f_name}</p>
-                <p>{user.l_name}</p>
+                <p>{users.f_name}</p>
+                <p>{users.l_name}</p>
                 <StarUserRating />
               </div>
               <div className="first-screen-profile__leftblock-skils">
@@ -28,7 +43,7 @@ export default function Profile() {
             </div>
             <div className="first-screen-profile__rightblock">
               <div className="first-screen-profile__rightblock-photo">
-                <img src={`http://localhost:3001/images/${user.img}`} alt="" />
+                <img src={`http://localhost:3001/images/${users.photo}`} alt="" />
               </div>
             </div>
           </div>
@@ -43,9 +58,6 @@ export default function Profile() {
               </div>
               <div className="stats__block-two">
                 <p>Активные товары</p>
-              </div>
-              <div className="stats__block-three">
-                <p>Избранное</p>
               </div>
               <div className="stats__block-four">
                 <p>Отзывы</p>
