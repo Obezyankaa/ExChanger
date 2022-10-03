@@ -2,11 +2,10 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
 
-export default function Days({ changeHandler, inputs, max }) {
-  // console.log(inputs);
+export default function Price({ changeHandler, inputs }) {
   return (
     <Box sx={{ width: 300 }}>
-      {inputs.timing < (max * 0.8) ? (
+      {inputs.timing < 25 ? (
         <Slider
           name="timing"
           aria-label="Temperature"
@@ -15,7 +14,7 @@ export default function Days({ changeHandler, inputs, max }) {
           step={1}
           marks
           min={1}
-          max={max}
+          max={10000}
           onChange={changeHandler}
           style={{ width: '200%' }}
         />
@@ -28,7 +27,7 @@ export default function Days({ changeHandler, inputs, max }) {
           step={1}
           marks
           min={1}
-          max={max}
+          max={10000}
           onChange={changeHandler}
           style={{ width: '200%', color: 'red' }}
         />
