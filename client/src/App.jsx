@@ -45,14 +45,14 @@ function App() {
         <Route path="/map" element={<Map />} />
         <Route path="/lk" element={<LK />} />
         <Route path="/personal-area" element={<PersonalArea />} />
-        <Route path="/settings" element={<Settings />} />
-        <Route path="*" element={<Page404 to="/404" replace />} />
-        <Route path="/item" element={<ItemPage />} />
+        <Route path="/settings" element={<Settings setAddProdActive={setAddProdActive} addProdActive={addProdActive} />} />
+        <Route path="*" element={<Page404 setAddProdActive={setAddProdActive} addProdActive={addProdActive} to="/404" replace />} />
+        <Route path="/item" element={<ItemPage setAddProdActive={setAddProdActive} addProdActive={addProdActive} />} />
         <Route path="/product" element={<OneCartForm />} />
-        <Route path="/profile" element={<Profile />} />
+        <Route path="/profile" element={<Profile setAddProdActive={setAddProdActive} addProdActive={addProdActive} />} />
         <Route path="/load" element={<Loading />} />
         <Route path="/card" element={<Card />} />
-        <Route path="/user/:id" element={<UserProfile />} />
+        <Route path="/user/:id" element={<UserProfile setAddProdActive={setAddProdActive} addProdActive={addProdActive} />} />
       </Routes>
     </div>
   );

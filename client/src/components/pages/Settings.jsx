@@ -2,9 +2,10 @@ import * as React from 'react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchUsers } from '../../redux/actions/usersAction';
+import ModalAddProd from '../../UI/ModalAddProd';
 import UpdateForm from '../../UI/UpdateForm';
 
-export default function Settings() {
+export default function Settings({ setAddProdActive, addProdActive }) {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
   console.log(user);
@@ -26,6 +27,11 @@ export default function Settings() {
           </div>
         </div>
       </div>
+      {addProdActive === true ? (
+        <ModalAddProd setAddProdActive={setAddProdActive} />
+      ) : (
+        <></>
+      )}
     </>
   );
 }
