@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
+import ModalAddProd from '../../UI/ModalAddProd';
 import StarUserRating from '../../UI/StarUserRating';
 
-export default function Profile() {
+export default function Profile({ setAddProdActive, addProdActive }) {
   const [btn, setBtn] = useState(true);
   const user = useSelector((state) => state.user);
   return (
@@ -67,6 +68,11 @@ export default function Profile() {
           </div>
         </div>
       </div>
+      {addProdActive === true ? (
+        <ModalAddProd setAddProdActive={setAddProdActive} />
+      ) : (
+        <></>
+      )}
     </>
   );
 }
