@@ -113,11 +113,16 @@ export default function AllProducts() {
     },
   ];
   return (
-    <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center' }}>
-      {products.map((el) => (
-        <Card product={el} />
-      ))}
-      <div style={{ marginBottom: '3rem' }} />
+    <div style={{ width: '100%' }}>
+      <div style={{
+        display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'center',
+      }}
+      >
+        {products.map((el) => (
+          <Card product={el} />
+        ))}
+        <div style={{ marginBottom: '3rem' }} />
+      </div>
     </div>
   );
 }

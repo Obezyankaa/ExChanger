@@ -5,10 +5,10 @@ import { Pagination, Navigation } from 'swiper';
 
 export default function Card({ product }) {
   const {
-    photos, userName, userPhoto, description, productName, price, date
+    photos, userName, userPhoto, description, productName, price, date,
   } = product;
   return (
-    <div style={{ margin: '3rem 3rem 0rem 3rem' }}>
+    <div style={{ margin: '2rem 2rem 0rem 2rem' }}>
       <main>
         <article className="card">
           <div className="item__img__container">
@@ -24,7 +24,7 @@ export default function Card({ product }) {
               className="mySwiper"
             >
               {photos.map((el) => (
-                <SwiperSlide>
+                <SwiperSlide style={{ borderRadius: '1rem' }}>
                   <img
                     className="item__img"
                     src={el}
