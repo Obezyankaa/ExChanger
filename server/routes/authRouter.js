@@ -16,9 +16,11 @@ router.post('/registration', fileMiddleware.single('photo'), async (req, res) =>
     });
     req.session.userSession = {
       email: newUser.email,
-      f_name: newUser.fname,
-      l_name: newUser.lname,
+      f_name: newUser.f_name,
+      l_name: newUser.l_name,
       id: newUser.id,
+      telegram: newUser.telegram,
+      phone: newUser.phone,
       img: newUser.photo,
     };
     res.json(req.session.userSession).status(200);
@@ -35,9 +37,11 @@ router.post('/authorization', async (req, res) => {
     if (compare) {
       req.session.userSession = {
         email: newUser.email,
-        f_name: newUser.fname,
-        l_name: newUser.lname,
+        f_name: newUser.f_name,
+        l_name: newUser.l_name,
         id: newUser.id,
+        telegram: newUser.telegram,
+        phone: newUser.phone,
         img: newUser.photo,
       };
       res.json(req.session.userSession).status(200);
