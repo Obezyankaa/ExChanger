@@ -377,6 +377,7 @@
             transform: scale(1.03, 1.03);
   }
   .stats {
+    /* display: none; */
     background-color: #F2F1EF;
   }
   .stats__body {
@@ -789,4 +790,49 @@
 
 .attribution a:hover {
   color: hsl(178, 100%, 50%);
+}
+
+
+/* <<<<<< ------------- >>>>>>  Mobilka */
+
+@media screen and (max-width: 414px) {
+
+  .first-screen-profile__leftblock-textarea {
+    width: 150px;
+  }
+  .first-screen-profile__leftblock-skils {
+    width: 150px;
+  }
+  .first-screen-profile__leftblock-form {
+    width: 150px;
+  }
+  .first-screen-profile__form {
+    display: flex;
+  }
+  .first-screen-profile__link {
+    border-radius: 1rem;
+    margin-right: 1rem;
+  }
+
+  .stats {
+    padding-bottom: 100px;
+  }
+
+  .stats__block {
+    flex-wrap: wrap;
+  }
+  .stats__block-one, .stats__block-two, .stats__block-three, .stats__block-four {
+    width: 120px;    /* height: 50px; */
+    font-size: 12px;
+    margin: 10px;
+  }
+  .stats__content {
+    padding: 0px 46px 184px 60px;
+  }
+  .stats__block-one p:nth-child(1) {
+    line-height: 20px;
+  }
+  .stats__block-two p:nth-child(1)  {
+    line-height: 20px;
+  }
 }

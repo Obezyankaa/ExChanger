@@ -21,8 +21,8 @@ export default function Profile() {
                 <p>Свяжитесь с пользователем</p>
               </div>
               <div className="first-screen-profile__leftblock-form">
-                <form action="form\thanks\thanks.html">
-                  <a href={`https://t.me/${user.telegram}`}>
+                <form className="first-screen-profile__form" action="form\thanks\thanks.html">
+                  <a className="first-screen-profile__link" href={`https://t.me/${user.telegram}`}>
                     <button type="button">
                       Вы указали профиль
                       {' '}
@@ -31,7 +31,7 @@ export default function Profile() {
                   </a>
                   <>
                     {btn === true ? (
-                      <button onClick={() => setBtn(false)} type="button">Показать номер</button>
+                      <button className="first-screen-profile__btn__profile" onClick={() => setBtn(false)} type="button">Показать номер</button>
                     ) : (
                       <button onClick={() => setBtn(true)} type="button">{user.phone}</button>
                     )}
@@ -41,7 +41,7 @@ export default function Profile() {
             </div>
             <div className="first-screen-profile__rightblock">
               <div className="first-screen-profile__rightblock-photo">
-                <img src={`http://localhost:3001/images/${user.img}`} alt="" />
+                <img src={`http://localhost:3001/images/${user.photo}`} alt="" />
               </div>
             </div>
           </div>
