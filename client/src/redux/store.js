@@ -5,6 +5,7 @@ import categoriesReducer from './reducers/categoriesReducer';
 import productReducer from './reducers/productReducer';
 import usersReducer from './reducers/usersReducer';
 import prodItemPageReducer from './reducers/prodItemPageReducer';
+import userItemsReducer from './reducers/userItemsReducer';
 import gradeProductReducer from './reducers/gradeProductReducer';
 
 export default configureStore({
@@ -15,6 +16,7 @@ export default configureStore({
     product: productReducer,
     users: usersReducer,
     prodItemPage: prodItemPageReducer,
+    userItems: userItemsReducer,
     gradeProduct: gradeProductReducer,
   },
 });
