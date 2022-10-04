@@ -17,9 +17,8 @@ router.get('/all', async (req, res) => {
 router.delete('/:id', async (req, res) => {
   try {
     const { id } = req.params;
-    console.log(id);
     const deleteItem = await Product.destroy({ where: { id } });
-    res.json(deleteItem);
+    res.json(200);    
   } catch (e) {
     console.log(e);
   }
