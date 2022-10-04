@@ -59,6 +59,7 @@ export default function Card({ product }) {
               </p>
               <div className="form-check">
                 <input className="form-check-input" type="checkbox" value="" id="flexCheckIndeterminate" />
+                {/*  eslint-disable-next-line jsx-a11y/label-has-associated-control */}
                 <label className="form-check-label" htmlFor="flexCheckIndeterminate">
                   Indeterminate checkbox
                 </label>

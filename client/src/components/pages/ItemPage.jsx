@@ -45,7 +45,6 @@ export default function ItemPage({
   const priceCalculate = argProduct.price * inputs.timing;
   useEffect(() => {
     dispatch(productArg(id));
-    // dispatch(countGradeProd(id));
   }, []);
 
   const modalopen = () => {
@@ -76,7 +75,7 @@ export default function ItemPage({
                 width: '700px',
               }}
             >
-              {argProduct.category_id ? (
+              {argProduct?.category_id ? (
                 argProduct?.ProductPhotos?.map((el) => (
                   <SwiperSlide>
                     <img
