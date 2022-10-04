@@ -13,6 +13,8 @@ module.exports = {
         references: {
           model: 'Products',
           key: 'id',
+          onDelete: 'CASCADE',
+
         },
       },
       user_buyer: {
