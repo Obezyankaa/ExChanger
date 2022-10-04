@@ -11,6 +11,7 @@ export default function AllProducts() {
         const images = prod.ProductPhotos.map((el) => el.photo);
         return ({
           id: prod.id,
+          categoryId: prod.Category.id,
           photos: images,
           userName: prod.User.f_name,
           price: prod.price,
@@ -25,19 +26,20 @@ export default function AllProducts() {
   }, []);
   const categories = useSelector((state) => state.categories);
   const [findInput, setFindInput] = useState({ minRange: 0, maxRange: 0 });
+  const [categoryInput, setCategoryInput] = useState({ });
   const changeHandler = (e) => {
     setFindInput((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
-  console.log(findInput);
-  console.log(products);
-  // console.log(categories);
+  const changeCategoryHandler = (e) => {
+    setCategoryInput((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  };
   return (
     <div style={{ display: 'flex', marginLeft: '1rem' }}>
       <div>
         <p style={{ marginTop: '1rem' }}>Категория</p>
         {categories.map((el) => (
           <div key={el.id} className="form-check">
-            <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault" onChange={changeHandler} name={el.id} value={findInput[el.id]} />
+            <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault" onChange={changeCategoryHandler} name={el.id} value={el.id} />
             <label className="form-check-label" htmlFor="flexCheckDefault">
               {el.name}
             </label>
@@ -60,15 +62,11 @@ export default function AllProducts() {
           display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'center',
         }}
         >
-          {products ? products.filter((el) => {
-            console.log('find', findInput);
-            console.log('find', findInput);
-            return Number(el.price) <= findInput.maxRange && Number(el.price) >= findInput.minRange;
-          })
-            .map((el) => {
-              console.log('mapchik', el);
-              return (<Card product={el} key={el.id} />);
-            }) : 'Товары не отобразились (('}
+          {products ? products.filter((el) => Number(el.price) <= findInput.maxRange && Number(el.price) >= findInput.minRange)
+            .filter((el) => Object.keys(categoryInput)
+              .map((elem) => Number(elem))
+              .includes(el.categoryId))
+            .map((el) => (<Card product={el} key={el.id} />)) : 'Товары не отобразились (('}
         </div>
         <div style={{ height: '3rem' }} />
       </div>
