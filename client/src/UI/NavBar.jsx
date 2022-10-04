@@ -16,7 +16,9 @@ import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { logoutUserAsync } from '../redux/actions/userAction';
 
-export default function Navbar({ setLogActive, setRegActive, setAddProdActive }) {
+export default function Navbar({
+  setLogActive, setRegActive, setAddProdActive, setNight, night,
+}) {
   const user = useSelector((state) => state.user);
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
@@ -41,25 +43,26 @@ export default function Navbar({ setLogActive, setRegActive, setAddProdActive })
         <Container maxWidth="xl">
           <Toolbar disableGutters>
             <CachedOutlinedIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1, color: '#17494D' }} />
-            <Typography
-              style={{ textDecoration: 'none', color: '#17494D' }}
-              variant="h6"
-              noWrap
-              component="a"
-              href="/"
-              sx={{
-                mr: 2,
-                display: { xs: 'none', md: 'flex' },
-                fontFamily: '',
-                fontWeight: 700,
-                letterSpacing: '.3rem',
-                color: '#17494D',
-                textDecoration: 'none',
-              }}
-            >
-              ExChanger.
-            </Typography>
-
+            <Link to="/" style={{ textDecoration: 'none' }}>
+              <Typography
+                style={{ textDecoration: 'none', color: '#17494D' }}
+                variant="h6"
+                noWrap
+                component="a"
+                link="/"
+                sx={{
+                  mr: 2,
+                  display: { xs: 'none', md: 'flex' },
+                  fontFamily: '',
+                  fontWeight: 700,
+                  letterSpacing: '.3rem',
+                  color: '#17494D',
+                  textDecoration: 'none',
+                }}
+              >
+                ExChanger.
+              </Typography>
+            </Link>
             <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
               <IconButton
                 size="large"
@@ -136,12 +139,29 @@ export default function Navbar({ setLogActive, setRegActive, setAddProdActive })
                 </Button>
               </Box>
             ) }
+            {night === true ? (
+              <Button
+                sx={{ my: 2, color: '#17494D', display: 'block' }}
+                onClick={() => setNight(false)}
+                s
+              >
+                Night Mode
+              </Button>
+            ) : (
+              <Button
+                sx={{ my: 2, color: '#17494D', display: 'block' }}
+                onClick={() => setNight(true)}
+                s
+              >
+                Day Mode
+              </Button>
+            )}
             {user.id ? (
               <>
                 <Box sx={{ flexGrow: 0 }}>
                   <Tooltip title="Open settings">
                     <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                      <Avatar alt="Remy Sharp" src={`http://localhost:3001/images/${user.img}`} />
+                      <Avatar alt="Remy Sharp" src={`http://localhost:3001/images/${user.photo}`} />
                     </IconButton>
                   </Tooltip>
                   <Menu

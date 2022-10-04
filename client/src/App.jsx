@@ -27,33 +27,36 @@ function App() {
     dispatch(fetchFavorites());
     dispatch(allCategories());
   }, []);
+  const [night, setNight] = useState(true);
   const [regActive, setRegActive] = useState(false);
   const [logActive, setLogActive] = useState(false);
   const [addProdActive, setAddProdActive] = useState(false);
 
   return (
-    <>
+    <div style={night === true ? ({ backgroundColor: 'white', height: '100vh' }) : ({ backgroundColor: 'black', height: '100vh' })}>
       <Navbar
         setLogActive={setLogActive}
         setRegActive={setRegActive}
         setAddProdActive={setAddProdActive}
+        setNight={setNight}
+        night={night}
       />
       <Routes>
         <Route path="/" element={<Main regActive={regActive} setRegActive={setRegActive} setLogActive={setLogActive} logActive={logActive} setAddProdActive={setAddProdActive} addProdActive={addProdActive} />} />
         <Route path="/map" element={<Map />} />
         <Route path="/lk" element={<LK />} />
         <Route path="/personal-area" element={<PersonalArea />} />
-        <Route path="/settings" element={<Settings />} />
-        <Route path="*" element={<Page404 to="/404" replace />} />
-        <Route path="/item" element={<ItemPage />} />
+        <Route path="/settings" element={<Settings setAddProdActive={setAddProdActive} addProdActive={addProdActive} />} />
+        <Route path="*" element={<Page404 regActive={regActive} setRegActive={setRegActive} setLogActive={setLogActive} logActive={logActive} setAddProdActive={setAddProdActive} addProdActive={addProdActive} to="/404" replace />} />
+        <Route path="/item/:id" element={<ItemPage regActive={regActive} setRegActive={setRegActive} setLogActive={setLogActive} logActive={logActive} setAddProdActive={setAddProdActive} addProdActive={addProdActive} />} />
         <Route path="/product" element={<OneCartForm />} />
-        <Route path="/profile" element={<Profile />} />
+        <Route path="/profile" element={<Profile setAddProdActive={setAddProdActive} addProdActive={addProdActive} />} />
         <Route path="/load" element={<Loading />} />
         <Route path="/allproducts" element={<AllProducts />} />
         <Route path="/card" element={<Card />} />
-        <Route path="/user/:id" element={<UserProfile />} />
+        <Route path="/user/:id" element={<UserProfile regActive={regActive} setRegActive={setRegActive} setLogActive={setLogActive} logActive={logActive} setAddProdActive={setAddProdActive} addProdActive={addProdActive} />} />
       </Routes>
-    </>
+    </div>
   );
 }
 

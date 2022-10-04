@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
+import ModalAddProd from '../../UI/ModalAddProd';
 import StarUserRating from '../../UI/StarUserRating';
 
-export default function Profile() {
+export default function Profile({ setAddProdActive, addProdActive }) {
+  const [btn, setBtn] = useState(true);
   const user = useSelector((state) => state.user);
   return (
     <>
@@ -20,15 +22,27 @@ export default function Profile() {
                 <p>Свяжитесь с пользователем</p>
               </div>
               <div className="first-screen-profile__leftblock-form">
-                <form action="form\thanks\thanks.html">
-                  <button type="button">Напишите мне в Telegram</button>
-                  <button type="button">Позвоните мне</button>
+                <form className="first-screen-profile__form" action="form\thanks\thanks.html">
+                  <a className="first-screen-profile__link" href={`https://t.me/${user.telegram}`}>
+                    <button type="button">
+                      Вы указали профиль
+                      {' '}
+                      {user.telegram}
+                    </button>
+                  </a>
+                  <>
+                    {btn === true ? (
+                      <button className="first-screen-profile__btn__profile" onClick={() => setBtn(false)} type="button">Показать номер</button>
+                    ) : (
+                      <button onClick={() => setBtn(true)} type="button">{user.phone}</button>
+                    )}
+                  </>
                 </form>
               </div>
             </div>
             <div className="first-screen-profile__rightblock">
               <div className="first-screen-profile__rightblock-photo">
-                <img src={`http://localhost:3001/images/${user.img}`} alt="" />
+                <img src={`http://localhost:3001/images/${user.photo}`} alt="" />
               </div>
             </div>
           </div>
@@ -54,6 +68,11 @@ export default function Profile() {
           </div>
         </div>
       </div>
+      {addProdActive === true ? (
+        <ModalAddProd setAddProdActive={setAddProdActive} />
+      ) : (
+        <></>
+      )}
     </>
   );
 }

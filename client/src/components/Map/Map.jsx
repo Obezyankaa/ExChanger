@@ -9,8 +9,8 @@ export default function Map() {
       .then((resp) => {
         const x = resp.data.lon;
         const y = resp.data.lat;
+        // eslint-disable-next-line no-unused-vars
         const { metro } = resp.data;
-        console.log(metro);
         let map;
         load().then((mapglAPI) => {
           map = new mapglAPI.Map('map-container', {
@@ -18,10 +18,10 @@ export default function Map() {
             zoom: 13,
             key: 'ee12180b-57c5-4c59-b3a2-6a198e86bf66',
           });
+          // eslint-disable-next-line no-unused-vars
           const marker = new mapglAPI.Marker(map, { // маркеры
             coordinates: [x, y],
           });
-          console.log(marker);
         });
         return () => map && map.destroy();
       });

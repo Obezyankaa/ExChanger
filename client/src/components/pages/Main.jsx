@@ -9,24 +9,39 @@ export default function Main({
 }) {
   return (
     <>
-      <div>
-        <Slider />
+      <div className="intro">
+        <div className="intro__media">
+          <video src="12.mp4" autoPlay muted loop />
+        </div>
+        <div className="intro__content">
+          <p>ExChanger</p>
+          <p>Доступный шеринг для обычных людей</p>
+          <div className="intro__content-btn">
+            <button type="button" className="turbobuttons" style={{ marginRight: '10px' }}>Войти</button>
+            <button type="button" className="turbobuttons" style={{ marginLeft: '10px' }}>Регистрация</button>
+          </div>
+        </div>
       </div>
-      {regActive === true ? (
-        <ModalRegistration setRegActive={setRegActive} />
-      ) : (
-        <></>
-      )}
-      {logActive === true ? (
-        <ModalLog setLogActive={setLogActive} />
-      ) : (
-        <></>
-      )}
-      {addProdActive === true ? (
-        <ModalAddProd setAddProdActive={setAddProdActive} />
-      ) : (
-        <></>
-      )}
+      <>
+        <div>
+          <Slider />
+        </div>
+        {regActive === true ? (
+          <ModalRegistration setRegActive={setRegActive} />
+        ) : (
+          <></>
+        )}
+        {logActive === true ? (
+          <ModalLog setLogActive={setLogActive} />
+        ) : (
+          <></>
+        )}
+        {addProdActive === true ? (
+          <ModalAddProd setAddProdActive={setAddProdActive} />
+        ) : (
+          <></>
+        )}
+      </>
     </>
   );
 }
