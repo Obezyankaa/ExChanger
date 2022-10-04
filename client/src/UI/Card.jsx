@@ -7,6 +7,8 @@ export default function Card({ product }) {
   const {
     photos, userName, userPhoto, description, productName, price, date, userId,
   } = product;
+  console.log(photos, '========');
+  // const [isFavorite, setIsFavorite] = useState();
   return (
     <div style={{ margin: '2rem 2rem 0rem 2rem' }}>
       <main>
@@ -32,18 +34,6 @@ export default function Card({ product }) {
                   />
                 </SwiperSlide>
               ))}
-              {/* <SwiperSlide>
-                <img className="item__img" src="../../img/image.png" alt="..." />
-              </SwiperSlide>
-              <SwiperSlide>
-                <img className="item__img" src="../../img/image2.png" alt="..." />
-              </SwiperSlide>
-              <SwiperSlide>
-                <img className="item__img" src="../../img/image3.png" alt="..." />
-              </SwiperSlide>
-              <SwiperSlide>
-                <img className="item__img" src="../../img/image4.png" alt="..." />
-              </SwiperSlide> */}
             </Swiper>
           </div>
           <div className="item__info">
@@ -65,10 +55,14 @@ export default function Card({ product }) {
             <div className="item__creator">
               <img className="creator__img" src={`http://localhost:3001/images/${userPhoto}`} alt="creator_avator" />
               <p className="creator__info" style={{ color: 'aqua' }}>
-                Владелец
-                {' '}
                 <Link className="creator__name" to={`/user/${userId}`}>{userName}</Link>
               </p>
+              <div className="form-check">
+                <input className="form-check-input" type="checkbox" value="" id="flexCheckIndeterminate" />
+                <label className="form-check-label" htmlFor="flexCheckIndeterminate">
+                  Indeterminate checkbox
+                </label>
+              </div>
             </div>
           </div>
         </article>

@@ -533,6 +533,10 @@
             transform: translate(0px, -10px) scale(1.01, 1.01);
   }
 
+  .stats__block-one, .stats__block-two, .stats__block-three, .stats__block-four {
+    margin-right: 10px;
+  }
+
   .blob-loading,
 .blob,
 .blob::after {

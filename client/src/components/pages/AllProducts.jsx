@@ -7,6 +7,7 @@ export default function AllProducts() {
   const [products, setProducts] = useState([]);
   useEffect(() => {
     axios.get('/product').then((response) => {
+      console.log(response.data);
       setProducts(response.data.map((prod) => {
         const images = prod.ProductPhotos.map((el) => el.photo);
         return ({
@@ -25,13 +26,13 @@ export default function AllProducts() {
     });
   }, []);
   const categories = useSelector((state) => state.categories);
-  const [findInput, setFindInput] = useState({ minRange: 0, maxRange: 0 });
-  const [categoryInput, setCategoryInput] = useState({ });
+  const [findInput, setFindInput] = useState({ minRange: 0, maxRange: 5000 });
+  const [categoryInput, setCategoryInput] = useState({});
   const changeHandler = (e) => {
     setFindInput((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
   const changeCategoryHandler = (e) => {
-    setCategoryInput((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    setCategoryInput((prev) => ({ ...prev, [e.target.name]: e.target.value !== 'true' }));
   };
   return (
     <div style={{ display: 'flex', marginLeft: '1rem' }}>
@@ -39,7 +40,7 @@ export default function AllProducts() {
         <p style={{ marginTop: '1rem' }}>Категория</p>
         {categories.map((el) => (
           <div key={el.id} className="form-check">
-            <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault" onChange={changeCategoryHandler} name={el.id} value={el.id} />
+            <input className="form-check-input" type="checkbox" id="flexCheckDefault" onChange={changeCategoryHandler} checked={categoryInput[el.id]} value={categoryInput[el.id]} name={el.id} />
             <label className="form-check-label" htmlFor="flexCheckDefault">
               {el.name}
             </label>
@@ -62,14 +63,18 @@ export default function AllProducts() {
           display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'center',
         }}
         >
-          {products ? products.filter((el) => Number(el.price) <= findInput.maxRange && Number(el.price) >= findInput.minRange)
-            .filter((el) => Object.keys(categoryInput)
-              .map((elem) => Number(elem))
-              .includes(el.categoryId))
-            .map((el) => (<Card product={el} key={el.id} />)) : 'Товары не отобразились (('}
+          {console.log(Object.entries(categoryInput))}
+          {products.filter((el) => Number(el.price) <= findInput.maxRange && Number(el.price) >= findInput.minRange)
+            .filter(
+              (el) => {
+                const key = Object.keys(categoryInput).map((elem) => Number(elem));
+                return key.includes(el.categoryId) && categoryInput[key] === true;
+              },
+            )
+            .map((el) => (<Card product={el} key={el.id} />))}
         </div>
         <div style={{ height: '3rem' }} />
       </div>
     </div>
   );
-}
+}// 11111111111

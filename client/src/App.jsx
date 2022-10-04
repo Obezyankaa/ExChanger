@@ -18,6 +18,8 @@ import Profile from './components/pages/Profile';
 import Loading from './UI/Loading';
 import Card from './UI/Card';
 import UserProfile from './components/pages/UserProfile';
+import AllProducts from './components/pages/AllProducts';
+import { fetchUserItems } from './redux/actions/userItemsAction';
 
 function App() {
   const dispatch = useDispatch();
@@ -25,6 +27,7 @@ function App() {
     dispatch(checkAuth());
     dispatch(fetchFavorites());
     dispatch(allCategories());
+    dispatch(fetchUserItems());
   }, []);
   const [night, setNight] = useState(true);
   const [regActive, setRegActive] = useState(false);
@@ -51,6 +54,7 @@ function App() {
         <Route path="/product" element={<OneCartForm />} />
         <Route path="/profile" element={<Profile setAddProdActive={setAddProdActive} addProdActive={addProdActive} />} />
         <Route path="/load" element={<Loading />} />
+        <Route path="/allproducts" element={<AllProducts />} />
         <Route path="/card" element={<Card />} />
         <Route path="/user/:id" element={<UserProfile regActive={regActive} setRegActive={setRegActive} setLogActive={setLogActive} logActive={logActive} setAddProdActive={setAddProdActive} addProdActive={addProdActive} />} />
       </Routes>

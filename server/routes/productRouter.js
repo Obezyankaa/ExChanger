@@ -1,7 +1,7 @@
 const express = require('express');
 const axios = require('axios');
 const {
-  Product, Category, ProductPhoto, User, View,
+  Product, Category, ProductPhoto, User, View, Favorits,
 } = require('../db/models');
 const fileMiddleware = require('../middlewares/file');
 
@@ -34,6 +34,9 @@ router.post('/', fileMiddleware.array('dropPhoto', 2), async (req, res) => {
     res.sendStatus(400);
   }
 });
+
+// { model: Favorits, where: { user_id: req.session.userSession.id } },
+// 111145
 
 router.get('/', async (req, res) => {
   try {
