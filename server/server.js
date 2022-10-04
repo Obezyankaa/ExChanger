@@ -27,6 +27,7 @@ app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use('/images', express.static(path.join(__dirname, 'images')));
+app.use('/photos-category', express.static(path.join(__dirname, 'photos-category')));
 
 app.post('/coordinates', async (req, res) => {
   try {
