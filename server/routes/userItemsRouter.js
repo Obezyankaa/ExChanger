@@ -14,7 +14,7 @@ router.delete('/:id', async (req, res) => {
   const { id } = req.params;
   console.log(id);
   const deleteItem = await Product.destroy({ where: { id } });
-  res.json(deleteItem);
+  res.json(200);
 });
 
 module.exports = router;

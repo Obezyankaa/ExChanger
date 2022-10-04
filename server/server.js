@@ -78,7 +78,6 @@ app.use('/product', productRouter);
 app.use('/user', usersRouter);
 app.use('/item-product', productPageReducer);
 app.use('/useritems', userItemsRouter);
-app.use('/item-product', productPageRouter);
 app.use('/grade', gradeProductRouter);
 
 app.listen(PORT, () => console.log(`Server has started on PORT ${PORT}`));
