@@ -24,6 +24,8 @@ export default function AllProducts() {
       }));
     });
   }, []);
+  const favorites = useSelector((state) => state.favorite);
+  console.log('allFavorites', favorites);
   const categories = useSelector((state) => state.categories);
   const [findInput, setFindInput] = useState({ minRange: 0, maxRange: 5000 });
   const [categoryInput, setCategoryInput] = useState({});

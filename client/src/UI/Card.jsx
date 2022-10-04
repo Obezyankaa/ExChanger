@@ -1,21 +1,26 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination, Navigation } from 'swiper';
 import axios from 'axios';
-import { deleteFavoriteAsync, setFavorite } from '../redux/actions/favoritesAction';
+import { useDispatch, useSelector } from 'react-redux';
+import { deleteFavoriteAsync, setFavorite, setFavoriteState } from '../redux/actions/favoritesAction';
 
 export default function Card({ product }) {
   const {
     photos, userName, userPhoto, description, productName, price, date, userId, id,
   } = product;
+  const dispatch = useDispatch();
   // const [isFavorite, setIsFavorite] = useState();
+  const isFavorite = useSelector((state) => state.changeFavoriteState);
+  console.log('isFavorite', isFavorite);
   useEffect(() => {
-    axios.get(`/product/isfavorite/${id}`).then((resp) => setIsFavorite(resp.data));
-  }, []);
+    axios.get(`/product/isfavorite/${id}`).then((resp) => setFavoriteState(resp.data));
+  }, [isFavorite]);
   const changeFavoriteHandler = () => {
+    console.log('Handler', isFavorite, id);
     !isFavorite
-      ? setFavorite(id) : deleteFavoriteAsync(id);
+      ? dispatch(setFavorite(id)) : dispatch(deleteFavoriteAsync(id));
     // ? axios.put(`/product/favorite/${id}`).then((resp) => setIsFavorite(resp.data))
     // : axios.delete(`/product/favorite/${id}`).then((resp) => setIsFavorite(resp.data));
   };
