@@ -21,3 +21,7 @@ export const UPDATE_USER = 'UPDATE_USER';
 
 // Product item page
 export const SET_PRODUCT_ARG = 'SET_PRODUCT_ARG';
+
+// Grage product
+export const SET_GRADE_PRODUCT = 'SET_GRADE_PRODUCT';
+export const ADD_GRADE_PRODUCT = 'ADD_GRADE_PRODUCT';
