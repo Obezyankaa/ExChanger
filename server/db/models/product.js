@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
       this.belongsTo(Category, { foreignKey: 'category_id' });
       this.hasMany(View, { foreignKey: 'product_id' });
       this.hasMany(Favorit, { foreignKey: 'product_id' });
-      this.hasMany(ProductPhoto, { foreignKey: 'product_id' });
+      this.hasMany(ProductPhoto, { foreignKey: 'product_id', onDelete: 'CASCADE' });
     }
   }
   Product.init({

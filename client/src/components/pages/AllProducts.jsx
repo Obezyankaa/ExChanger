@@ -60,8 +60,8 @@ export default function AllProducts() {
         }}
         >
           {products ? products.filter((el) => (findInput ? Object.keys(el).includes(findInput) : true)).map((el, i) => <Card product={el} key={i} />) : 'Товары не отобразились (('}
-          {products.map((el, i) => (
-            <Card product={el} key={i} />
+          {products.map((el) => (
+            <Card product={el} key={el.id} />
           ))}
         </div>
         <div style={{ height: '3rem' }} />

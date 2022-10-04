@@ -21,3 +21,8 @@ export const UPDATE_USER = 'UPDATE_USER';
 
 // Product item page
 export const SET_PRODUCT_ARG = 'SET_PRODUCT_ARG';
+
+// User Items
+export const SET_USER_ITEMS = 'SET_USER_ITEMS';
+export const EDIT_USER_ITEMS = 'EDIT_USER_ITEMS';
+export const DELETE_USER_ITEMS = 'DELETE_USER_ITEMS';

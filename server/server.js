@@ -12,6 +12,7 @@ const categoriesRouter = require('./routes/categoriesRouter');
 const productRouter = require('./routes/productRouter');
 const usersRouter = require('./routes/usersRouter');
 const productPageReducer = require('./routes/productPageReducer');
+const userItemsRouter = require('./routes/userItemsRouter');
 
 const app = express();
 const PORT = 3001;
@@ -74,5 +75,6 @@ app.use('/categories', categoriesRouter);
 app.use('/product', productRouter);
 app.use('/user', usersRouter);
 app.use('/item-product', productPageReducer);
+app.use('/useritems', userItemsRouter);
 
 app.listen(PORT, () => console.log(`Server has started on PORT ${PORT}`));

@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate({ Product }) {
       // define association here
-      this.belongsTo(Product, { foreignKey: 'product_id' });
+      this.belongsTo(Product, { foreignKey: 'product_id', onDelete: 'CASCADE' });
     }
   }
   ProductPhoto.init({

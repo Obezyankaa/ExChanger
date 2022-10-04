@@ -2,10 +2,12 @@ import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import ModalAddProd from '../../UI/ModalAddProd';
 import StarUserRating from '../../UI/StarUserRating';
+import UserAllProducts from '../../UI/UserAllProducts';
 
 export default function Profile({ setAddProdActive, addProdActive }) {
   const [btn, setBtn] = useState(true);
   const user = useSelector((state) => state.user);
+  const [allProducts, setAllProducts] = useState(false);
   return (
     <>
       <div className="first-screen-profile">
@@ -52,9 +54,15 @@ export default function Profile({ setAddProdActive, addProdActive }) {
         <div className="stats__body">
           <div className="stats__content">
             <div className="stats__block">
-              <div className="stats__block-one">
-                <p>Все товары</p>
-              </div>
+              {allProducts === false ? (
+                <div className="stats__block-one" onClick={() => setAllProducts(true)} style={{ cursor: 'pointer' }}>
+                  <p>Все товары</p>
+                </div>
+              ) : (
+                <div className="stats__block-one" onClick={() => setAllProducts(false)} style={{ cursor: 'pointer' }}>
+                  <p>Все товары</p>
+                </div>
+              )}
               <div className="stats__block-two">
                 <p>Активные товары</p>
               </div>
@@ -73,6 +81,15 @@ export default function Profile({ setAddProdActive, addProdActive }) {
       ) : (
         <></>
       )}
+      <div>
+        {allProducts === true ? (
+          <>
+            <UserAllProducts />
+          </>
+        ) : (
+          <></>
+        )}
+      </div>
     </>
   );
 }
