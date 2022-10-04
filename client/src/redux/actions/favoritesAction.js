@@ -5,8 +5,8 @@ export const addFavorite = (payload) => ({ type: ADD_FAVORITES, payload });
 export const setFavorites = (payload) => ({ type: SET_FAVORITES, payload });
 export const deleteFavorite = (payload) => ({ type: DELETE_FAVORITE, payload });
 
-export const submitFavorite = (favorite) => (dispatch) => {
-  axios.post('/favorite', { favorite }, { withCredentials: true })
+export const setFavorite = (id) => (dispatch) => {
+  axios.put(`/favorite/${id}`)
     .then((res) => {
       dispatch(addFavorite(res.data));
     })

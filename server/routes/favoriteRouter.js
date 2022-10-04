@@ -1,30 +1,69 @@
 const express = require('express');
-const { Favorits } = require('../db/models');
+const {
+  Favorit, Product, User, Category, View, ProductPhoto,
+} = require('../db/models');
 
 const router = express.Router();
 
-router.post('/', async (req, res) => {
-  const { user_id, product_id } = req.body;
-  const newQuote = await Favorits.create({ user_id, product_id });
-  res.json(newQuote);
-});
-
-router.get('/', async (req, res) => {
-//   const favorites = await Favorits.findAll({
-//     raw: true,
-//     where: {
-//       user_id:
-//     req.session?.userSession.id,
-//     },
-//   });
-//   res.json(favorites);
-  res.sendStatus(200);
+router.put('/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    await Favorit.create({
+      user_id: req.session.userSession.id,
+      product_id: id,
+    });
+    res.json(true);
+  } catch (e) {
+    console.log(e);
+  }
 });
 
 router.delete('/:id', async (req, res) => {
-  const { id } = req.params;
-  await Favorits.destroy({ where: { id } });
-  res.sendStatus(200);
+  try {
+    const { id } = req.params;
+    await Favorit.destroy({
+      where: {
+        user_id: req.session.userSession.id,
+        product_id: id,
+      },
+    });
+    res.json(false);
+  } catch (e) {
+    console.log(e);
+  }
+});
+
+router.get('/isfavorite/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const Favorite = await Favorit.findOne({
+      where: {
+        user_id: req.session.userSession.id,
+        product_id: id,
+      },
+    });
+    Favorite ? res.json(true) : res.json(false);
+  } catch (e) {
+    console.log(e);
+  }
+});
+
+router.get('/', async (req, res) => {
+  const favorites = await Favorit.findAll({
+    where: {
+      user_id:
+    req.session?.userSession.id,
+    },
+    include: {
+      model: Product,
+      include: [
+        { model: User },
+        { model: Category },
+        { model: View },
+        { model: ProductPhoto }],
+    },
+  });
+  res.json(favorites);
 });
 
 module.exports = router;

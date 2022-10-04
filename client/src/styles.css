@@ -905,8 +905,11 @@
   }
 }
 
+
 .like {
   display: none;
+  /* position: relative;
+  top: -100% */
 }
 
 
@@ -919,8 +922,9 @@
 
 .like + label:before {
   content: "\1F5A4";
-  top: -11px;
-  left: -8px;
+  font-size: 29px;
+  top: -29px;
+  left: -16px;
   border: 1px solid transparent;    
   padding: 10px;
   border-radius: 3px;
@@ -935,11 +939,11 @@ transition:  .5s ease;
 }
 
 .like:checked + label:after {
-  content: '\1F49B';
-  font-size: 18px;
+  content: '❤';
+  font-size: 29px;
   position: absolute;
-  top: -1px;
-  left: 1px;
-color: gold;
-transition:  .5s ease;
+  top: -19px;
+  left: -4px;
+  color: rgb(0, 88, 202);
+  transition:  .5s ease;
 }
