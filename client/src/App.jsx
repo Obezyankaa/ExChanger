@@ -49,9 +49,9 @@ function App() {
         <Route path="/product" element={<OneCartForm />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/load" element={<Loading />} />
+        <Route path="/allproducts" element={<AllProducts />} />
         <Route path="/card" element={<Card />} />
         <Route path="/user/:id" element={<UserProfile />} />
-        <Route path="/allproducts" element={<AllProducts />} />
       </Routes>
     </>
   );
