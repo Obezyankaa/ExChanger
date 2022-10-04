@@ -19,6 +19,7 @@ import Loading from './UI/Loading';
 import Card from './UI/Card';
 import UserProfile from './components/pages/UserProfile';
 import AllProducts from './components/pages/AllProducts';
+import { fetchUserItems } from './redux/actions/userItemsAction';
 
 function App() {
   const dispatch = useDispatch();
@@ -26,6 +27,7 @@ function App() {
     dispatch(checkAuth());
     dispatch(fetchFavorites());
     dispatch(allCategories());
+    dispatch(fetchUserItems());
   }, []);
   const [night, setNight] = useState(true);
   const [regActive, setRegActive] = useState(false);

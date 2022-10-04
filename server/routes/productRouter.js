@@ -22,14 +22,16 @@ router.post('/', fileMiddleware.array('dropPhoto', 2), async (req, res) => {
       timing: req.body.timing,
     });
     for (let i = 0; i < req.files.length; i += 1) {
-      const result = await ProductPhoto.create({
+      await ProductPhoto.create({
         photo: req.files[i].originalname,
         product_id: newProduct.dataValues.id,
       });
     }
+    await View.create({ counter: 0, product_id: newProduct.dataValues.id });
     res.sendStatus(200);
   } catch (e) {
     console.log(e);
+    res.sendStatus(400);
   }
 });
 

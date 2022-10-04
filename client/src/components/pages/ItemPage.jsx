@@ -1,8 +1,9 @@
-import React, { memo, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination, Navigation } from 'swiper';
 // import Map from '../Map/Map';
 import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
 import StarUserRating from '../../UI/StarUserRating';
 import Days from '../../UI/Days';
 import BreadCrumps from '../../UI/BreadCrumps';
@@ -10,14 +11,23 @@ import { productArg } from '../../redux/actions/prodItemPageAction';
 import Loading from '../../UI/Loading';
 import ModalRegistration from '../../UI/ModalRegistration';
 import ModalLog from '../../UI/ModalLog';
+import { countGradeProd } from '../../redux/actions/gradeProductAction';
 
-function ItemPage({
+export default function ItemPage({
   regActive, setRegActive, logActive, setLogActive,
 }) {
   const dispatch = useDispatch();
   const argProduct = useSelector((state) => state.prodItemPage);
+  const { id } = useParams();
 
   const [inputs, setInputs] = useState({ timing: 1 });
+  const starRating = useSelector((state) => state.gradeProduct);
+  // const [star] = useState(starRating);
+
+  useEffect(() => {
+    dispatch(countGradeProd(id));
+  }, [starRating]);
+
   const changeHandler = (e) => {
     setInputs((prev) => ({
       ...prev,
@@ -26,7 +36,8 @@ function ItemPage({
   };
   const priceCalculate = argProduct.price * inputs.timing;
   useEffect(() => {
-    dispatch(productArg(5));
+    dispatch(productArg(id));
+    // dispatch(countGradeProd(id));
   }, []);
   return (
     <>
@@ -74,7 +85,7 @@ function ItemPage({
             <div className="first-screen__right-top">
               <p>{argProduct?.name}</p>
               <p>{argProduct?.Category?.name}</p>
-              <StarUserRating />
+              <StarUserRating star={starRating} />
               <p>
                 {priceCalculate.toFixed(2)}
                 руб.
@@ -131,5 +142,3 @@ function ItemPage({
     </>
   );
 }
-
-export default memo(ItemPage);
