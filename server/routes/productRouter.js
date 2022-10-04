@@ -41,7 +41,7 @@ router.get('/', async (req, res) => {
         { model: Category },
         { model: View },
         { model: ProductPhoto },
-        { model: Favorits, where: { user_id: req.session.userSession.id } },
+        // { model: Favorits, where: { user_id: req.session.userSession.id } },
       ],
       order: [['createdAt', 'DESC']],
     });
