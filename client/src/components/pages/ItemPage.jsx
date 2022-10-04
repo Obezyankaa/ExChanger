@@ -12,17 +12,25 @@ import Loading from '../../UI/Loading';
 import ModalRegistration from '../../UI/ModalRegistration';
 import ModalLog from '../../UI/ModalLog';
 import { countGradeProd } from '../../redux/actions/gradeProductAction';
+import Ucant from '../../UI/Ucant';
+import ItemModalRegistration from '../../UI/ItemModalRegistration';
+import ItemModalLog from '../../UI/ItemModalLog';
+import ModalItemRent from '../../UI/ModalItemRent';
 
 export default function ItemPage({
   regActive, setRegActive, logActive, setLogActive,
 }) {
+  const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const argProduct = useSelector((state) => state.prodItemPage);
   const { id } = useParams();
+  const [cheker, setChecker] = useState(false);
+  const [itemreg, setItemreg] = useState(false);
+  const [itemlog, setItemlog] = useState(false);
+  const [rent, setRent] = useState(false);
 
   const [inputs, setInputs] = useState({ timing: 1 });
   const starRating = useSelector((state) => state.gradeProduct);
-  // const [star] = useState(starRating);
 
   useEffect(() => {
     dispatch(countGradeProd(id));
@@ -37,8 +45,13 @@ export default function ItemPage({
   const priceCalculate = argProduct.price * inputs.timing;
   useEffect(() => {
     dispatch(productArg(id));
-    // dispatch(countGradeProd(id));
   }, []);
+
+  const modalopen = () => {
+    setRent(true);
+    setChecker(true);
+  };
+
   return (
     <>
       <div style={{ marginTop: '2%', marginLeft: '2%' }}>
@@ -62,7 +75,7 @@ export default function ItemPage({
                 width: '700px',
               }}
             >
-              {argProduct.category_id ? (
+              {argProduct?.category_id ? (
                 argProduct?.ProductPhotos?.map((el) => (
                   <SwiperSlide>
                     <img
@@ -120,7 +133,7 @@ export default function ItemPage({
 
             </div>
             <div className="first-screen__right-bottom">
-              <button className="turbobuttons" type="button">Взять в аренду</button>
+              <button onClick={modalopen} className="turbobuttons" type="button">Взять в аренду</button>
               <button className="turbobuttons" type="button">Добавить в избранное</button>
             </div>
           </div>
@@ -136,6 +149,26 @@ export default function ItemPage({
       )}
       {logActive === true ? (
         <ModalLog setLogActive={setLogActive} />
+      ) : (
+        <></>
+      )}
+      {!user.id && cheker == true ? (
+        <Ucant cheker={cheker} setChecker={setChecker} argProduct={argProduct} setItemreg={setItemreg} setItemlog={setItemlog} />
+      ) : (
+        <></>
+      )}
+      {itemreg === true ? (
+        <ItemModalRegistration setItemreg={setItemreg} setRent={setRent} />
+      ) : (
+        <></>
+      )}
+      {itemlog === true ? (
+        <ItemModalLog setItemlog={setItemlog} setRent={setRent} />
+      ) : (
+        <></>
+      )}
+      {user.id && rent == true ? (
+        <ModalItemRent inputs={inputs} setInputs={setInputs} setRent={setRent} />
       ) : (
         <></>
       )}
