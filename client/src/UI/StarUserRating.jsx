@@ -1,23 +1,21 @@
 import { Rating, Typography } from '@mui/material';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { submitGradeProduct } from '../redux/actions/gradeProductAction';
+import { countGradeProd, submitGradeProduct } from '../redux/actions/gradeProductAction';
 
 export default function StarUserRating({ star }) {
   const dispatch = useDispatch();
-  // const starRating = useSelector((state) => state.gradeProduct);
-  // console.log(starRating);
-  // const [star] = useState(starRating);
   const { id } = useParams();
-
-  // useEffect(() => {
-  //   dispatch(countGradeProd(id));
-  // }, [star]);
+  const [stateStar, setStateStar] = useState(0);
+  useEffect(() => {
+    dispatch(countGradeProd(id));
+  }, [stateStar]);
 
   const starHandler = (newValue) => {
     console.log(newValue);
     dispatch(submitGradeProduct({ star: newValue, id }));
+    setStateStar(stateStar + 1);
   };
 
   return (
