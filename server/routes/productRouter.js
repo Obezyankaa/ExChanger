@@ -33,6 +33,9 @@ router.post('/', fileMiddleware.array('dropPhoto', 2), async (req, res) => {
   }
 });
 
+// { model: Favorits, where: { user_id: req.session.userSession.id } },
+// 1111
+
 router.get('/', async (req, res) => {
   try {
     const AllProds = await Product.findAll({
@@ -41,8 +44,6 @@ router.get('/', async (req, res) => {
         { model: Category },
         { model: View },
         { model: ProductPhoto },
-        // { model: Favorits, where: { user_id: req.session.userSession.id } },
-        // 1111
       ],
       order: [['createdAt', 'DESC']],
     });
