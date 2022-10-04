@@ -27,9 +27,5 @@ module.exports = {
     'jsx-a11y/no-static-element-interactions': 0,
     'react/jsx-no-useless-fragment': 0,
     'react/jsx-props-no-spreading': 0,
-    'eslint-disable-next-line': 0,
-    'max-len': 0,
-    'no-restricted-syntax': 0,
-    'tguard-for-in': 0,
   },
 };

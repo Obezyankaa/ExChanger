@@ -3,8 +3,9 @@ import { useSelector } from 'react-redux';
 import ModalAddProd from '../../UI/ModalAddProd';
 import StarUserRating from '../../UI/StarUserRating';
 import UserAllProducts from '../../UI/UserAllProducts';
+import './index.css';
 
-export default function Profile({ setAddProdActive, addProdActive }) {
+export default function Profile({ night, setAddProdActive, addProdActive }) {
   const [btn, setBtn] = useState(true);
   const user = useSelector((state) => state.user);
   const [allProducts, setAllProducts] = useState(false);
@@ -16,8 +17,8 @@ export default function Profile({ setAddProdActive, addProdActive }) {
             <div className="first-screen-profile__leftblock">
               <div className="first-screen-profile__leftblock-textarea">
                 <p />
-                <p>{user.f_name}</p>
-                <p>{user.l_name}</p>
+                <p style={night === true ? ({ color: 'black' }) : ({ color: 'white' })}>{user.f_name}</p>
+                <p style={night === true ? ({ color: 'black' }) : ({ color: 'white' })}>{user.l_name}</p>
                 <StarUserRating />
               </div>
               <div className="first-screen-profile__leftblock-skils">
@@ -25,7 +26,7 @@ export default function Profile({ setAddProdActive, addProdActive }) {
               </div>
               <div className="first-screen-profile__leftblock-form">
                 <form className="first-screen-profile__form" action="form\thanks\thanks.html">
-                  <a className="first-screen-profile__link" href={`https://t.me/${user.telegram}`}>
+                  <a target="blank" className="first-screen-profile__link" href={`https://t.me/${user.telegram}`}>
                     <button type="button">
                       Вы указали профиль
                       {' '}
@@ -44,7 +45,7 @@ export default function Profile({ setAddProdActive, addProdActive }) {
             </div>
             <div className="first-screen-profile__rightblock">
               <div className="first-screen-profile__rightblock-photo">
-                <img src={`http://localhost:3001/images/${user.photo}`} alt="" />
+                <img className="first-screen-profile__photo" src={`http://localhost:3001/images/${user.photo}`} alt="" />
               </div>
             </div>
           </div>
