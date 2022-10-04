@@ -63,12 +63,13 @@ export default function AllProducts() {
           display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'center',
         }}
         >
-          {console.log(Object.entries(categoryInput))}
+          {console.log(Object.keys(categoryInput))}
           {products.filter((el) => Number(el.price) <= findInput.maxRange && Number(el.price) >= findInput.minRange)
             .filter(
               (el) => {
-                const key = Object.keys(categoryInput).map((elem) => Number(elem));
-                return key.includes(el.categoryId) && categoryInput[key] === true;
+                const keys = Object.keys(categoryInput).map((elem) => Number(elem));
+                console.log(categoryInput[String(keys)]);
+                return keys.includes(el.categoryId) && categoryInput[el.categoryId] === true;
               },
             )
             .map((el) => (<Card product={el} key={el.id} />))}
@@ -77,4 +78,4 @@ export default function AllProducts() {
       </div>
     </div>
   );
-}// 11111111111
+}
