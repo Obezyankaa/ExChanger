@@ -34,7 +34,7 @@ router.post('/', fileMiddleware.array('dropPhoto', 2), async (req, res) => {
 });
 
 // { model: Favorits, where: { user_id: req.session.userSession.id } },
-// 1111
+// 111145
 
 router.get('/', async (req, res) => {
   try {
