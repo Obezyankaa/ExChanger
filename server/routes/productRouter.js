@@ -1,7 +1,7 @@
 const express = require('express');
 const axios = require('axios');
 const {
-  Product, Category, ProductPhoto, User, View,
+  Product, Category, ProductPhoto, User, View, Favorits,
 } = require('../db/models');
 const fileMiddleware = require('../middlewares/file');
 
@@ -41,6 +41,7 @@ router.get('/', async (req, res) => {
         { model: Category },
         { model: View },
         { model: ProductPhoto },
+        { model: Favorits, where: { user_id: req.session.userSession.id } },
       ],
       order: [['createdAt', 'DESC']],
     });

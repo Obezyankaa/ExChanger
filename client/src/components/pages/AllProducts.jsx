@@ -7,6 +7,7 @@ export default function AllProducts() {
   const [products, setProducts] = useState([]);
   useEffect(() => {
     axios.get('/product').then((response) => {
+      console.log(response.data);
       setProducts(response.data.map((prod) => {
         const images = prod.ProductPhotos.map((el) => el.photo);
         return ({
@@ -64,13 +65,9 @@ export default function AllProducts() {
         >
           {console.log(Object.entries(categoryInput))}
           {products.filter((el) => Number(el.price) <= findInput.maxRange && Number(el.price) >= findInput.minRange)
-            // .filter(
-            //   (el) => findInput.filter((elem) => Object.values(elem)[0] === true),
-            // )
             .filter(
               (el) => {
-                const key = Object.keys(categoryInput)
-                  .map((elem) => Number(elem));
+                const key = Object.keys(categoryInput).map((elem) => Number(elem));
                 return key.includes(el.categoryId) && categoryInput[key] === true;
               },
             )
