@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination, Navigation } from 'swiper';
@@ -7,8 +7,8 @@ export default function Card({ product }) {
   const {
     photos, userName, userPhoto, description, productName, price, date, userId,
   } = product;
-
-  const [isFavorite, setIsFavorite] = useState();
+  console.log(photos, '========');
+  // const [isFavorite, setIsFavorite] = useState();
   return (
     <div style={{ margin: '2rem 2rem 0rem 2rem' }}>
       <main>
