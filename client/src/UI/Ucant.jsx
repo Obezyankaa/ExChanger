@@ -8,13 +8,23 @@ import DialogTitle from '@mui/material/DialogTitle';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 
-export default function Ucant({ cheker, setChecker, argProduct }) {
+export default function Ucant({
+  cheker, setChecker, argProduct, setItemreg, setItemlog,
+}) {
   const { name } = argProduct;
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
 
   const handleClose = () => {
     setChecker(false);
+  };
+  const regOpen = () => {
+    setChecker(false);
+    setItemreg(true);
+  };
+  const logOpen = () => {
+    setChecker(false);
+    setItemlog(true);
   };
   return (
     <div>
@@ -33,10 +43,10 @@ export default function Ucant({ cheker, setChecker, argProduct }) {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button autoFocus onClick={handleClose}>
+          <Button autoFocus onClick={logOpen}>
             Войти
           </Button>
-          <Button style={{ textDecoration: 'none' }} onClick={handleClose} autoFocus>
+          <Button style={{ textDecoration: 'none' }} onClick={regOpen} autoFocus>
             Зарегистрироваться
           </Button>
         </DialogActions>
