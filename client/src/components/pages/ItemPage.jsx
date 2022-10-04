@@ -25,7 +25,6 @@ export default function ItemPage({
 
   const [inputs, setInputs] = useState({ timing: 1 });
   const starRating = useSelector((state) => state.gradeProduct);
-  // const [star] = useState(starRating);
 
   useEffect(() => {
     dispatch(countGradeProd(id));
@@ -40,7 +39,6 @@ export default function ItemPage({
   const priceCalculate = argProduct.price * inputs.timing;
   useEffect(() => {
     dispatch(productArg(id));
-    // dispatch(countGradeProd(id));
   }, []);
   return (
     <>
@@ -65,7 +63,7 @@ export default function ItemPage({
                 width: '700px',
               }}
             >
-              {argProduct.category_id ? (
+              {argProduct?.category_id ? (
                 argProduct?.ProductPhotos?.map((el) => (
                   <SwiperSlide>
                     <img
