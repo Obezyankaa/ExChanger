@@ -1,7 +1,7 @@
 const express = require('express');
 const axios = require('axios');
 const {
-  Product, Category, ProductPhoto, User, View, Favorits,
+  Product, Category, ProductPhoto, User, View, Favorit,
 } = require('../db/models');
 const fileMiddleware = require('../middlewares/file');
 
@@ -35,8 +35,48 @@ router.post('/', fileMiddleware.array('dropPhoto', 2), async (req, res) => {
   }
 });
 
-// { model: Favorits, where: { user_id: req.session.userSession.id } },
-// 111145
+router.put('/favorite/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    await Favorit.create({
+      user_id: req.session.userSession.id,
+      product_id: id,
+    });
+    res.json(true);
+  } catch (e) {
+    console.log(e);
+  }
+});
+
+router.delete('/favorite/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    await Favorit.destroy({
+      where: {
+        user_id: req.session.userSession.id,
+        product_id: id,
+      },
+    });
+    res.json(false);
+  } catch (e) {
+    console.log(e);
+  }
+});
+
+router.get('/isfavorite/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const Favorite = await Favorit.findOne({
+      where: {
+        user_id: req.session.userSession.id,
+        product_id: id,
+      },
+    });
+    Favorite ? res.json(true) : res.json(false);
+  } catch (e) {
+    console.log(e);
+  }
+});
 
 router.get('/', async (req, res) => {
   try {
@@ -56,19 +96,6 @@ router.get('/', async (req, res) => {
   }
 });
 
-// router.get('/photo/:id', async (req, res) => {
-//   try {
-//     const { id } = req.params;
-//     const AllPhotos = await ProductPhoto.findAll({
-//       where: { product_id: id },
-//     });
-//     res.json(AllPhotos);
-//   } catch (e) {
-//     console.log(e);
-//     res.sendStatus(500);
-//   }
-// });
-
 router.delete('/:id', async (req, res) => {
   try {
     const { id } = req.params;
@@ -85,15 +112,6 @@ router.put('/:id', async (req, res) => {
     const { changedProduct } = req.body;
 
     await Product.update({ where: { id: req.params.id } }, changedProduct);
-    // updatedProduct.name = changedProduct.name;
-    // updatedProduct.category_id = changedProduct.category_id;
-    // updatedProduct.description = changedProduct.description;
-    // updatedProduct.status = changedProduct.status;
-    // updatedProduct.price = changedProduct.price;
-    // updatedProduct.user_id = changedProduct.user_id;
-    // updatedProduct.location = changedProduct.location;
-    // updatedProduct.timing = changedProduct.timing;
-    // updatedProduct.save();
     const updatedProduct = await Product.findOne({
       where: { id: changedProduct.id },
       raw: true,

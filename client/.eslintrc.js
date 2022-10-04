@@ -31,6 +31,6 @@ module.exports = {
     'max-len': 0,
     'no-restricted-syntax': 0,
     'tguard-for-in': 0,
-    'max-len': 0,
+    'no-unused-expressions': 0,
   },
 };

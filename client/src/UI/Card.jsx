@@ -2,13 +2,24 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination, Navigation } from 'swiper';
+import axios from 'axios';
+import Checkbox from '@mui/material/Checkbox';
+import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
+import Favorite from '@mui/icons-material/Favorite';
 
 export default function Card({ product }) {
   const {
-    photos, userName, userPhoto, description, productName, price, date, userId,
+    photos, userName, userPhoto, description, productName, price, date, userId, id,
   } = product;
-
   const [isFavorite, setIsFavorite] = useState();
+  useEffect(() => {
+    axios.get(`/product/isfavorite/${id}`).then((resp) => setIsFavorite(resp.data));
+  }, []);
+  const changeFavoriteHandler = () => {
+    !isFavorite
+      ? axios.put(`/product/favorite/${id}`).then((resp) => setIsFavorite(resp.data))
+      : axios.delete(`/product/favorite/${id}`).then((resp) => setIsFavorite(resp.data));
+  };
   return (
     <div style={{ margin: '2rem 2rem 0rem 2rem' }}>
       <main>
@@ -57,11 +68,12 @@ export default function Card({ product }) {
               <p className="creator__info" style={{ color: 'aqua' }}>
                 <Link className="creator__name" to={`/user/${userId}`}>{userName}</Link>
               </p>
-              <div className="form-check">
-                <input className="form-check-input" type="checkbox" value="" id="flexCheckIndeterminate" />
-                <label className="form-check-label" htmlFor="flexCheckIndeterminate">
-                  Indeterminate checkbox
-                </label>
+              {console.log(isFavorite)}
+              {/* <Checkbox {...label} onChange={changeFavoriteHandler} checked={isFavorite} icon={<FavoriteBorder />} checkedIcon={<Favorite />} /> */}
+              {/* {console.log(isFavorite)} */}
+              <div style={{ width: '100%', display: 'flex', justifyContent: 'flex-end' }}>
+                <input className="like" type="checkbox" id="heart" onChange={changeFavoriteHandler} checked={isFavorite} />
+                <label htmlFor="heart" />
               </div>
             </div>
           </div>
