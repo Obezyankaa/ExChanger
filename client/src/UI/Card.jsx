@@ -2,13 +2,23 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination, Navigation } from 'swiper';
+import axios from 'axios';
+import { deleteFavoriteAsync, setFavorite } from '../redux/actions/favoritesAction';
 
 export default function Card({ product }) {
   const {
-    photos, userName, userPhoto, description, productName, price, date, userId,
+    photos, userName, userPhoto, description, productName, price, date, userId, id,
   } = product;
-  console.log(photos, '========');
   // const [isFavorite, setIsFavorite] = useState();
+  useEffect(() => {
+    axios.get(`/product/isfavorite/${id}`).then((resp) => setIsFavorite(resp.data));
+  }, []);
+  const changeFavoriteHandler = () => {
+    !isFavorite
+      ? setFavorite(id) : deleteFavoriteAsync(id);
+    // ? axios.put(`/product/favorite/${id}`).then((resp) => setIsFavorite(resp.data))
+    // : axios.delete(`/product/favorite/${id}`).then((resp) => setIsFavorite(resp.data));
+  };
   return (
     <div style={{ margin: '2rem 2rem 0rem 2rem' }}>
       <main>
@@ -41,7 +51,6 @@ export default function Card({ product }) {
             <p className="item__desc" style={{ color: 'aqua' }}>{description}</p>
             <div className="item__price__time">
               <div className="item__price" style={{ alignItems: 'center', display: 'flex' }}>
-                {/* <img className="item__icon" style={{ width: '1rem' }} src="https://st3.depositphotos.com/4326917/14193/v/600/depositphotos_141937226-stock-illustration-ruble-sign-dark-green-icon.jpg" alt="ethereum-icon" /> */}
                 <span className="price-eth">{price}</span>
                 <p style={{ color: 'aqua', margin: '0rem 0rem 0rem 0.5rem' }}>
                   руб/сут
@@ -57,12 +66,9 @@ export default function Card({ product }) {
               <p className="creator__info" style={{ color: 'aqua' }}>
                 <Link className="creator__name" to={`/user/${userId}`}>{userName}</Link>
               </p>
-              <div className="form-check">
-                <input className="form-check-input" type="checkbox" value="" id="flexCheckIndeterminate" />
-                {/*  eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-                <label className="form-check-label" htmlFor="flexCheckIndeterminate">
-                  Indeterminate checkbox
-                </label>
+              <div style={{ width: '100%', display: 'flex', justifyContent: 'flex-end' }}>
+                <input className="like" type="checkbox" id="heart" onChange={changeFavoriteHandler} checked={isFavorite} />
+                <label htmlFor="heart" />
               </div>
             </div>
           </div>

@@ -7,7 +7,6 @@ export default function AllProducts() {
   const [products, setProducts] = useState([]);
   useEffect(() => {
     axios.get('/product').then((response) => {
-      console.log(response.data);
       setProducts(response.data.map((prod) => {
         const images = prod.ProductPhotos.map((el) => el.photo);
         return ({
@@ -63,12 +62,11 @@ export default function AllProducts() {
           display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'center',
         }}
         >
-          {console.log(Object.entries(categoryInput))}
           {products.filter((el) => Number(el.price) <= findInput.maxRange && Number(el.price) >= findInput.minRange)
             .filter(
               (el) => {
-                const key = Object.keys(categoryInput).map((elem) => Number(elem));
-                return key.includes(el.categoryId) && categoryInput[key] === true;
+                const keys = Object.keys(categoryInput).map((elem) => Number(elem));
+                return keys.includes(el.categoryId) && categoryInput[el.categoryId] === true;
               },
             )
             .map((el) => (<Card product={el} key={el.id} />))}
@@ -77,4 +75,4 @@ export default function AllProducts() {
       </div>
     </div>
   );
-}// 11111111111
+}

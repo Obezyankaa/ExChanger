@@ -904,3 +904,46 @@
     line-height: 20px;
   }
 }
+
+
+.like {
+  display: none;
+  /* position: relative;
+  top: -100% */
+}
+
+
+.like + label {
+  position: relative;
+  padding-left: 35px;
+  display: inline-block;
+  font-size: 16px;
+}
+
+.like + label:before {
+  content: "\1F5A4";
+  font-size: 29px;
+  top: -29px;
+  left: -16px;
+  border: 1px solid transparent;    
+  padding: 10px;
+  border-radius: 3px;
+  display: block;
+  position: absolute;
+transition:  .5s ease;
+}
+
+.like:checked + label:before {
+  border: 1px solid transparent;
+  background-color: transparent;
+}
+
+.like:checked + label:after {
+  content: '❤';
+  font-size: 29px;
+  position: absolute;
+  top: -19px;
+  left: -4px;
+  color: rgb(0, 88, 202);
+  transition:  .5s ease;
+}
