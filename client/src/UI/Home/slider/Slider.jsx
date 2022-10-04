@@ -5,9 +5,7 @@ import './slider.css';
 import { useSelector } from 'react-redux';
 
 export default function Slider() {
-  // const dispatch = useDispatch();
   const categories = useSelector((state) => state.categories);
-  console.log(categories);
   return (
     <>
       <h2>Категории</h2>

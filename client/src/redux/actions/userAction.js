@@ -50,7 +50,6 @@ export const logoutUserAsync = () => (dispatch) => {
 };
 
 export const itemloginUser = (e, inputs, setModal, setRent) => (dispatch) => {
-  console.log(inputs);
   e.preventDefault();
   axios.post('/auth/authorization', inputs)
     .then((res) => {
