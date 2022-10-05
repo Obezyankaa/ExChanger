@@ -20,6 +20,7 @@ import Card from './UI/Card';
 import UserProfile from './components/pages/UserProfile';
 import AllProducts from './components/pages/AllProducts';
 import { fetchUserItems } from './redux/actions/userItemsAction';
+import SliderMylter from './UI/SliderMylter';
 
 function App() {
   const dispatch = useDispatch();
@@ -57,6 +58,7 @@ function App() {
         <Route path="/allproducts" element={<AllProducts />} />
         <Route path="/card" element={<Card />} />
         <Route path="/user/:id" element={<UserProfile regActive={regActive} setRegActive={setRegActive} setLogActive={setLogActive} logActive={logActive} setAddProdActive={setAddProdActive} addProdActive={addProdActive} />} />
+        <Route path="/slider" element={<SliderMylter />} />
       </Routes>
     </div>
   );

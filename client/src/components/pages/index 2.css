@@ -57,11 +57,11 @@
     padding: 20px 116px;
   }
 
-  .first-screen-profile__photo {
+  /* .first-screen-profile__photo {
     width: 360px;
     height: 420px;
     border-radius: 3rem;
-  }
+  } */
 
   .first-screen-profile__rightblock-photo {
     width: 50px;
