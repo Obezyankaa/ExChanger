@@ -32,7 +32,6 @@ export default function ItemPage({
   const [send, setSend] = useState(false);
 
   const [inputs, setInputs] = useState({ timing: 1 });
-  console.log(argProduct.user_id, user.id);
   const starRating = useSelector((state) => state.gradeProduct);
 
   useEffect(() => {
@@ -104,7 +103,8 @@ export default function ItemPage({
               <StarUserRating star={starRating} />
               <p>
                 {priceCalculate.toFixed(2)}
-                руб.
+                {' '}
+                ₽
               </p>
             </div>
             <div className="first-screen__right-mid">

@@ -13,7 +13,6 @@ export default function StarUserRating({ star }) {
   }, [stateStar]);
 
   const starHandler = (newValue) => {
-    console.log(newValue);
     dispatch(submitGradeProduct({ star: newValue, id }));
     setStateStar(stateStar + 1);
   };
@@ -25,14 +24,11 @@ export default function StarUserRating({ star }) {
         width: '40%', height: '60%',
       }}
     >
-      {console.log(star, '-----')}
       <Typography component="legend">(250) Оценок пользователей</Typography>
-
       <Rating
         name="simple-controlled"
         value={star}
         onChange={(e, newValue) => {
-          // setStar(newValue);
           starHandler(newValue);
         }}
       />

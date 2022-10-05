@@ -4,7 +4,6 @@ const { RatingProduct } = require('../db/models');
 const router = express.Router();
 
 router.post('/:id', async (req, res) => {
-  console.log('hello');
   try {
     const userLike = await RatingProduct.findOne({
       where: {
@@ -12,16 +11,14 @@ router.post('/:id', async (req, res) => {
         product_id: req.body.id,
       },
     });
-    console.log(userLike);
     if (userLike === null) {
-      const newLike = await RatingProduct.create(
+      await RatingProduct.create(
         {
           user_buyer: req.session.userSession.id,
           product_id: req.body.id,
           grade: req.body.star,
         },
       );
-      console.log('like', newLike);
       res.sendStatus(200);
     } else {
       res.sendStatus(400);
@@ -41,9 +38,7 @@ router.get('/:id', async (req, res) => {
         counter += el.grade;
       }),
     );
-    // console.log(counter);
     const average = counter / arrLikesProd.length;
-    console.log(average);
     res.json(Math.floor(average));
   } catch (e) {
     console.log(e);
