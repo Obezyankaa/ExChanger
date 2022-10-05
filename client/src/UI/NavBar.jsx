@@ -128,6 +128,14 @@ export default function Navbar({
                 >
                   Авторизация
                 </Button>
+                <Link to="/allproducts">
+                  <Button
+                    sx={{ my: 2, color: '#17494D', display: 'block' }}
+                    onClick={() => setAddProdActive(true)}
+                  >
+                    Все товары
+                  </Button>
+                </Link>
               </Box>
             ) : (
               <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
@@ -137,6 +145,13 @@ export default function Navbar({
                 >
                   Добавить объявление
                 </Button>
+                <Link to="/allproducts">
+                  <Button
+                    sx={{ my: 2, color: '#17494D', display: 'block' }}
+                  >
+                    Все товары
+                  </Button>
+                </Link>
               </Box>
             ) }
             {night === true ? (
