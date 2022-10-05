@@ -1,26 +1,27 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination, Navigation } from 'swiper';
 import axios from 'axios';
-import { useDispatch, useSelector } from 'react-redux';
-import { deleteFavoriteAsync, setFavorite, setFavoriteState } from '../redux/actions/favoritesAction';
+import { useDispatch } from 'react-redux';
+import { deleteFavoriteAsync, setFavorite } from '../redux/actions/favoritesAction';
 
 export default function Card({ product }) {
   const {
     photos, userName, userPhoto, description, productName, price, date, userId, id,
   } = product;
+  console.log('product liked:', product);
   const dispatch = useDispatch();
-  // const [isFavorite, setIsFavorite] = useState();
-  const isFavorite = useSelector((state) => state.changeFavoriteState);
+  const [isFavorite, setIsFavorite] = useState(false);
+  // const isFavorite = useSelector((state) => state.changeFavoriteState);
   console.log('isFavorite', isFavorite);
   useEffect(() => {
-    axios.get(`/product/isfavorite/${id}`).then((resp) => setFavoriteState(resp.data));
+    axios.get(`/product/isfavorite/${id}`).then((resp) => dispatch(setIsFavorite(resp.data)));
   }, [isFavorite]);
   const changeFavoriteHandler = () => {
     console.log('Handler', isFavorite, id);
-    !isFavorite
-      ? dispatch(setFavorite(id)) : dispatch(deleteFavoriteAsync(id));
+    isFavorite
+      ? dispatch(deleteFavoriteAsync(id, setIsFavorite)) : dispatch(setFavorite(id, setIsFavorite));
     // ? axios.put(`/product/favorite/${id}`).then((resp) => setIsFavorite(resp.data))
     // : axios.delete(`/product/favorite/${id}`).then((resp) => setIsFavorite(resp.data));
   };
@@ -52,7 +53,7 @@ export default function Card({ product }) {
             </Swiper>
           </div>
           <div className="item__info">
-            <h1 className="item__title">{productName}</h1>
+            <h1 className="item__title">{product.id + productName}</h1>
             <p className="item__desc" style={{ color: 'aqua' }}>{description}</p>
             <div className="item__price__time">
               <div className="item__price" style={{ alignItems: 'center', display: 'flex' }}>
@@ -72,8 +73,8 @@ export default function Card({ product }) {
                 <Link className="creator__name" to={`/user/${userId}`}>{userName}</Link>
               </p>
               <div style={{ width: '100%', display: 'flex', justifyContent: 'flex-end' }}>
-                <input className="like" type="checkbox" id="heart" onChange={changeFavoriteHandler} checked={isFavorite} />
-                <label htmlFor="heart" />
+                <input className="like" type="checkbox" id={`heart${product.id}`} onChange={changeFavoriteHandler} checked={isFavorite} />
+                <label htmlFor={`heart${product.id}`} />
               </div>
             </div>
           </div>

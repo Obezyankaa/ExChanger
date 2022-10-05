@@ -12,7 +12,21 @@ router.put('/:id', async (req, res) => {
       user_id: req.session.userSession.id,
       product_id: id,
     });
-    res.json(true);
+    const createdFavorite = await Favorit.findOne({
+      where: {
+        user_id: req.session?.userSession.id,
+        product_id: id,
+      },
+      include: {
+        model: Product,
+        include: [
+          { model: User },
+          { model: Category },
+          { model: View },
+          { model: ProductPhoto }],
+      },
+    });
+    res.json(createdFavorite);
   } catch (e) {
     console.log(e);
   }
@@ -49,21 +63,25 @@ router.get('/isfavorite/:id', async (req, res) => {
 });
 
 router.get('/', async (req, res) => {
-  const favorites = await Favorit.findAll({
-    where: {
-      user_id:
+  try {
+    const favorites = await Favorit.findAll({
+      where: {
+        user_id:
     req.session?.userSession.id,
-    },
-    include: {
-      model: Product,
-      include: [
-        { model: User },
-        { model: Category },
-        { model: View },
-        { model: ProductPhoto }],
-    },
-  });
-  res.json(favorites);
+      },
+      include: {
+        model: Product,
+        include: [
+          { model: User },
+          { model: Category },
+          { model: View },
+          { model: ProductPhoto }],
+      },
+    });
+    res.json(favorites);
+  } catch (e) {
+    console.log(e);
+  }
 });
 
 module.exports = router;

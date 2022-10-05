@@ -32,5 +32,7 @@ module.exports = {
     'no-restricted-syntax': 0,
     'tguard-for-in': 0,
     'no-unused-expressions': 0,
+    eqeqeq: 0,
+    'jsx-a11y/label-has-associated-control': 0,
   },
 };

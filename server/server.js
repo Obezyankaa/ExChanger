@@ -11,10 +11,10 @@ const favoriteRouter = require('./routes/favoriteRouter');
 const categoriesRouter = require('./routes/categoriesRouter');
 const productRouter = require('./routes/productRouter');
 const usersRouter = require('./routes/usersRouter');
-const productPageReducer = require('./routes/productPageRouter');
 const userItemsRouter = require('./routes/userItemsRouter');
 const productPageRouter = require('./routes/productPageRouter');
 const gradeProductRouter = require('./routes/gradeProductRouter');
+const orderRouter = require('./routes/orderRouter');
 
 const app = express();
 const PORT = 3001;
@@ -77,8 +77,9 @@ app.use('/favorite', favoriteRouter);
 app.use('/categories', categoriesRouter);
 app.use('/product', productRouter);
 app.use('/user', usersRouter);
-app.use('/item-product', productPageReducer);
+app.use('/item-product', productPageRouter);
 app.use('/useritems', userItemsRouter);
 app.use('/grade', gradeProductRouter);
+app.use('/order', orderRouter);
 
 app.listen(PORT, () => console.log(`Server has started on PORT ${PORT}`));

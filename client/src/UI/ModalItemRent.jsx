@@ -2,7 +2,7 @@ import * as React from 'react';
 import { DialogContent, DialogContentText, DialogTitle } from '@mui/material';
 import ItemFormModal from './ItemFormModal';
 
-export default function ModalItemRent({ setRent }) {
+export default function ModalItemRent({ input, setRent, setSend }) {
   return (
     <div
       style={{
@@ -25,7 +25,7 @@ export default function ModalItemRent({ setRent }) {
         <DialogTitle style={{ textAlign: 'center' }}>Заполните Заявку</DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-slide-description">
-            <ItemFormModal setRent={setRent} />
+            <ItemFormModal setRent={setRent} input={input} setSend={setSend} />
           </DialogContentText>
         </DialogContent>
       </div>

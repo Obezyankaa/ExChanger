@@ -24,10 +24,12 @@ export default function ItemPage({
   const dispatch = useDispatch();
   const argProduct = useSelector((state) => state.prodItemPage);
   const { id } = useParams();
+  const num = id;
   const [cheker, setChecker] = useState(false);
   const [itemreg, setItemreg] = useState(false);
   const [itemlog, setItemlog] = useState(false);
   const [rent, setRent] = useState(false);
+  const [send, setSend] = useState(false);
 
   const [inputs, setInputs] = useState({ timing: 1 });
   const starRating = useSelector((state) => state.gradeProduct);
@@ -101,7 +103,8 @@ export default function ItemPage({
               <StarUserRating star={starRating} />
               <p>
                 {priceCalculate.toFixed(2)}
-                руб.
+                {' '}
+                ₽
               </p>
             </div>
             <div className="first-screen__right-mid">
@@ -133,8 +136,27 @@ export default function ItemPage({
 
             </div>
             <div className="first-screen__right-bottom">
-              <button onClick={modalopen} className="turbobuttons" type="button">Взять в аренду</button>
-              <button className="turbobuttons" type="button">Добавить в избранное</button>
+              {argProduct.user_id !== user.id ? (
+                <>
+                  {send === true ? (
+                    <>
+                      <button onClick={modalopen} className="turbobuttons" type="button">Заявка отправлена</button>
+                    </>
+                  ) : (
+                    <>
+                      <button onClick={modalopen} className="turbobuttons" type="button">Взять в аренду</button>
+                    </>
+                  )}
+                  <>
+                  </>
+                  <button className="turbobuttons" type="button">Добавить в избранное</button>
+                </>
+              ) : (
+                <>
+                  <button onClick={modalopen} className="turbobuttons" type="button">Изменить данные о товаре</button>
+                  <button className="turbobuttons" type="button">Снять с доски</button>
+                </>
+              )}
             </div>
           </div>
         </div>
@@ -168,7 +190,7 @@ export default function ItemPage({
         <></>
       )}
       {user.id && rent == true ? (
-        <ModalItemRent inputs={inputs} setInputs={setInputs} setRent={setRent} />
+        <ModalItemRent input={inputs} id={num} setRent={setRent} setSend={setSend} />
       ) : (
         <></>
       )}

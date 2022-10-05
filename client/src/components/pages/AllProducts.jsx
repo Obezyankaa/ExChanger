@@ -2,12 +2,17 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
 import Card from '../../UI/Card';
+import ModalRegistration from '../../UI/ModalRegistration';
+import ModalLog from '../../UI/ModalLog';
+import ModalAddProd from '../../UI/ModalAddProd';
 
-export default function AllProducts() {
+export default function AllProducts({
+  regActive, setRegActive, setLogActive, logActive, setAddProdActive, addProdActive,
+}) {
   const [products, setProducts] = useState([]);
   useEffect(() => {
     axios.get('/product').then((response) => {
-      setProducts(response.data.map((prod) => {
+      setProducts(() => response.data.map((prod) => {
         const images = prod.ProductPhotos.map((el) => el.photo);
         return ({
           id: prod.id,
@@ -24,8 +29,10 @@ export default function AllProducts() {
       }));
     });
   }, []);
+  const [showedProducts, setShowedProducts] = useState(products);
   const favorites = useSelector((state) => state.favorite);
-  console.log('allFavorites', favorites);
+  console.log('allProducts:', products);
+  console.log('favorites:', favorites);
   const categories = useSelector((state) => state.categories);
   const [findInput, setFindInput] = useState({ minRange: 0, maxRange: 5000 });
   const [categoryInput, setCategoryInput] = useState({});
@@ -35,6 +42,17 @@ export default function AllProducts() {
   const changeCategoryHandler = (e) => {
     setCategoryInput((prev) => ({ ...prev, [e.target.name]: e.target.value !== 'true' }));
   };
+
+  useEffect(() => {
+    setShowedProducts(() => products.filter((el) => Number(el.price) <= findInput.maxRange && Number(el.price) >= findInput.minRange)
+      .filter(
+        (el) => {
+          const keys = Object.keys(categoryInput).map((elem) => Number(elem));
+          return keys.includes(el.categoryId) && categoryInput[el.categoryId] === true;
+        },
+      ));
+  }, [categoryInput, findInput]);
+
   return (
     <div style={{ display: 'flex', marginLeft: '1rem' }}>
       <div>
@@ -64,17 +82,28 @@ export default function AllProducts() {
           display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'center',
         }}
         >
-          {products.filter((el) => Number(el.price) <= findInput.maxRange && Number(el.price) >= findInput.minRange)
-            .filter(
-              (el) => {
-                const keys = Object.keys(categoryInput).map((elem) => Number(elem));
-                return keys.includes(el.categoryId) && categoryInput[el.categoryId] === true;
-              },
-            )
-            .map((el) => (<Card product={el} key={el.id} />))}
+          {showedProducts.map((el) => {
+            console.log('Rendered ELEMENT:', el);
+            return <Card product={el} key={el.id} />;
+          })}
         </div>
         <div style={{ height: '3rem' }} />
       </div>
+      {regActive === true ? (
+        <ModalRegistration setRegActive={setRegActive} />
+      ) : (
+        <></>
+      )}
+      {logActive === true ? (
+        <ModalLog setLogActive={setLogActive} />
+      ) : (
+        <></>
+      )}
+      {addProdActive === true ? (
+        <ModalAddProd setAddProdActive={setAddProdActive} />
+      ) : (
+        <></>
+      )}
     </div>
   );
 }
