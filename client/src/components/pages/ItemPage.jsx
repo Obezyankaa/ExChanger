@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, {
+  useCallback, useEffect, useState, memo,
+} from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination, Navigation } from 'swiper';
-// import Map from '../Map/Map';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
+import Map from '../Map/Map';
 import StarUserRating from '../../UI/StarUserRating';
 import Days from '../../UI/Days';
 import BreadCrumps from '../../UI/BreadCrumps';
@@ -17,12 +19,13 @@ import ItemModalRegistration from '../../UI/ItemModalRegistration';
 import ItemModalLog from '../../UI/ItemModalLog';
 import ModalItemRent from '../../UI/ModalItemRent';
 
-export default function ItemPage({
+function ItemPage({
   regActive, setRegActive, logActive, setLogActive,
 }) {
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const argProduct = useSelector((state) => state.prodItemPage);
+  console.log(argProduct);
   const { id } = useParams();
   const num = id;
   const [cheker, setChecker] = useState(false);
@@ -33,17 +36,16 @@ export default function ItemPage({
 
   const [inputs, setInputs] = useState({ timing: 1 });
   const starRating = useSelector((state) => state.gradeProduct);
-
   useEffect(() => {
     dispatch(countGradeProd(id));
-  }, [starRating]);
+  }, [starRating.state]);
 
-  const changeHandler = (e) => {
+  const changeHandler = useCallback((e) => {
     setInputs((prev) => ({
       ...prev,
       [e.target.name]: e.target.value,
     }));
-  };
+  });
   const priceCalculate = argProduct.price * inputs.timing;
   useEffect(() => {
     dispatch(productArg(id));
@@ -100,6 +102,7 @@ export default function ItemPage({
             <div className="first-screen__right-top">
               <p>{argProduct?.name}</p>
               <p>{argProduct?.Category?.name}</p>
+              {argProduct.id && <p>{argProduct?.Views[0].counter}</p>}
               <StarUserRating star={starRating} />
               <p>
                 {priceCalculate.toFixed(2)}
@@ -125,7 +128,8 @@ export default function ItemPage({
                 )}
               </p>
               <p>Двигайте ползунок вправо если вам нужно больше времени на аренду</p>
-              <Days changeHandler={changeHandler} inputs={inputs} max={argProduct?.timing} />
+              {argProduct.timing
+              && <Days changeHandler={changeHandler} inputs={inputs} max={argProduct.timing} />}
               {inputs.timing === 30 ? (
                 <p>Слишком мало дней для аренды? Свяжитесь с владельцем</p>)
                 : (
@@ -162,7 +166,7 @@ export default function ItemPage({
         </div>
       </div>
       <div className="map">
-        {/* <Map /> */}
+        <Map coordinates={argProduct.location} />
       </div>
       {regActive === true ? (
         <ModalRegistration setRegActive={setRegActive} />
@@ -197,3 +201,5 @@ export default function ItemPage({
     </>
   );
 }
+
+export default memo(ItemPage);
