@@ -24,10 +24,14 @@ export default function StarUserRating({ star }) {
         width: '40%', height: '60%',
       }}
     >
-      <Typography component="legend">(250) Оценок пользователей</Typography>
+      <Typography component="legend">
+        (
+        {star.countLikes}
+        ) Оценок пользователей
+      </Typography>
       <Rating
         name="simple-controlled"
-        value={star}
+        value={star.state}
         onChange={(e, newValue) => {
           starHandler(newValue);
         }}

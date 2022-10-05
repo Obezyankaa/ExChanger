@@ -1,31 +1,25 @@
 import React, { useEffect } from 'react';
 import { load } from '@2gis/mapgl';
-import axios from 'axios';
 import MapWrapper from './MapWrapper';
 
-export default function Map() {
+export default function Map({ coordinates }) {
   useEffect(() => {
-    axios.post('/coordinates', { address: 'москва сергея эйзенштейна 2' })
-      .then((resp) => {
-        const x = resp.data.lon;
-        const y = resp.data.lat;
-        // eslint-disable-next-line no-unused-vars
-        const { metro } = resp.data;
-        let map;
-        load().then((mapglAPI) => {
-          map = new mapglAPI.Map('map-container', {
-            center: [x, y],
-            zoom: 13,
-            key: 'ee12180b-57c5-4c59-b3a2-6a198e86bf66',
-          });
-          // eslint-disable-next-line no-unused-vars
-          const marker = new mapglAPI.Marker(map, { // маркеры
-            coordinates: [x, y],
-          });
-        });
-        return () => map && map.destroy();
+    let map;
+    const mapCoord = coordinates?.split(', ').map((el) => Number(el)).reverse();
+    // eslint-disable-next-line no-unused-vars
+    load().then((mapglAPI) => {
+      map = new mapglAPI.Map('map-container', {
+        center: mapCoord,
+        zoom: 13,
+        key: '486c5922-c3f3-4aec-9dee-554a93d8ed78',
       });
-  }, []);
+      // eslint-disable-next-line no-unused-vars
+      const marker = new mapglAPI.Marker(map, {
+        coordinates: mapCoord,
+      });
+    });
+    return () => map;
+  }, [coordinates]);
 
   return (
     <div style={{ width: '100%', height: '100%' }}>
