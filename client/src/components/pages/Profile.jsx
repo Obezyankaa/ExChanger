@@ -10,8 +10,8 @@ export default function Profile({ night, setAddProdActive, addProdActive }) {
   const [btn, setBtn] = useState(true);
   const user = useSelector((state) => state.user);
   const [allProducts, setAllProducts] = useState(false);
-
   const [isSelectedFavorite, setIsSelectedFavorite] = useState(false);
+  console.log('isSelectedFavorite', isSelectedFavorite);
   //   const favorites = useSelector((state) => state.favorite);
   //   const [changeFavoritState, setChangeFavoritState] = useState(0);
   //   console.log('favorites', favorites);
@@ -117,21 +117,21 @@ export default function Profile({ night, setAddProdActive, addProdActive }) {
       {addProdActive === true ? (
         <ModalAddProd setAddProdActive={setAddProdActive} />
       ) : (
-        <></>
+        <div />
       )}
       <div>
         {allProducts === true ? (
-          <>
-            <UserAllProducts />
-          </>
+          <div>
+            <UserAllProducts isSelectedFavorite={isSelectedFavorite} />
+          </div>
         ) : (
-          <></>
+          <div />
         )}
         {isSelectedFavorite && (
-        <>
-          <AllFavoriteProducts />
+        <div>
+          <AllFavoriteProducts isSelectedFavorite={isSelectedFavorite} />
           <div style={{ height: '10rem' }} />
-        </>
+        </div>
         )}
       </div>
     </>

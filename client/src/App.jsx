@@ -11,7 +11,6 @@ import './styles.css';
 import { allCategories } from './redux/actions/categoriesAction';
 import ItemPage from './components/pages/ItemPage';
 import Profile from './components/pages/Profile';
-import Card from './UI/Card';
 import UserProfile from './components/pages/UserProfile';
 import AllProducts from './components/pages/AllProducts';
 import { fetchUserItems } from './redux/actions/userItemsAction';
@@ -45,7 +44,7 @@ function App() {
         <Route path="/settings" element={<Settings setAddProdActive={setAddProdActive} addProdActive={addProdActive} />} />
         <Route path="*" element={<Page404 regActive={regActive} setRegActive={setRegActive} setLogActive={setLogActive} logActive={logActive} setAddProdActive={setAddProdActive} addProdActive={addProdActive} to="/404" replace />} />
         <Route path="/item/:id" element={<ItemPage regActive={regActive} setRegActive={setRegActive} setLogActive={setLogActive} logActive={logActive} setAddProdActive={setAddProdActive} addProdActive={addProdActive} />} />
-        <Route path="/profile" element={<Profile setAddProdActive={setAddProdActive} addProdActive={addProdActive} />} />
+        {/* <Route path="/profile" element={<Profile setAddProdActive={setAddProdActive} addProdActive={addProdActive} />} /> */}
         <Route path="/allproducts" element={<AllProducts regActive={regActive} setRegActive={setRegActive} setLogActive={setLogActive} logActive={logActive} setAddProdActive={setAddProdActive} addProdActive={addProdActive} />} />
         <Route path="/profile" element={<Profile setNight={setNight} night={night} setAddProdActive={setAddProdActive} addProdActive={addProdActive} />} />
         <Route path="/allproducts" element={<AllProducts />} />

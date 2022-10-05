@@ -10,6 +10,9 @@ export default function AllProducts({
   regActive, setRegActive, setLogActive, logActive, setAddProdActive, addProdActive,
 }) {
   const [products, setProducts] = useState([]);
+  const categories = useSelector((state) => state.categories);
+  const [findInput, setFindInput] = useState({ minRange: 0, maxRange: 5000 });
+  const [categoryInput, setCategoryInput] = useState({});
   useEffect(() => {
     axios.get('/product').then((response) => {
       setProducts(() => response.data.map((prod) => {
@@ -28,12 +31,8 @@ export default function AllProducts({
         });
       }));
     });
-  }, []);
+  }, [categoryInput, findInput]);
   console.log(products);
-  const [showedProducts, setShowedProducts] = useState(products);
-  const categories = useSelector((state) => state.categories);
-  const [findInput, setFindInput] = useState({ minRange: 0, maxRange: 5000 });
-  const [categoryInput, setCategoryInput] = useState({});
   const changeHandler = (e) => {
     setFindInput((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
@@ -41,19 +40,18 @@ export default function AllProducts({
     setCategoryInput((prev) => ({ ...prev, [e.target.name]: e.target.value !== 'true' }));
   };
   useEffect(() => {
-    setShowedProducts(() => products.filter((el) => Number(el.price) <= findInput.maxRange && Number(el.price) >= findInput.minRange)
+    setProducts(() => products.filter((el) => Number(el.price) <= findInput.maxRange && Number(el.price) >= findInput.minRange)
       .filter(
         (el) => {
-          const keys = Object.keys(categoryInput).map((elem) => Number(elem));
-          console.log(keys);
+          const keys = Object.keys(categoryInput)?.map((elem) => Number(elem));
           return keys.length ? keys.includes(el.categoryId) && categoryInput[el.categoryId] === true : true;
         },
       ));
   }, [categoryInput, findInput]);
 
   return (
-    <div style={{ display: 'flex', marginLeft: '1rem' }}>
-      <div>
+    <div style={{ display: 'flex', marginLeft: '7rem' }}>
+      <div style={{ marginRight: '3rem', marginTop: '1rem' }}>
         <p style={{ marginTop: '1rem' }}>Категория</p>
         {categories.map((el) => (
           <div key={el.id} className="form-check">
@@ -75,12 +73,12 @@ export default function AllProducts({
           <span className="range-slider__value">{findInput.maxRange}</span>
         </div>
       </div>
-      <div style={{ width: '100%' }}>
+      <div style={{ width: '100%', display: 'flex' }}>
         <div style={{
           display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'center',
         }}
         >
-          {showedProducts.map((el) => <Card product={el} key={el.id} />)}
+          {products.map((el) => <Card product={el} key={el.id} />)}
         </div>
         <div style={{ height: '3rem' }} />
       </div>
