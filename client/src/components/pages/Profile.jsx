@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import ModalAddProd from '../../UI/ModalAddProd';
-import StarUserRating from '../../UI/StarUserRating';
 import UserAllProducts from '../../UI/UserAllProducts';
 import AllFavoriteProducts from './AllFavoritesProducts';
 import './index.css';
@@ -50,7 +50,6 @@ export default function Profile({ night, setAddProdActive, addProdActive }) {
                 <p />
                 <p style={night === true ? ({ color: 'black' }) : ({ color: 'white' })}>{user.f_name}</p>
                 <p style={night === true ? ({ color: 'black' }) : ({ color: 'white' })}>{user.l_name}</p>
-                <StarUserRating />
               </div>
               <div className="first-screen-profile__leftblock-skils">
                 <p>Свяжитесь с пользователем</p>
@@ -66,7 +65,7 @@ export default function Profile({ night, setAddProdActive, addProdActive }) {
                   </a>
                   <>
                     {btn === true ? (
-                      <button className="first-screen-profile__btn__profile" onClick={() => setBtn(false)} type="button">Показать номер</button>
+                      <Link to={`/myorders/${user.id}`}><button className="first-screen-profile__btn__profile" type="button">Мои заказы</button></Link>
                     ) : (
                       <button onClick={() => setBtn(true)} type="button">{user.phone}</button>
                     )}

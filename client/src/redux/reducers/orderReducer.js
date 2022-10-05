@@ -1,6 +1,6 @@
 import { SET_ORDER, NEW_ORDER } from '../types';
 
-export default function userReducer(state = {}, action) {
+export default function userReducer(state = [], action) {
   const { type, payload } = action;
   switch (type) {
     case NEW_ORDER:

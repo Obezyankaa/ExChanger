@@ -16,6 +16,7 @@ import AllProducts from './components/pages/AllProducts';
 import { fetchUserItems } from './redux/actions/userItemsAction';
 import AllFavoriteProducts from './components/pages/AllFavoritesProducts';
 import SliderMylter from './UI/SliderMylter';
+import RentPage from './components/pages/RentPage';
 
 function App() {
   const dispatch = useDispatch();
@@ -51,6 +52,7 @@ function App() {
         <Route path="/allFavoriteProducts" element={<AllFavoriteProducts />} />
         <Route path="/user/:id" element={<UserProfile regActive={regActive} setRegActive={setRegActive} setLogActive={setLogActive} logActive={logActive} setAddProdActive={setAddProdActive} addProdActive={addProdActive} />} />
         <Route path="/slider" element={<SliderMylter />} />
+        <Route path="/myorders" element={<RentPage />} />
       </Routes>
     </div>
   );
