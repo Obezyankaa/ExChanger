@@ -1,3 +1,4 @@
+/* eslint-disable react/button-has-type */
 import React, { useEffect, useState } from 'react';
 import Button from '@mui/material/Button';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -17,6 +18,7 @@ import Ucant from '../../UI/Ucant';
 import ItemModalRegistration from '../../UI/ItemModalRegistration';
 import ItemModalLog from '../../UI/ItemModalLog';
 import ModalItemRent from '../../UI/ModalItemRent';
+import CommentsModalka from '../../UI/CommentsModalka';
 
 export default function ItemPage({
   night, regActive, setRegActive, logActive, setLogActive,
@@ -32,6 +34,7 @@ export default function ItemPage({
   const [itemlog, setItemlog] = useState(false);
   const [rent, setRent] = useState(false);
   const [send, setSend] = useState(false);
+  const [coment, setComent] = useState(false);
 
   const [inputs, setInputs] = useState({ timing: 1 });
   const starRating = useSelector((state) => state.gradeProduct);
@@ -53,6 +56,10 @@ export default function ItemPage({
   const modalopen = () => {
     setRent(true);
     setChecker(true);
+  };
+
+  const commentsModal = () => {
+    setComent(true);
   };
 
   return (
@@ -137,6 +144,10 @@ export default function ItemPage({
               <p style={{ marginTop: '1px' }}>{argProduct?.description}</p>
 
             </div>
+            <div className="first-screen__right-comments">
+              {coment && <CommentsModalka />}
+              <button onClick={commentsModal} type="sybmit">оставить комент</button>
+            </div>
             <div className="first-screen__right-bottom">
               {argProduct.user_id !== user.id ? (
                 <>
@@ -151,7 +162,9 @@ export default function ItemPage({
                   )}
                   <>
                   </>
-                  <button className="turbobuttons" type="button">Добавить в избранное</button>
+                  <Button onClick={commentsModal} variant="contained" color="success">
+                    Добавить в избранное
+                  </Button>
                 </>
               ) : (
                 <>

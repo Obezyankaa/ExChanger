@@ -39,3 +39,6 @@ export const NEW_ORDER = 'NEW_ORDER';
 export const SET_TRUE = 'SET_TRUE';
 export const SET_FALSE = 'SET_FALSE';
 export const SET_STATE = 'SET_STATE';
+
+// comments
+export const COMMENTS = 'COMMENTS';

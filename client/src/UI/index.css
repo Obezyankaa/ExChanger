@@ -18,3 +18,9 @@ div {
 .day {
     width: 1rem;
 }
+
+.lint-prodyct {
+    font-family: 'Rubik', sans-serif;    
+    font-weight: 700;
+    text-decoration: none;
+}
