@@ -24,11 +24,12 @@ export default function AllProducts({
           description: prod.description,
           productName: prod.name,
           date: (new Date(prod.createdAt)).toLocaleDateString([], { hour: '2-digit', minute: '2-digit' }),
-          userId: prod['User.id'],
+          userId: prod.User.id,
         });
       }));
     });
   }, []);
+  console.log(products);
   const [showedProducts, setShowedProducts] = useState(products);
   const categories = useSelector((state) => state.categories);
   const [findInput, setFindInput] = useState({ minRange: 0, maxRange: 5000 });
