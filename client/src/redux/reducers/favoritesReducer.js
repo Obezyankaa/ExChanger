@@ -12,7 +12,7 @@ export default function favoritesReducer(state = [], action) {
     case ADD_FAVORITES:
       return [...state, payload];
     case DELETE_FAVORITE:
-      return state.filter((fav) => fav.id !== payload);
+      return state.filter((fav) => fav.product_id !== payload);
     default:
       return state;
   }
