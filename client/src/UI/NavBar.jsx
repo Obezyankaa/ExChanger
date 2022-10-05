@@ -39,6 +39,7 @@ export default function Navbar({
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
+  console.log('navbar__---', night);
   return (
     <>
       <AppBar style={{ borderBottomLeftRadius: '1rem', borderBottomRightRadius: '1rem' }} position="sticky" color="">
@@ -118,7 +119,6 @@ export default function Navbar({
                 <Button
                   sx={{ my: 2, color: '#3277ff;', display: 'block' }}
                   onClick={() => setRegActive(true)}
-                  s
                 >
                   Регистрация
                 </Button>
@@ -146,7 +146,7 @@ export default function Navbar({
                 </Button>
                 <Link to="/allproducts">
                   <Button
-                    sx={{ my: 2, color: '#17494D', display: 'block' }}
+                    sx={{ my: 2, color: '#3277ff', display: 'block' }}
                   >
                     Все товары
                   </Button>

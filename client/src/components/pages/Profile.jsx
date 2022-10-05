@@ -9,6 +9,7 @@ export default function Profile({ night, setAddProdActive, addProdActive }) {
   const [btn, setBtn] = useState(true);
   const user = useSelector((state) => state.user);
   const [allProducts, setAllProducts] = useState(false);
+
   return (
     <>
       <div className="first-screen-profile">

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import Button from '@mui/material/Button';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination, Navigation } from 'swiper';
 // import Map from '../Map/Map';
@@ -18,7 +19,7 @@ import ItemModalLog from '../../UI/ItemModalLog';
 import ModalItemRent from '../../UI/ModalItemRent';
 
 export default function ItemPage({
-  regActive, setRegActive, logActive, setLogActive,
+  night, regActive, setRegActive, logActive, setLogActive,
 }) {
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
@@ -57,7 +58,7 @@ export default function ItemPage({
   return (
     <>
       <div style={{ marginTop: '2%', marginLeft: '2%' }}>
-        <BreadCrumps itemName={argProduct?.name} category={argProduct?.Category?.name} />
+        <BreadCrumps night={night} itemName={argProduct?.name} category={argProduct?.Category?.name} />
       </div>
       <div className="first-screen">
         <div className="first-screen__content">
@@ -98,17 +99,17 @@ export default function ItemPage({
           </div>
           <div className="first-screen__right">
             <div className="first-screen__right-top">
-              <p>{argProduct?.name}</p>
-              <p>{argProduct?.Category?.name}</p>
+              <p style={night === true ? ({ color: 'black' }) : ({ color: 'white' })}>{argProduct?.name}</p>
+              <p style={night === true ? ({ color: 'black' }) : ({ color: 'white' })}>{argProduct?.Category?.name}</p>
               <StarUserRating star={starRating} />
-              <p>
+              <p style={night === true ? ({ color: 'black' }) : ({ color: 'white' })}>
                 {priceCalculate.toFixed(2)}
                 {' '}
                 ₽
               </p>
             </div>
             <div className="first-screen__right-mid">
-              <p>
+              <p style={night === true ? ({ color: '#626262' }) : ({ color: 'white' })}>
                 Максимальный срок аренды:
                 {' '}
                 {argProduct?.timing}
@@ -153,8 +154,8 @@ export default function ItemPage({
                 </>
               ) : (
                 <>
-                  <button onClick={modalopen} className="turbobuttons" type="button">Изменить данные о товаре</button>
-                  <button className="turbobuttons" type="button">Снять с доски</button>
+                  <Button type="submit" variant="contained" onClick={modalopen}>Изменить данные о товаре</Button>
+                  <Button type="submit" variant="contained">Снять с доски</Button>
                 </>
               )}
             </div>
