@@ -6,14 +6,14 @@ import Stack from '@mui/material/Stack';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import { Link } from 'react-router-dom';
 
-export default function BreadCrumps({ itemName, category }) {
+export default function BreadCrumps({ night, itemName, category }) {
   const breadcrumbs = [
     <Link
       underline="hover"
       key="1"
       color="inherit"
       to="/"
-      style={{ textDecoration: 'none', color: 'black' }}
+      style={night === true ? ({ color: 'black' }) : ({ color: 'white' })}
     >
       Главная
     </Link>,
@@ -21,7 +21,7 @@ export default function BreadCrumps({ itemName, category }) {
       underline="hover"
       key="2"
       color="inherit"
-      style={{ textDecoration: 'none', color: 'black' }}
+      style={night === true ? ({ color: 'black' }) : ({ color: 'white' })}
       to="/material-ui/getting-started/installation/" // линка на категорию
     >
       {category}
@@ -31,7 +31,7 @@ export default function BreadCrumps({ itemName, category }) {
     </Typography>,
   ];
   return (
-    <Stack spacing={1}>
+    <Stack style={night === true ? ({ color: 'black' }) : ({ color: 'white' })} spacing={1}>
       <Breadcrumbs
         separator={<NavigateNextIcon fontSize="small" />}
         aria-label="breadcrumb"

@@ -10,6 +10,7 @@ export default function Profile({ night, setAddProdActive, addProdActive }) {
   const [btn, setBtn] = useState(true);
   const user = useSelector((state) => state.user);
   const [allProducts, setAllProducts] = useState(false);
+
   const [isSelectedFavorite, setIsSelectedFavorite] = useState(false);
   console.log('isSelectedFavorite', isSelectedFavorite);
   //   const favorites = useSelector((state) => state.favorite);

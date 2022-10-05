@@ -376,10 +376,10 @@ body {
     -webkit-transform: scale(1.03, 1.03);
             transform: scale(1.03, 1.03);
   }
-  .stats {
+  /* .stats { */
     /* display: none; */
     /* background-color: rgb(32, 33, 36); */
-  }
+  /* } */
   .stats__body {
     max-width: 100%;
   }
@@ -870,9 +870,9 @@ body {
 
 @media screen and (max-width: 414px) {
 
-  .first-screen-profile__body {
+  /* .first-screen-profile__body {
 
-  }
+  } */
   .first-screen-profile__leftblock-textarea {
     width: 150px;
   }

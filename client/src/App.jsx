@@ -26,11 +26,11 @@ function App() {
     dispatch(allCategories());
     dispatch(fetchUserItems());
   }, []);
-  const [night, setNight] = useState(true);
+  const [night, setNight] = useState(false);
   const [regActive, setRegActive] = useState(false);
   const [logActive, setLogActive] = useState(false);
   const [addProdActive, setAddProdActive] = useState(false);
-
+  console.log(night);
   return (
     <div style={night === true ? ({ backgroundColor: 'white', color: 'white', height: '100vh' }) : ({ backgroundColor: '#202124', color: 'white', height: '100vh' })}>
       <Navbar
@@ -42,13 +42,12 @@ function App() {
       />
       <Routes>
         <Route path="/" element={<Main regActive={regActive} setRegActive={setRegActive} setLogActive={setLogActive} logActive={logActive} setAddProdActive={setAddProdActive} addProdActive={addProdActive} />} />
-        <Route path="/settings" element={<Settings setAddProdActive={setAddProdActive} addProdActive={addProdActive} />} />
+        <Route path="/settings" element={<Settings night={night} setAddProdActive={setAddProdActive} addProdActive={addProdActive} />} />
         <Route path="*" element={<Page404 regActive={regActive} setRegActive={setRegActive} setLogActive={setLogActive} logActive={logActive} setAddProdActive={setAddProdActive} addProdActive={addProdActive} to="/404" replace />} />
-        <Route path="/item/:id" element={<ItemPage regActive={regActive} setRegActive={setRegActive} setLogActive={setLogActive} logActive={logActive} setAddProdActive={setAddProdActive} addProdActive={addProdActive} />} />
-        {/* <Route path="/profile" element={<Profile setAddProdActive={setAddProdActive} addProdActive={addProdActive} />} /> */}
+        <Route path="/item/:id" element={<ItemPage night={night} regActive={regActive} setRegActive={setRegActive} setLogActive={setLogActive} logActive={logActive} setAddProdActive={setAddProdActive} addProdActive={addProdActive} />} />
+        {/* <Route path="/profile" element={<Profile night={night} setAddProdActive={setAddProdActive} addProdActive={addProdActive} />} /> */}
         <Route path="/allproducts" element={<AllProducts regActive={regActive} setRegActive={setRegActive} setLogActive={setLogActive} logActive={logActive} setAddProdActive={setAddProdActive} addProdActive={addProdActive} />} />
-        <Route path="/profile" element={<Profile setNight={setNight} night={night} setAddProdActive={setAddProdActive} addProdActive={addProdActive} />} />
-        <Route path="/allproducts" element={<AllProducts />} />
+        <Route path="/profile" element={<Profile night={night} setNight={setNight} setAddProdActive={setAddProdActive} addProdActive={addProdActive} />} />
         <Route path="/allFavoriteProducts" element={<AllFavoriteProducts />} />
         <Route path="/user/:id" element={<UserProfile regActive={regActive} setRegActive={setRegActive} setLogActive={setLogActive} logActive={logActive} setAddProdActive={setAddProdActive} addProdActive={addProdActive} />} />
         <Route path="/slider" element={<SliderMylter />} />
