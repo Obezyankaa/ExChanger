@@ -54,7 +54,15 @@ export default function Card({ product }) {
             </Swiper>
           </div>
           <div className="item__info">
-            <Link to={`/item/${id}`} style={{ textDecoration: 'none' }}><h1 className="item__title">{productName}</h1></Link>
+
+            <Link
+              to={`/item/
+          ${id}`}
+              style={{ textDecoration: 'none' }}
+            >
+              <h1 className="item__title">{productName}</h1>
+
+            </Link>
             <p className="item__desc" style={{ color: 'aqua' }}>{description}</p>
             <div className="item__price__time">
               <div className="item__price" style={{ alignItems: 'center', display: 'flex' }}>
