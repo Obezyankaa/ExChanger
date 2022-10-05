@@ -31,6 +31,10 @@ export const DELETE_USER_ITEMS = 'DELETE_USER_ITEMS';
 export const SET_GRADE_PRODUCT = 'SET_GRADE_PRODUCT';
 export const ADD_GRADE_PRODUCT = 'ADD_GRADE_PRODUCT';
 
+// Orders
+export const SET_ORDER = 'SET_ORDER';
+export const NEW_ORDER = 'NEW_ORDER';
+
 // Change favorit state
 export const SET_TRUE = 'SET_TRUE';
 export const SET_FALSE = 'SET_FALSE';

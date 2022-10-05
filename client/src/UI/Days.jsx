@@ -3,7 +3,6 @@ import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
 
 export default function Days({ changeHandler, inputs, max }) {
-  // console.log(inputs);
   return (
     <Box sx={{ width: 300 }}>
       {inputs.timing < (max * 0.8) ? (
