@@ -11,7 +11,7 @@ import './styles.css';
 import { allCategories } from './redux/actions/categoriesAction';
 import ItemPage from './components/pages/ItemPage';
 import Profile from './components/pages/Profile';
-// import Card from './UI/Card';
+import Card from './UI/Card';
 import UserProfile from './components/pages/UserProfile';
 import AllProducts from './components/pages/AllProducts';
 import { fetchUserItems } from './redux/actions/userItemsAction';
