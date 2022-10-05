@@ -6,7 +6,7 @@ import TextField from '@mui/material/TextField';
 import { useDispatch, useSelector } from 'react-redux';
 import { useState, useEffect } from 'react';
 import { userUpdater } from '../redux/actions/usersAction';
-// import SliderMylter from './SliderMylter';
+import SliderMylter from './SliderMylter';
 import './index.css';
 
 export default function UpdateForm() {
@@ -66,7 +66,7 @@ export default function UpdateForm() {
         <Button className="updateForm__btn" type="submit" variant="contained" endIcon={<SendIcon />}>
           Отправить
         </Button>
-        {/* <SliderMylter /> */}
+        <SliderMylter />
       </div>
     </form>
   );

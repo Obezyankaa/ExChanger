@@ -10,7 +10,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { allCategories } from '../redux/actions/categoriesAction';
 import { addProduct } from '../redux/actions/productAction';
 
-export default function FormModalAddProd({ setAddProdActive }) {
+export default function FormModalAddProd({ setSlider, setAddProdActive }) {
   const dispatch = useDispatch();
   const categoriesArr = useSelector((state) => state.categories);
   useEffect(() => {
@@ -33,7 +33,7 @@ export default function FormModalAddProd({ setAddProdActive }) {
     }
   };
   const submitHendler = (e) => (
-    dispatch(addProduct(e, inputs, setInputs, setAddProdActive))
+    dispatch(addProduct(e, inputs, setInputs, setAddProdActive, setSlider))
   );
   return (
     <form onSubmit={submitHendler}>

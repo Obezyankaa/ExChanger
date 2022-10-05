@@ -1,8 +1,11 @@
 import { DialogContent, DialogContentText, DialogTitle } from '@mui/material';
-import React from 'react';
+import React, { useState } from 'react';
 import FormModalAddProd from './FormModalAddProd';
+import SliderMylter from './SliderMylter';
 
 export default function ModalAddProd({ setAddProdActive }) {
+  const [slider, setSlider] = useState(false);
+
   return (
     <div
       style={{
@@ -25,7 +28,8 @@ export default function ModalAddProd({ setAddProdActive }) {
         <DialogTitle style={{ textAlign: 'center' }}>Добавить товар</DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-slide-description">
-            <FormModalAddProd setAddProdActive={setAddProdActive} />
+            {!slider
+              ? (<FormModalAddProd setSlider={setSlider} setAddProdActive={setAddProdActive} />) : (<SliderMylter />)}
           </DialogContentText>
         </DialogContent>
       </div>
