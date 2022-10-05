@@ -21,11 +21,12 @@ export const addProduct = (e, inputs, setInputs, newStat) => () => {
     }
   }
   axios.post('/product', formData)
-    .then(() => {
+    .then((res) => {
       setInputs({
         dropPhoto: [], name: '', category: '', description: '', price: '', location: '', timing: '',
       });
       newStat(false);
+      console.log(res);
     });
 };
 

@@ -40,12 +40,12 @@ export default function CardUser({ el }) {
           </div>
           <div className="item__info">
             <Link to={`/item/${el.id}`} style={{ textDecoration: 'none' }}><h1 className="item__title" style={{ textDecoration: 'none' }}>{el?.name}</h1></Link>
-            <p className="item__desc" style={{ color: 'aqua' }}>{el?.description}</p>
+            <p className="item__desc" style={{ color: 'white' }}>{el?.description}</p>
             <div className="item__price__time">
               <div className="item__price" style={{ alignItems: 'center', display: 'flex' }}>
                 {/* <img className="item__icon" style={{ width: '1rem' }} src="https://st3.depositphotos.com/4326917/14193/v/600/depositphotos_141937226-stock-illustration-ruble-sign-dark-green-icon.jpg" alt="ethereum-icon" /> */}
-                <span className="price-eth">{el.price}</span>
-                <p style={{ color: 'aqua', margin: '0rem 0rem 0rem 0.5rem' }}>
+                <span style={{ color: 'white' }} className="price-eth">{el.price}</span>
+                <p style={{ color: 'white', margin: '0rem 0rem 0rem 0.5rem' }}>
                   руб/сут
                 </p>
               </div>
@@ -56,12 +56,12 @@ export default function CardUser({ el }) {
             </div>
             <div className="item__creator" style={{ display: 'flex', justifyContent: 'space-between' }}>
               {/* <img className="creator__img" src={`http://localhost:3001/images/${userPhoto}`} alt="creator_avator" /> */}
-              {user.id == el.user_id ? (
+              {user.id === el.user_id ? (
                 <>
-                  <IconButton aria-label="delete" onClick={() => dispatch(deleteItem(el.id))} size="large" color="primary" title="Удалить">
+                  <IconButton style={{ color: 'white' }} aria-label="delete" onClick={() => dispatch(deleteItem(el.id))} size="large" color="primary" title="Удалить">
                     <DeleteIcon fontSize="inherit" />
                   </IconButton>
-                  <IconButton aria-label="delete" onClick={() => dispatch(deleteItem(el.id))} size="large" color="primary" title="Изменить товар">
+                  <IconButton style={{ color: 'white' }} aria-label="delete" onClick={() => dispatch(deleteItem(el.id))} size="large" color="primary" title="Изменить товар">
                     <BorderColorIcon fontSize="inherit" />
                   </IconButton>
                 </>

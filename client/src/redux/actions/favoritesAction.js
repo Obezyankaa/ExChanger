@@ -1,15 +1,25 @@
 import axios from 'axios';
-import { ADD_FAVORITES, DELETE_FAVORITE, SET_FAVORITES } from '../types';
+import {
+  ADD_FAVORITES, DELETE_FAVORITE, SET_FAVORITES,
+} from '../types';
 
 export const addFavorite = (payload) => ({ type: ADD_FAVORITES, payload });
 export const setFavorites = (payload) => ({ type: SET_FAVORITES, payload });
 export const deleteFavorite = (payload) => ({ type: DELETE_FAVORITE, payload });
 
-export const submitFavorite = (favorite) => (dispatch) => {
-  axios.post('/favorite', { favorite }, { withCredentials: true })
-    .then((res) => {
-      dispatch(addFavorite(res.data));
-    })
+export const setFavorite = (id, setIsFavorite) => (dispatch) => {
+  axios.put(`/favorite/${id}`)
+    .then((res) => dispatch(addFavorite(res.data)))
+    .then(() => setIsFavorite(true))
+    // .then(() => dispatch({ type: SET_TRUE }))
+    .catch(console.log);
+};
+
+export const deleteFavoriteAsync = (id, setIsFavorite) => (dispatch) => {
+  axios.delete(`/favorite/${id}`)
+    .then(() => dispatch(deleteFavorite(id)))
+    .then(() => setIsFavorite(false))
+    // .then(() => dispatch({ type: SET_FALSE }))
     .catch(console.log);
 };
 
@@ -21,8 +31,6 @@ export const fetchFavorites = () => (dispatch) => {
     .catch(console.log);
 };
 
-export const deleteFavoriteAsync = (id) => (dispatch) => {
-  axios.delete(`/favorite/${id}`)
-    .then(() => dispatch(deleteFavorite(id)))
-    .catch(console.log);
-};
+// export const setFavoriteState = (payload) => (dispatch) => {
+//   dispatch({ type: SET_STATE, payload });
+// };

@@ -64,10 +64,14 @@ router.get('/logout', async (req, res) => {
 });
 
 router.post('/check', async (req, res) => {
-  if (req.session.userSession) {
-    return res.json(req.session.userSession);
+  try {
+    if (req.session.userSession) {
+      return res.json(req.session.userSession);
+    }
+    return res.sendStatus(401);
+  } catch (e) {
+    console.log(e);
   }
-  return res.sendStatus(401);
 });
 
 module.exports = router;

@@ -8,6 +8,7 @@ import prodItemPageReducer from './reducers/prodItemPageReducer';
 import userItemsReducer from './reducers/userItemsReducer';
 import gradeProductReducer from './reducers/gradeProductReducer';
 import orderReducer from './reducers/orderReducer';
+import changeFavoriteStateReducer from './reducers/changeFavoritStateReducer';
 
 export default configureStore({
   reducer: {
@@ -20,5 +21,6 @@ export default configureStore({
     userItems: userItemsReducer,
     gradeProduct: gradeProductReducer,
     order: orderReducer,
+    changeFavoriteState: changeFavoriteStateReducer,
   },
 });

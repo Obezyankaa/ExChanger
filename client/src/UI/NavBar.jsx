@@ -11,10 +11,12 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import CachedOutlinedIcon from '@mui/icons-material/CachedOutlined';
+// import CachedOutlinedIcon from '@mui/icons-material/CachedOutlined';
+import AllInclusiveIcon from '@mui/icons-material/AllInclusive';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { logoutUserAsync } from '../redux/actions/userAction';
+import './index.css';
 
 export default function Navbar({
   setLogActive, setRegActive, setAddProdActive, setNight, night,
@@ -39,13 +41,14 @@ export default function Navbar({
   };
   return (
     <>
-      <AppBar position="static" color="">
+      <AppBar style={{ borderBottomLeftRadius: '1rem', borderBottomRightRadius: '1rem' }} position="sticky" color="">
         <Container maxWidth="xl">
           <Toolbar disableGutters>
-            <CachedOutlinedIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1, color: '#17494D' }} />
+            <AllInclusiveIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1, color: '#3277ff' }} />
             <Link to="/" style={{ textDecoration: 'none' }}>
               <Typography
-                style={{ textDecoration: 'none', color: '#17494D' }}
+                className="logoText"
+                // style={{ textDecoration: 'none', color: '#17494D' }}
                 variant="h6"
                 noWrap
                 component="a"
@@ -53,10 +56,7 @@ export default function Navbar({
                 sx={{
                   mr: 2,
                   display: { xs: 'none', md: 'flex' },
-                  fontFamily: '',
-                  fontWeight: 700,
                   letterSpacing: '.3rem',
-                  color: '#17494D',
                   textDecoration: 'none',
                 }}
               >
@@ -111,19 +111,19 @@ export default function Navbar({
                 textDecoration: 'none',
               }}
             >
-              LOGO
+              {/* <AllInclusiveIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1, color: '#3277ff' }} /> */}
             </Typography>
             {!user.id ? (
               <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
                 <Button
-                  sx={{ my: 2, color: '#17494D', display: 'block' }}
+                  sx={{ my: 2, color: '#3277ff;', display: 'block' }}
                   onClick={() => setRegActive(true)}
                   s
                 >
                   Регистрация
                 </Button>
                 <Button
-                  sx={{ my: 2, color: '#17494D', display: 'block' }}
+                  sx={{ my: 2, color: '#3277ff', display: 'block' }}
                   onClick={() => setLogActive(true)}
                 >
                   Авторизация
@@ -140,7 +140,7 @@ export default function Navbar({
             ) : (
               <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
                 <Button
-                  sx={{ my: 2, color: '#17494D', display: 'block' }}
+                  sx={{ my: 2, color: '#3277ff', display: 'block' }}
                   onClick={() => setAddProdActive(true)}
                 >
                   Добавить объявление
@@ -156,19 +156,19 @@ export default function Navbar({
             ) }
             {night === true ? (
               <Button
-                sx={{ my: 2, color: '#17494D', display: 'block' }}
+                sx={{ my: 2, display: 'block' }}
                 onClick={() => setNight(false)}
                 s
               >
-                Night Mode
+                <img style={{ width: '2rem' }} src="../img/17_icon-icons.com_73808.svg" alt="..." />
               </Button>
             ) : (
               <Button
-                sx={{ my: 2, color: '#17494D', display: 'block' }}
+                sx={{ my: 2, display: 'block' }}
                 onClick={() => setNight(true)}
                 s
               >
-                Day Mode
+                <img style={{ width: '2rem' }} src="../img/sun_102839.svg" alt="..." />
               </Button>
             )}
             {user.id ? (
