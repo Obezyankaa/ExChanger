@@ -6,22 +6,22 @@ import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { deleteFavoriteAsync, setFavorite } from '../redux/actions/favoritesAction';
 
-export default function Card({ product }) {
+export default function Card({ product, setChangeFavoritState }) {
   const {
     photos, userName, userPhoto, description, productName, price, date, userId, id,
   } = product;
-  console.log('product liked:', product);
+  // console.log('product liked:', product);
   const dispatch = useDispatch();
   const [isFavorite, setIsFavorite] = useState(false);
   // const isFavorite = useSelector((state) => state.changeFavoriteState);
-  console.log('isFavorite', isFavorite);
+  // console.log('isFavorite', isFavorite);
   useEffect(() => {
     axios.get(`/product/isfavorite/${id}`).then((resp) => dispatch(setIsFavorite(resp.data)));
   }, [isFavorite]);
   const changeFavoriteHandler = () => {
-    console.log('Handler', isFavorite, id);
+    // console.log('Handler', isFavorite, id);
     isFavorite
-      ? dispatch(deleteFavoriteAsync(id, setIsFavorite)) : dispatch(setFavorite(id, setIsFavorite));
+      ? dispatch(deleteFavoriteAsync(id, setIsFavorite, setChangeFavoritState)) : dispatch(setFavorite(id, setIsFavorite, setChangeFavoritState));
     // ? axios.put(`/product/favorite/${id}`).then((resp) => setIsFavorite(resp.data))
     // : axios.delete(`/product/favorite/${id}`).then((resp) => setIsFavorite(resp.data));
   };

@@ -923,7 +923,7 @@
 .like + label:before {
   content: "\1F5A4";
   font-size: 29px;
-  top: -29px;
+  top: -36px;
   left: -16px;
   border: 1px solid transparent;    
   padding: 10px;
@@ -942,7 +942,7 @@ transition:  .5s ease;
   content: '❤';
   font-size: 29px;
   position: absolute;
-  top: -19px;
+  top: -24px;
   left: -4px;
   color: rgb(0, 88, 202);
   transition:  .5s ease;
