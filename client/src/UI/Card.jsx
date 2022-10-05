@@ -6,10 +6,11 @@ import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { deleteFavoriteAsync, setFavorite } from '../redux/actions/favoritesAction';
 
-export default function Card({ product, setChangeFavoritState }) {
+export default function Card({ product }) {
   const {
     photos, userName, userPhoto, description, productName, price, date, userId, id,
   } = product;
+  console.log(product, '-----------------');
   // console.log('product liked:', product);
   const dispatch = useDispatch();
   const [isFavorite, setIsFavorite] = useState(false);
@@ -21,7 +22,7 @@ export default function Card({ product, setChangeFavoritState }) {
   const changeFavoriteHandler = () => {
     // console.log('Handler', isFavorite, id);
     isFavorite
-      ? dispatch(deleteFavoriteAsync(id, setIsFavorite, setChangeFavoritState)) : dispatch(setFavorite(id, setIsFavorite, setChangeFavoritState));
+      ? dispatch(deleteFavoriteAsync(id, setIsFavorite)) : dispatch(setFavorite(id, setIsFavorite));
     // ? axios.put(`/product/favorite/${id}`).then((resp) => setIsFavorite(resp.data))
     // : axios.delete(`/product/favorite/${id}`).then((resp) => setIsFavorite(resp.data));
   };
@@ -53,6 +54,7 @@ export default function Card({ product, setChangeFavoritState }) {
             </Swiper>
           </div>
           <div className="item__info">
+
             <Link
               to={`/item/
           ${id}`}
@@ -79,7 +81,6 @@ export default function Card({ product, setChangeFavoritState }) {
               <p className="creator__info" style={{ color: 'aqua' }}>
                 <Link className="creator__name" to={`/user/${userId}`}>{userName}</Link>
               </p>
-              {console.log(product.id)}
               <div style={{ width: '100%', display: 'flex', justifyContent: 'flex-end' }}>
                 <input className="like" type="checkbox" id={`heart${product.id}`} onChange={changeFavoriteHandler} checked={isFavorite} />
                 <label htmlFor={`heart${product.id}`} />

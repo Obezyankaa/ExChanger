@@ -3,12 +3,43 @@ import { useSelector } from 'react-redux';
 import ModalAddProd from '../../UI/ModalAddProd';
 import StarUserRating from '../../UI/StarUserRating';
 import UserAllProducts from '../../UI/UserAllProducts';
+import AllFavoriteProducts from './AllFavoritesProducts';
 import './index.css';
 
 export default function Profile({ night, setAddProdActive, addProdActive }) {
   const [btn, setBtn] = useState(true);
   const user = useSelector((state) => state.user);
   const [allProducts, setAllProducts] = useState(false);
+  const [isSelectedFavorite, setIsSelectedFavorite] = useState(false);
+  console.log('isSelectedFavorite', isSelectedFavorite);
+  //   const favorites = useSelector((state) => state.favorite);
+  //   const [changeFavoritState, setChangeFavoritState] = useState(0);
+  //   console.log('favorites', favorites);
+  //   const [categoryInput, setCategoryInput] = useState({});
+  //   const [findInput, setFindInput] = useState({ minRange: 0, maxRange: 5000 });
+  //   useEffect(() => {
+  //     setProducts(favorites.map((prod) => {
+  //       console.log('1', prod);
+  //       const images = prod.Product.ProductPhotos.map((el) => el.photo);
+  //       return ({
+  //         id: prod.Product.id,
+  //         categoryId: prod.Product.Category.id,
+  //         photos: images,
+  //         userName: prod.Product.User.f_name,
+  //         price: prod.Product.price,
+  //         userPhoto: prod.Product.User.photo,
+  //         description: prod.Product.description,
+  //         productName: prod.Product.name,
+  //         date: (new Date(prod.Product.createdAt)).toLocaleDateString([], { hour: '2-digit', minute: '2-digit' }),
+  //         userId: prod.Product.user_id,
+  //       });
+  //     }));
+  //   }, [categoryInput, findInput, favorites, changeFavoritState]);
+  // //   console.log('products', products);
+  //   const [showedProducts, setShowedProducts] = useState(products);
+  //   const categories = useSelector((state) => state.categories);
+  //   const changeHandler = (e) => {
+  //     setFindInput((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   return (
     <>
       <div className="first-screen-profile">
@@ -67,9 +98,15 @@ export default function Profile({ night, setAddProdActive, addProdActive }) {
               <div className="stats__block-two">
                 <p>Активные товары</p>
               </div>
-              <div className="stats__block-three">
-                <p>Избранное</p>
-              </div>
+              {isSelectedFavorite ? (
+                <div className="stats__block-three" onClick={() => { setAllProducts(false); setIsSelectedFavorite(false); }} style={{ cursor: 'pointer' }}>
+                  <p>Избранное</p>
+                </div>
+              ) : (
+                <div className="stats__block-three" onClick={() => { setIsSelectedFavorite(true); }} style={{ cursor: 'pointer' }}>
+                  <p>Избранное</p>
+                </div>
+              )}
               <div className="stats__block-four">
                 <p>Отзывы</p>
               </div>
@@ -80,15 +117,21 @@ export default function Profile({ night, setAddProdActive, addProdActive }) {
       {addProdActive === true ? (
         <ModalAddProd setAddProdActive={setAddProdActive} />
       ) : (
-        <></>
+        <div />
       )}
       <div>
         {allProducts === true ? (
-          <>
-            <UserAllProducts />
-          </>
+          <div>
+            <UserAllProducts isSelectedFavorite={isSelectedFavorite} />
+          </div>
         ) : (
-          <></>
+          <div />
+        )}
+        {isSelectedFavorite && (
+        <div>
+          <AllFavoriteProducts isSelectedFavorite={isSelectedFavorite} />
+          <div style={{ height: '10rem' }} />
+        </div>
         )}
       </div>
     </>

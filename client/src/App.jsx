@@ -44,7 +44,7 @@ function App() {
         <Route path="/settings" element={<Settings setAddProdActive={setAddProdActive} addProdActive={addProdActive} />} />
         <Route path="*" element={<Page404 regActive={regActive} setRegActive={setRegActive} setLogActive={setLogActive} logActive={logActive} setAddProdActive={setAddProdActive} addProdActive={addProdActive} to="/404" replace />} />
         <Route path="/item/:id" element={<ItemPage regActive={regActive} setRegActive={setRegActive} setLogActive={setLogActive} logActive={logActive} setAddProdActive={setAddProdActive} addProdActive={addProdActive} />} />
-        <Route path="/profile" element={<Profile setAddProdActive={setAddProdActive} addProdActive={addProdActive} />} />
+        {/* <Route path="/profile" element={<Profile setAddProdActive={setAddProdActive} addProdActive={addProdActive} />} /> */}
         <Route path="/allproducts" element={<AllProducts regActive={regActive} setRegActive={setRegActive} setLogActive={setLogActive} logActive={logActive} setAddProdActive={setAddProdActive} addProdActive={addProdActive} />} />
         <Route path="/profile" element={<Profile setNight={setNight} night={night} setAddProdActive={setAddProdActive} addProdActive={addProdActive} />} />
         <Route path="/allproducts" element={<AllProducts />} />
