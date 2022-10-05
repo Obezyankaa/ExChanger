@@ -27,6 +27,7 @@ app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use('/images', express.static(path.join(__dirname, 'images')));
+app.use('/photos-category', express.static(path.join(__dirname, 'photos-category')));
 
 app.post('/coordinates', async (req, res) => {
   try {
@@ -78,7 +79,6 @@ app.use('/product', productRouter);
 app.use('/user', usersRouter);
 app.use('/item-product', productPageReducer);
 app.use('/useritems', userItemsRouter);
-app.use('/item-product', productPageRouter);
 app.use('/grade', gradeProductRouter);
 
 app.listen(PORT, () => console.log(`Server has started on PORT ${PORT}`));
