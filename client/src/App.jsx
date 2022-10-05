@@ -15,6 +15,7 @@ import Card from './UI/Card';
 import UserProfile from './components/pages/UserProfile';
 import AllProducts from './components/pages/AllProducts';
 import { fetchUserItems } from './redux/actions/userItemsAction';
+import AllFavoriteProducts from './components/pages/AllFavoritesProducts';
 import SliderMylter from './UI/SliderMylter';
 
 function App() {
@@ -48,6 +49,7 @@ function App() {
         <Route path="/allproducts" element={<AllProducts regActive={regActive} setRegActive={setRegActive} setLogActive={setLogActive} logActive={logActive} setAddProdActive={setAddProdActive} addProdActive={addProdActive} />} />
         <Route path="/profile" element={<Profile setNight={setNight} night={night} setAddProdActive={setAddProdActive} addProdActive={addProdActive} />} />
         <Route path="/allproducts" element={<AllProducts />} />
+        <Route path="/allFavoriteProducts" element={<AllFavoriteProducts />} />
         <Route path="/user/:id" element={<UserProfile regActive={regActive} setRegActive={setRegActive} setLogActive={setLogActive} logActive={logActive} setAddProdActive={setAddProdActive} addProdActive={addProdActive} />} />
         <Route path="/slider" element={<SliderMylter />} />
       </Routes>

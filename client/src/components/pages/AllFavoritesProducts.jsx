@@ -1,38 +1,35 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import { useSelector } from 'react-redux';
 import Card from '../../UI/Card';
-import ModalRegistration from '../../UI/ModalRegistration';
-import ModalLog from '../../UI/ModalLog';
-import ModalAddProd from '../../UI/ModalAddProd';
 
-export default function AllProducts({
-  regActive, setRegActive, setLogActive, logActive, setAddProdActive, addProdActive,
-}) {
+export default function AllFavoriteProducts() {
   const [products, setProducts] = useState([]);
+  const favorites = useSelector((state) => state.favorite);
+  const [changeFavoritState, setChangeFavoritState] = useState(0);
+  console.log('favorites', favorites);
+  const [categoryInput, setCategoryInput] = useState({});
+  const [findInput, setFindInput] = useState({ minRange: 0, maxRange: 5000 });
   useEffect(() => {
-    axios.get('/product').then((response) => {
-      setProducts(() => response.data.map((prod) => {
-        const images = prod.ProductPhotos.map((el) => el.photo);
-        return ({
-          id: prod.id,
-          categoryId: prod.Category.id,
-          photos: images,
-          userName: prod.User.f_name,
-          price: prod.price,
-          userPhoto: prod.User.photo,
-          description: prod.description,
-          productName: prod.name,
-          date: (new Date(prod.createdAt)).toLocaleDateString([], { hour: '2-digit', minute: '2-digit' }),
-          userId: prod['User.id'],
-        });
-      }));
-    });
-  }, []);
+    setProducts(favorites.map((prod) => {
+      console.log('1', prod);
+      const images = prod.Product.ProductPhotos.map((el) => el.photo);
+      return ({
+        id: prod.Product.id,
+        categoryId: prod.Product.Category.id,
+        photos: images,
+        userName: prod.Product.User.f_name,
+        price: prod.Product.price,
+        userPhoto: prod.Product.User.photo,
+        description: prod.Product.description,
+        productName: prod.Product.name,
+        date: (new Date(prod.Product.createdAt)).toLocaleDateString([], { hour: '2-digit', minute: '2-digit' }),
+        userId: prod.user_id,
+      });
+    }));
+  }, [categoryInput, findInput, favorites, changeFavoritState]);
+  console.log('products', products);
   const [showedProducts, setShowedProducts] = useState(products);
   const categories = useSelector((state) => state.categories);
-  const [findInput, setFindInput] = useState({ minRange: 0, maxRange: 5000 });
-  const [categoryInput, setCategoryInput] = useState({});
   const changeHandler = (e) => {
     setFindInput((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
@@ -44,7 +41,6 @@ export default function AllProducts({
       .filter(
         (el) => {
           const keys = Object.keys(categoryInput).map((elem) => Number(elem));
-          console.log(keys);
           return keys.length ? keys.includes(el.categoryId) && categoryInput[el.categoryId] === true : true;
         },
       ));
@@ -79,25 +75,10 @@ export default function AllProducts({
           display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'center',
         }}
         >
-          {showedProducts.map((el) => <Card product={el} key={el.id} />)}
+          {showedProducts.map((el) => <Card product={el} key={el.id} setChangeFavoritState={setChangeFavoritState} />)}
         </div>
         <div style={{ height: '3rem' }} />
       </div>
-      {regActive === true ? (
-        <ModalRegistration setRegActive={setRegActive} />
-      ) : (
-        <></>
-      )}
-      {logActive === true ? (
-        <ModalLog setLogActive={setLogActive} />
-      ) : (
-        <></>
-      )}
-      {addProdActive === true ? (
-        <ModalAddProd setAddProdActive={setAddProdActive} />
-      ) : (
-        <></>
-      )}
     </div>
   );
 }

@@ -7,19 +7,23 @@ export const addFavorite = (payload) => ({ type: ADD_FAVORITES, payload });
 export const setFavorites = (payload) => ({ type: SET_FAVORITES, payload });
 export const deleteFavorite = (payload) => ({ type: DELETE_FAVORITE, payload });
 
-export const setFavorite = (id, setIsFavorite) => (dispatch) => {
+export const setFavorite = (id, setIsFavorite, setChangeFavoritState) => (dispatch) => {
   axios.put(`/favorite/${id}`)
     .then((res) => dispatch(addFavorite(res.data)))
-    .then(() => setIsFavorite(true))
-    // .then(() => dispatch({ type: SET_TRUE }))
+    .then(() => {
+      setIsFavorite(true);
+      setChangeFavoritState(1);//
+    })
     .catch(console.log);
 };
 
-export const deleteFavoriteAsync = (id, setIsFavorite) => (dispatch) => {
+export const deleteFavoriteAsync = (id, setIsFavorite, setChangeFavoritState) => (dispatch) => {
   axios.delete(`/favorite/${id}`)
     .then(() => dispatch(deleteFavorite(id)))
-    .then(() => setIsFavorite(false))
-    // .then(() => dispatch({ type: SET_FALSE }))
+    .then(() => {
+      setIsFavorite(false);
+      setChangeFavoritState(0);//
+    })
     .catch(console.log);
 };
 
@@ -30,7 +34,3 @@ export const fetchFavorites = () => (dispatch) => {
     })
     .catch(console.log);
 };
-
-// export const setFavoriteState = (payload) => (dispatch) => {
-//   dispatch({ type: SET_STATE, payload });
-// };
