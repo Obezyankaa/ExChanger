@@ -58,8 +58,8 @@ export default function ItemPage({
               modules={[Pagination, Navigation]}
               className="mySwiper"
               style={{
-                height: '700px',
-                width: '700px',
+                height: '600px',
+                width: '600px',
               }}
             >
               {argProduct.category_id ? (
@@ -68,7 +68,7 @@ export default function ItemPage({
                     <img
                       style={{
                         height: '700px',
-                        width: '700px',
+                        width: '400px',
                       }}
                       src={`http://localhost:3001/images/${Object.values(el)[0]}`}
                       alt={`${el[0]}`}

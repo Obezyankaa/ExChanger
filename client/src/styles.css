@@ -103,8 +103,8 @@ body {
     width: 50%;
   }
   .first-screen__left img {
-    width: 605px;
-    height: 605px;
+    width: 520px;
+    height: 520px;
     -webkit-transition: all 1.8s ease 0s;
     transition: all 1.8s ease 0s;
   }
@@ -677,8 +677,8 @@ body {
   border-radius: 1.2rem;
   background-image: linear-gradient(
     180deg,
-    hsl(216, 50%, 18%),
-    hsl(217, 54%, 13%)
+    rgb(50, 119, 255),
+    hsl(217, 77%, 54%)
   );
   transition: transform 300ms ease;
 }
@@ -870,6 +870,9 @@ body {
 
 @media screen and (max-width: 414px) {
 
+  .first-screen-profile__body {
+
+  }
   .first-screen-profile__leftblock-textarea {
     width: 150px;
   }
