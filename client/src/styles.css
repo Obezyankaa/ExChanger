@@ -933,7 +933,7 @@ body {
 }
 
 .like + label:before {
-  content: "\1F5A4";
+  /* content: "\1F5A4";
   font-size: 29px;
   top: -36px;
   left: -16px;
@@ -942,7 +942,18 @@ body {
   border-radius: 3px;
   display: block;
   position: absolute;
-transition:  .5s ease;
+  transition:  .5s ease; */
+  font-size: 65px;
+  top: -66px;
+  left: -17px;
+  border: 1px solid transparent;
+  padding: 10px;
+  border-radius: 3px;
+  display: block;
+  position: absolute;
+  transition: .5s ease;
+  color: #87919d;
+  content: '♥';
 }
 
 .like:checked + label:before {
@@ -951,11 +962,17 @@ transition:  .5s ease;
 }
 
 .like:checked + label:after {
-  content: '❤';
+  /* content: '♥';
   font-size: 29px;
   position: absolute;
   top: -24px;
   left: -4px;
-  color: rgb(0, 88, 202);
-  transition:  .5s ease;
+  transition:  .5s ease; */
+  content: '♥';
+  font-size: 65px;
+  position: absolute;
+  top: -55px;
+  left: -6px;
+  transition: .5s ease;
+  color: rgb(90, 30, 160);
 }
