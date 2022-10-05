@@ -3,6 +3,7 @@ import Slider from '../../UI/Home/slider/Slider';
 import ModalAddProd from '../../UI/ModalAddProd';
 import ModalLog from '../../UI/ModalLog';
 import ModalRegistration from '../../UI/ModalRegistration';
+import './index.css';
 
 export default function Main({
   regActive, logActive, setRegActive, setLogActive, setAddProdActive, addProdActive,
@@ -17,8 +18,8 @@ export default function Main({
           <p>ExChanger</p>
           <p>Доступный шеринг для обычных людей</p>
           <div className="intro__content-btn">
-            <button type="button" className="turbobuttons" style={{ marginRight: '10px' }}>Войти</button>
-            <button type="button" className="turbobuttons" style={{ marginLeft: '10px' }}>Регистрация</button>
+            <button type="button" className="btn-padding border-button" style={{ marginRight: '10px' }}>Войти</button>
+            <button type="button" className="border-button" style={{ marginLeft: '10px' }}>Регистрация</button>
           </div>
         </div>
       </div>
