@@ -1,8 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap');
 @import url("https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Bai+Jamjuree:wght@200&family=Pacifico&family=Readex+Pro&family=Smooch&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap"); */
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap');
 
-
+body {
+  font-family: 'Rubik', sans-serif;
+}
 .fourfour {
     background-image: url(https://freefrontend.com/assets/img/html-funny-404-pages/SVG-Animation-404-Page.gif);
     height: 100vh;
@@ -18,7 +21,7 @@
 
 .breadsetacks {
     display: flex;
-    font-family: 'Inter', sans-serif;
+    font-family: 'Rubik', sans-serif;    
     font-style: normal;
     font-weight: 500;
     font-size: 16px;
@@ -28,7 +31,7 @@
 }
 
 .breadsetacks p {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Rubik', sans-serif;
     font-style: normal;
     font-weight: 500;
     font-size: 16px;
@@ -75,7 +78,7 @@
   }
   .breadsticks p {
     padding-left: 30px;
-    font-family: "Inter", sans-serif;
+    font-family: 'Rubik', sans-serif;    
     font-size: 16px;
     line-height: 18px;
     color: #1B4B66;
@@ -100,8 +103,8 @@
     width: 50%;
   }
   .first-screen__left img {
-    width: 605px;
-    height: 605px;
+    width: 520px;
+    height: 520px;
     -webkit-transition: all 1.8s ease 0s;
     transition: all 1.8s ease 0s;
   }
@@ -115,12 +118,12 @@
   }
   .first-screen__right-top p:first-child {
     color: #13101E;
-    font-family: "Inter";
+    font-family: 'Rubik';    
     font-style: normal;
     font-weight: 600;
     font-size: 34px;
     line-height: 44px;
-    font-family: "Inter", sans-serif;
+    font-family: 'Rubik', sans-serif;    
   }
   .first-screen__right-top p:nth-child(2) {
     color: #626262;
@@ -133,7 +136,7 @@
   }
   .first-screen__right-top p:nth-child(3) {
     color: #B6B6B6;
-    font-family: "Inter";
+    font-family: 'Rubik';    
     font-style: normal;
     font-weight: 400;
     font-size: 15px;
@@ -143,12 +146,12 @@
   .first-screen__right-top p:last-child {
     width: 500px;
     color: #171520;
-    font-family: "Inter";
+    font-family: 'Rubik';    
     font-style: normal;
     font-weight: 700;
     font-size: 40px;
     line-height: 52px;
-    font-family: "Inter", sans-serif;
+    font-family: 'Rubik', sans-serif;    
   }
   .first-screen__right-mid {
     margin-top: 50px;
@@ -162,21 +165,21 @@
   }
   .first-screen__right-mid p:first-child {
     color: #626262;
-    font-family: "Inter";
+    font-family: 'Rubik';    
     font-style: normal;
     font-weight: 600;
     font-size: 20px;
     line-height: 26px;
-    font-family: "Inter", sans-serif;
+    font-family: 'Rubik', sans-serif;    
   }
   .first-screen__right-mid p:nth-child(3) {
     color: #626262;
-    font-family: "Inter";
+    font-family: 'Rubik';    
     font-style: normal;
     font-weight: 600;
     font-size: 20px;
     line-height: 26px;
-    font-family: "Inter", sans-serif;
+    font-family: 'Rubik', sans-serif;    
   }
   .first-screen__right-bottom {
     margin-top: 50px;
@@ -193,7 +196,7 @@
     width: 400px;
     color:white;
     opacity: 0.95;
-    font-family: "Inter", sans-serif;
+    font-family: 'Rubik', sans-serif;    
     border-radius: 8px;
     -webkit-transition: all 0.8s ease 0s;
     transition: all 0.8s ease 0s;
@@ -213,11 +216,11 @@
             transform: scale(0.9) translateZ(0);
     -webkit-filter: blur(11px);
             filter: blur(10px);
-    background: -webkit-gradient(linear, right top, left top, from(#ff5770), color-stop(#e4428d), color-stop(#c42da8), color-stop(#9e16c3), color-stop(#6501de), color-stop(#9e16c3), color-stop(#c42da8), color-stop(#e4428d), to(#ff5770));
-    background: linear-gradient(to left, #ff5770, #e4428d, #c42da8, #9e16c3, #6501de, #9e16c3, #c42da8, #e4428d, #ff5770);
+    background: -webkit-gradient(linear, right top, left top, from(rgb(50, 119, 255)), color-stop(#ffffff), color-stop(rgb(50, 119, 255)), color-stop(rgb(50, 119, 255)), color-stop(rgb(50, 119, 255)), color-stop(rgb(50, 119, 255)), color-stop(rgb(50, 119, 255)), color-stop(rgb(50, 119, 255)), to(rgb(50, 119, 255)));
+    background: linear-gradient(to left, #425af8, #1100ff, #372dc4, #ffffff, #ffffff, #1916c3, #2d49c4, #424fe4, #576bff);
     background-size: 200% 200%;
-    -webkit-animation: animateGlow 1.25s linear infinite;
-            animation: animateGlow 1.25s linear infinite;
+    -webkit-animation: animateGlow 1.85s linear infinite;
+            animation: animateGlow 1.5s linear infinite;
   }
   .first-screen__right-bottom button:nth-child(2) {
     margin-left: 50px;
@@ -245,9 +248,9 @@
     }
   }
 
-  .first-screen-profile {
-    background-color: #F2F1EF;
-  }
+  /* .first-screen-profile {
+    background-color: #202124;
+  } */
   .first-screen-profile__body {
     max-width: 100%;
     height: 562.5px;
@@ -259,8 +262,7 @@
     display: flex;
     -webkit-box-pack: justify;
         -ms-flex-pack: justify;
-            justify-content: space-between;
-    padding: 0 80px 40px 80px;
+    padding: 40px 80px 40px 80px;
   }
   .first-screen-profile-profile__leftblock {
     display: -webkit-box;
@@ -277,7 +279,7 @@
     margin-top: 101px;
   }
   .first-screen-profile__leftblock-textarea p {
-    font-family: "Bai Jamjuree";
+    font-family: 'Rubik';    
     font-style: normal;
     font-weight: 400;
     font-size: 56px;
@@ -295,7 +297,7 @@
     height: 32px;
   }
   .first-screen-profile__leftblock-skils p {
-    font-family: "Bai Jamjuree";
+    font-family: 'Rubik';    
     font-style: normal;
     font-weight: 400;
     font-size: 23px;
@@ -320,10 +322,10 @@
     margin-top: 40px;
   }
   .first-screen-profile__leftblock-form input {
-    background: #161513;
+    background: rgb(50, 119, 255);
     border: 1px solid #161513;
     border-radius: 0px;
-    font-family: "Bai Jamjuree";
+    font-family: 'Rubik';    
     font-style: normal;
     font-weight: 400;
     font-size: 16px;
@@ -336,14 +338,14 @@
   }
   .first-screen-profile__leftblock-form input:focus {
     background-color: #FFFFFF;
-    color: #161513;
+    color: rgb(50, 119, 255);
   }
   .first-screen-profile__leftblock-form button {
-    border: 1px solid #161513;
+    border: 1px solid rgb(50, 119, 255);
     border-radius: 0px;
     width: 100%;
     margin-top: 20px;
-    font-family: "Bai Jamjuree";
+    font-family: 'Rubik';    
     font-style: normal;
     font-weight: 400;
     font-size: 16px;
@@ -352,10 +354,10 @@
     color: #161513;
     padding: 13px 33px;
     -webkit-transition: all 1s ease 0s;
-    transition: all 1s ease 0s;
+    transition: all 0.7s ease 0s;
   }
   .first-screen-profile__leftblock-form button:hover {
-    background-color: #161513;
+    background-color: rgb(50, 119, 255);
     color: #FFFFFF;
   }
   .first-screen-profile__leftblock-form button:active {
@@ -363,10 +365,8 @@
     color: #000000;
   }
   .first-screen-profile__rightblock {
-    width: 563px;
-    height: 563px;
-    display: flex;
-    align-items: center;
+    display: block;
+    padding-bottom: 40px;
   }
   .first-screen-profile__rightblock-photo {
     -webkit-transition: all 0.8s ease-in 0s;
@@ -378,7 +378,7 @@
   }
   .stats {
     /* display: none; */
-    background-color: #F2F1EF;
+    /* background-color: rgb(32, 33, 36); */
   }
   .stats__body {
     max-width: 100%;
@@ -402,12 +402,13 @@
     color: #161513;
     width:40%;
     -webkit-transition: all 0.8s ease 0s;
-    transition: all 0.8s ease 0s;
+    transition: all 0.4s ease 0s;
+    cursor: pointer;
   }
   .stats__block-one p:nth-child(1) {
     text-align: center;
     padding-top: 23px;
-    font-family: "Bai Jamjuree";
+    font-family: 'Rubik';    
     font-style: normal;
     font-weight: 400;
     font-size: 20px;
@@ -415,7 +416,7 @@
   }
   .stats__block-one p:nth-child(2) {
     padding: 11px 72px 26px 74px;
-    font-family: "Bai Jamjuree";
+    font-family: 'Rubik';    
     font-style: normal;
     font-weight: 400;
     font-size: 16px;
@@ -425,7 +426,7 @@
     text-transform: uppercase;
   }
   .stats__block-one:hover {
-    background-color: #161513;
+    background-color: rgb(50, 119, 255);
     color: #F2F1EF;
     -webkit-transform: translate(0px, -10px) scale(1.01, 1.01);
             transform: translate(0px, -10px) scale(1.01, 1.01);
@@ -436,12 +437,13 @@
     width:40%;
     border: 2px solid #332F29;
     -webkit-transition: all 0.8s ease 0s;
-    transition: all 0.8s ease 0s;
+    transition: all 0.4s ease 0s;
+    cursor: pointer;
   }
   .stats__block-two p:nth-child(1) {
     text-align: center;
     padding-top: 23px;
-    font-family: "Bai Jamjuree";
+    font-family: 'Rubik';    
     font-style: normal;
     font-weight: 400;
     font-size: 20px;
@@ -449,7 +451,7 @@
   }
   .stats__block-two p:nth-child(2) {
     padding: 11px 72px 26px 74px;
-    font-family: "Bai Jamjuree";
+    font-family: 'Rubik';
     font-style: normal;
     font-weight: 400;
     font-size: 30px;
@@ -459,7 +461,7 @@
     text-transform: uppercase;
   }
   .stats__block-two:hover {
-    background-color: #161513;
+    background-color: rgb(50, 119, 255);
     color: #F2F1EF;
     -webkit-transform: translate(0px, -10px) scale(1.01, 1.01);
             transform: translate(0px, -10px) scale(1.01, 1.01);
@@ -470,12 +472,13 @@
     width:40%;
     border: 2px solid #332F29;
     -webkit-transition: all 0.8s ease 0s;
-    transition: all 0.8s ease 0s;
+    transition: all 0.4s ease 0s;
+    cursor: pointer;
   }
   .stats__block-three p:nth-child(1) {
     text-align: center;
     padding-top: 23px;
-    font-family: "Bai Jamjuree";
+    font-family: 'Rubik';    
     font-style: normal;
     font-weight: 400;
     font-size: 20px;
@@ -483,7 +486,7 @@
   }
   .stats__block-three p:nth-child(2) {
     padding: 11px 105px 26px 103px;
-    font-family: "Bai Jamjuree";
+    font-family: 'Rubik';    
     font-style: normal;
     font-weight: 400;
     font-size: 16px;
@@ -493,7 +496,7 @@
     text-transform: uppercase;
   }
   .stats__block-three:hover {
-    background-color: #161513;
+    background-color: rgb(50, 119, 255);
     color: #F2F1EF;
     -webkit-transform: translate(0px, -10px) scale(1.01, 1.01);
             transform: translate(0px, -10px) scale(1.01, 1.01);
@@ -504,12 +507,13 @@
     width:40%;
     border: 2px solid #332F29;
     -webkit-transition: all 0.8s ease 0s;
-    transition: all 0.8s ease 0s;
+    transition: all 0.4s ease 0s;
+    cursor: pointer;
   }
   .stats__block-four p:nth-child(1) {
     text-align: center;
     padding-top: 23px;
-    font-family: "Bai Jamjuree";
+    font-family: 'Rubik';    
     font-style: normal;
     font-weight: 400;
     font-size: 20px;
@@ -517,7 +521,7 @@
   }
   .stats__block-four p:nth-child(2) {
     padding: 11px 105px 26px 103px;
-    font-family: "Bai Jamjuree";
+    font-family: 'Rubik';    
     font-style: normal;
     font-weight: 400;
     font-size: 16px;
@@ -527,7 +531,7 @@
     text-transform: uppercase;
   }
   .stats__block-four:hover {
-    background-color: #161513;
+    background-color: rgb(50, 119, 255);
     color: #F2F1EF;
     -webkit-transform: translate(0px, -10px) scale(1.01, 1.01);
             transform: translate(0px, -10px) scale(1.01, 1.01);
@@ -673,8 +677,8 @@
   border-radius: 1.2rem;
   background-image: linear-gradient(
     180deg,
-    hsl(216, 50%, 18%),
-    hsl(217, 54%, 13%)
+    rgb(50, 119, 255),
+    hsl(217, 77%, 54%)
   );
   transition: transform 300ms ease;
 }
@@ -810,8 +814,9 @@
           align-items: center;
 }
 .intro__media {
+  z-index: 7;
   position: absolute;
-  top: 0;
+  top: -12px;
   left: 0;
   width: 100%;
   height: 100%;
@@ -838,7 +843,7 @@
   width: 100%;
   height: 100%;
   content: "";
-  background-color: rgba(112, 49, 212, 0.5);
+  background-color: rgba(0, 0, 0, 0.6);
 }
 .intro__content {
   z-index: 10;
@@ -846,15 +851,15 @@
   text-align: center;
 }
 .intro__content p {
-  font-family: "Roboto Slab", serif;
+  font-family: 'Rubik', sans-serif;    
   margin-top: 5%;
   font-size: 40px;
-  font-weight: 800;
+  font-weight: 400;
   letter-spacing: 4px;
   line-height: 20px;
 }
 .intro__content p:first-child {
-  font-family: "Gemunu Libre", sans-serif;
+  font-family: 'Rubik', sans-serif;    
   font-size: 40px;
   font-weight: 800;
   letter-spacing: 4px;
@@ -865,6 +870,9 @@
 
 @media screen and (max-width: 414px) {
 
+  .first-screen-profile__body {
+
+  }
   .first-screen-profile__leftblock-textarea {
     width: 150px;
   }
@@ -880,6 +888,10 @@
   .first-screen-profile__link {
     border-radius: 1rem;
     margin-right: 1rem;
+  }
+
+  .first-screen-profile__photo {
+    width: 300px;
   }
 
   .stats {

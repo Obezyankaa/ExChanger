@@ -2,8 +2,13 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
 import Card from '../../UI/Card';
+import ModalRegistration from '../../UI/ModalRegistration';
+import ModalLog from '../../UI/ModalLog';
+import ModalAddProd from '../../UI/ModalAddProd';
 
-export default function AllProducts() {
+export default function AllProducts({
+  regActive, setRegActive, setLogActive, logActive, setAddProdActive, addProdActive,
+}) {
   const [products, setProducts] = useState([]);
   useEffect(() => {
     axios.get('/product').then((response) => {
@@ -78,6 +83,21 @@ export default function AllProducts() {
         </div>
         <div style={{ height: '3rem' }} />
       </div>
+      {regActive === true ? (
+        <ModalRegistration setRegActive={setRegActive} />
+      ) : (
+        <></>
+      )}
+      {logActive === true ? (
+        <ModalLog setLogActive={setLogActive} />
+      ) : (
+        <></>
+      )}
+      {addProdActive === true ? (
+        <ModalAddProd setAddProdActive={setAddProdActive} />
+      ) : (
+        <></>
+      )}
     </div>
   );
 }

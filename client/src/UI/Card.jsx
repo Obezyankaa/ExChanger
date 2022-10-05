@@ -53,7 +53,7 @@ export default function Card({ product, setChangeFavoritState }) {
             </Swiper>
           </div>
           <div className="item__info">
-            <h1 className="item__title">{product.id + productName}</h1>
+          <Link to={`/item/${id}`} style={{ textDecoration: 'none' }}><h1 className="item__title">{productName}</h1></Link>
             <p className="item__desc" style={{ color: 'aqua' }}>{description}</p>
             <div className="item__price__time">
               <div className="item__price" style={{ alignItems: 'center', display: 'flex' }}>
@@ -72,6 +72,7 @@ export default function Card({ product, setChangeFavoritState }) {
               <p className="creator__info" style={{ color: 'aqua' }}>
                 <Link className="creator__name" to={`/user/${userId}`}>{userName}</Link>
               </p>
+              {console.log(product.id)}
               <div style={{ width: '100%', display: 'flex', justifyContent: 'flex-end' }}>
                 <input className="like" type="checkbox" id={`heart${product.id}`} onChange={changeFavoriteHandler} checked={isFavorite} />
                 <label htmlFor={`heart${product.id}`} />
