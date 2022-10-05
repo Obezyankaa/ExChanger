@@ -39,7 +39,7 @@ router.get('/:id', async (req, res) => {
       }),
     );
     const average = counter / arrLikesProd.length;
-    res.json(Math.floor(average));
+    res.json({ state: Math.floor(average), countLikes: arrLikesProd.length });
   } catch (e) {
     console.log(e);
   }
