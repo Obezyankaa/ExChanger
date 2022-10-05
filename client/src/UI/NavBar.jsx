@@ -131,7 +131,6 @@ export default function Navbar({
                 <Link to="/allproducts">
                   <Button
                     sx={{ my: 2, color: '#17494D', display: 'block' }}
-                    onClick={() => setAddProdActive(true)}
                   >
                     Все товары
                   </Button>
