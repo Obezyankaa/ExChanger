@@ -6,6 +6,8 @@ import TextField from '@mui/material/TextField';
 import { useDispatch, useSelector } from 'react-redux';
 import { useState, useEffect } from 'react';
 import { userUpdater } from '../redux/actions/usersAction';
+// import SliderMylter from './SliderMylter';
+import './index.css';
 
 export default function UpdateForm() {
   const user = useSelector((state) => state.user);
@@ -32,7 +34,7 @@ export default function UpdateForm() {
   };
   console.log(inputs);
   return (
-    <form onSubmit={(e) => dispatch(userUpdater(e, inputs, user.id))}>
+    <form className="updateForm" onSubmit={(e) => dispatch(userUpdater(e, inputs, user.id))}>
       <div className="form-conatainer" style={{ display: 'flex', flexDirection: 'column' }}>
         <Box
           sx={{
@@ -48,8 +50,9 @@ export default function UpdateForm() {
           <TextField name="phone" onChange={changeHandler} id="standard-basic" value={inputs.phone} label="Новый телефон" variant="standard" style={{ width: '100%' }} />
           <TextField name="telegram" onChange={changeHandler} id="standard-basic" value={inputs.telegram} label="Новый телеграм" variant="standard" style={{ width: '100%' }} />
           <Button
+            className="updateForm__Btn"
             variant="contained"
-            component="label"
+            // component="label"
           >
             Загрузите новое фото
             <input
@@ -60,9 +63,10 @@ export default function UpdateForm() {
             />
           </Button>
         </Box>
-        <Button type="submit" variant="contained" endIcon={<SendIcon />}>
+        <Button className="updateForm__btn" type="submit" variant="contained" endIcon={<SendIcon />}>
           Отправить
         </Button>
+        {/* <SliderMylter /> */}
       </div>
     </form>
   );
