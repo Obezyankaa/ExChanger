@@ -17,5 +17,6 @@ module.exports = {
   ],
   rules: {
     'no-await-in-loop': 0,
+    camelcase: 0,
   },
 };

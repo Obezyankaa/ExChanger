@@ -50,6 +50,7 @@ export default function Main({
           <></>
         )}
       </>
+      <div style={{ height: '5rem' }} />
     </>
   );
 }
