@@ -20,6 +20,7 @@ import ItemModalRegistration from '../../UI/ItemModalRegistration';
 import ItemModalLog from '../../UI/ItemModalLog';
 import ModalItemRent from '../../UI/ModalItemRent';
 import CommentsModalka from '../../UI/CommentsModalka';
+import CommentList from '../../UI/CommentList';
 
 export default function ItemPage({
   night, regActive, setRegActive, logActive, setLogActive,
@@ -150,8 +151,14 @@ export default function ItemPage({
                 <CommentsModalka setComent={setComent} />
               ) : (
                 <>
+                </>
+              )}
+              {coment == false && user.id !== argProduct.user_id ? (
+                <>
                   <button onClick={() => setComent(true)} className="turbobuttons" type="button">Оставить комментарий</button>
                 </>
+              ) : (
+                <></>
               )}
             </div>
             <div className="first-screen__right-bottom">
@@ -182,6 +189,9 @@ export default function ItemPage({
       </div>
       <div className="map">
         <Map coordinates={argProduct.location} />
+      </div>
+      <div>
+        <CommentList id={num} />
       </div>
       {regActive === true ? (
         <ModalRegistration setRegActive={setRegActive} />
