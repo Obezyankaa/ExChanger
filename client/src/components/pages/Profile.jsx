@@ -20,8 +20,8 @@ export default function Profile({ night, setAddProdActive, addProdActive }) {
             <div className="first-screen-profile__leftblock">
               <div className="first-screen-profile__leftblock-textarea">
                 <p />
-                <p style={night === true ? ({ color: 'black' }) : ({ color: 'white' })}>{user.f_name}</p>
-                <p style={night === true ? ({ color: 'black' }) : ({ color: 'white' })}>{user.l_name}</p>
+                <p style={!night === true ? ({ color: 'black' }) : ({ color: 'white' })}>{user.f_name}</p>
+                <p style={!night === true ? ({ color: 'black' }) : ({ color: 'white' })}>{user.l_name}</p>
               </div>
               <div className="first-screen-profile__leftblock-skils">
                 <p>Свяжитесь с пользователем</p>
@@ -78,9 +78,9 @@ export default function Profile({ night, setAddProdActive, addProdActive }) {
                   <p>Избранное</p>
                 </div>
               )}
-              <div className="stats__block-four">
+              {/* <div className="stats__block-four">
                 <p>Отзывы</p>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

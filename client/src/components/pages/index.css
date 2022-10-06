@@ -59,7 +59,7 @@
 
   .first-screen-profile__photo {
     width: 360px;
-    height: 420px;
+    height: 520px;
     border-radius: 3rem;
   }
 
@@ -75,8 +75,14 @@
   .updateForm__btn {
     margin-left: 8px;
     width: 300px;
+
   }
 
   .updateForm__Btn {
     width: 300px;
   }
+  
+  /* .map {
+    width: 400px;
+    height: 400px;
+  } */

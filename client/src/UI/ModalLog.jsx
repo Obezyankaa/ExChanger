@@ -1,15 +1,19 @@
+/* eslint-disable no-undef */
 import * as React from 'react';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import FormModalLog from './FormModalLog';
+import './index.css';
+// eslint-disable-next-line import/order
 
 export default function ModalLog({ setLogActive }) {
+  // style={night === true ? ({ backgroundColor: 'white', color: 'white', height: '100vh' }) : ({ backgroundColor: '#202124', color: 'white', height: '100vh' })}
   return (
     <div
-      style={{
-        height: '100vh', width: '100%', backgroundColor: 'black', opacity: '0.9', position: 'fixed', top: '0', left: '0', zIndex: '100',
-      }}
+      className="opasiti"
+
+      // eslint-disable-next-line react/jsx-props-no-multi-spaces
       onClick={(e) => {
         e.stopPropagation();
         setLogActive(false);
@@ -22,6 +26,7 @@ export default function ModalLog({ setLogActive }) {
         }}
         onClick={(e) => {
           e.stopPropagation();
+          setModel(true);
         }}
       >
         <DialogTitle style={{ textAlign: 'center' }}>Авторизация</DialogTitle>

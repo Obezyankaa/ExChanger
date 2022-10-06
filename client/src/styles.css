@@ -673,7 +673,7 @@ body {
 
 .card {
   max-width: 20rem;
-  padding: 1.2rem;
+  padding: 1rem;
   border-radius: 1.2rem;
   background-image: linear-gradient(
     180deg,
@@ -740,9 +740,14 @@ body {
 }
 
 .item__desc {
+  color: white;
   margin: 0.7em 0 1.2em 0;
   font-weight: 300;
   line-height: 1.5em;
+}
+
+.item__rud {
+  color: white;
 }
 
 .item__price__time {
@@ -758,7 +763,7 @@ body {
 }
 
 .price-eth {
-  color: hsl(178, 100%, 50%);
+  color: hsl(0, 0%, 100%);
   font-weight: 600;
 }
 
@@ -769,10 +774,15 @@ body {
 }
 
 .creator__img {
-  width: 12%;
+  width: 35px;
   margin-right: 1em;
-  border: 0.15em solid rgba(255 255 255/0.6);
-  border-radius: 50%;
+  border: 0.15em solid rgba(85, 152, 199, 0.6);
+  border-radius: 5px
+}
+
+.item__creator__span {
+  font-size: 10px;
+  color: #87919d;
 }
 
 .creator__name {
@@ -929,29 +939,19 @@ body {
   position: relative;
   padding-left: 35px;
   display: inline-block;
-  font-size: 16px;
+  font-size: 10px;
 }
 
 .like + label:before {
-  /* content: "\1F5A4";
-  font-size: 29px;
-  top: -36px;
-  left: -16px;
-  border: 1px solid transparent;    
-  padding: 10px;
-  border-radius: 3px;
-  display: block;
-  position: absolute;
-  transition:  .5s ease; */
-  font-size: 65px;
-  top: -66px;
-  left: -17px;
+  top: 0px;
+  left: 0px;
   border: 1px solid transparent;
   padding: 10px;
   border-radius: 3px;
   display: block;
-  position: absolute;
+  position:relative;
   transition: .5s ease;
+  font-size: 33px;
   color: #87919d;
   content: '♥';
 }
@@ -969,10 +969,10 @@ body {
   left: -4px;
   transition:  .5s ease; */
   content: '♥';
-  font-size: 65px;
+  font-size: 33px;
   position: absolute;
-  top: -55px;
-  left: -6px;
+  top: 11px;
+  left: 46px;
   transition: .5s ease;
-  color: rgb(90, 30, 160);
+  color: rgb(211, 26, 26);
 }

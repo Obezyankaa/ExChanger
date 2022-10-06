@@ -9,6 +9,7 @@ import OtherAllProducts from '../../UI/OtherAllProducts';
 import Telega from '../../UI/Telega';
 
 export default function UserProfile({
+  modal, setModal,
   setAddProdActive, addProdActive, regActive, setRegActive, logActive, setLogActive,
 }) {
   const [btn, setBtn] = useState(false);
@@ -90,7 +91,7 @@ export default function UserProfile({
           <></>
         )}
         {logActive === true ? (
-          <ModalLog setLogActive={setLogActive} />
+          <ModalLog modal={modal} setModal={setModal} setLogActive={setLogActive} />
         ) : (
           <></>
         )}

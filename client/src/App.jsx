@@ -30,9 +30,9 @@ function App() {
   const [regActive, setRegActive] = useState(false);
   const [logActive, setLogActive] = useState(false);
   const [addProdActive, setAddProdActive] = useState(false);
-  console.log(night);
+
   return (
-    <div style={night === true ? ({ backgroundColor: 'white', color: 'white', height: '100vh' }) : ({ backgroundColor: '#202124', color: 'white', height: '100vh' })}>
+    <div style={!night === true ? ({ backgroundColor: 'white', color: 'white', height: '100vh' }) : ({ backgroundColor: '#202124', color: 'white', height: '100vh' })}>
       <Navbar
         setLogActive={setLogActive}
         setRegActive={setRegActive}
