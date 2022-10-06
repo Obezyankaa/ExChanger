@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Button from '@mui/material/Button';
 import { TextField } from '@mui/material';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addOrdering } from '../redux/actions/orderActions';
 import Days from './DaysModal';
@@ -17,11 +17,7 @@ export default function ItemFormModal({ input, setRent, setSend }) {
   const [timer, setTimer] = useState({ timing: input.timing });
   const priceCalculate = product.price * timer.timing;
   console.log(product);
-  useEffect(() => {
-    const newInputs = { ...user };
-    delete newInputs.id;
-    setInputs(newInputs);
-  }, [user]);
+
   const changeHandler = (e) => {
     setInputs((prev) => ({
       ...prev,
@@ -29,6 +25,7 @@ export default function ItemFormModal({ input, setRent, setSend }) {
     }));
   };
   const changeHandlerTiming = (e) => {
+    e.preventDefault();
     setTimer((prev) => ({
       ...prev,
       [e.target.name]: e.target.value,

@@ -4,26 +4,42 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import { Link } from 'react-router-dom';
 
-export default function OrderItem({ el }) {
-  console.log(el);
+export default function OrderItem({ order }) {
   return (
     <Card sx={{ minWidth: 275 }}>
       <CardContent>
         <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-          {el?.message}
+          Номер заказа:
+          {' '}
+          {order.id}
         </Typography>
-        <Typography variant="h5" component="div" />
+        <Typography variant="h5" component="div">
+          {/* <Link to={`/item/${order.RentProducts[0].id}`}> */}
+          Объявление:
+          {' '}
+          {order.name}
+          {/* </Link> */}
+        </Typography>
         <Typography sx={{ mb: 1.5 }} color="text.secondary">
-          {el?.message}
+          Сообщение от пользователя
+          {' '}
+          <Link to={`/user/${order.RentProducts[0].user_renter}`}>
+            {order.RentProducts[0].f_name}
+            {' '}
+            {order.RentProducts[0].l_name}
+          </Link>
+          :
+          {' '}
         </Typography>
         <Typography variant="body2">
-          {el?.message}
+          {order.RentProducts[0].message}
           <br />
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">Learn More</Button>
+        <Link to={`/item/${order.id}`}><Button size="small">Посмотреть карточку товара</Button></Link>
       </CardActions>
     </Card>
   );

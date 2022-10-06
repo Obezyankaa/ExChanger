@@ -35,7 +35,6 @@ export default function ItemPage({
   const [rent, setRent] = useState(false);
   const [send, setSend] = useState(false);
   const [coment, setComent] = useState(false);
-
   const [inputs, setInputs] = useState({ timing: 1 });
   const starRating = useSelector((state) => state.gradeProduct);
   useEffect(() => {
@@ -105,6 +104,7 @@ export default function ItemPage({
               <p style={night === true ? ({ color: 'black' }) : ({ color: 'white' })}>{argProduct?.name}</p>
               <p style={night === true ? ({ color: 'black' }) : ({ color: 'white' })}>{argProduct?.Category?.name}</p>
               <StarUserRating star={starRating} />
+              {/* <p>{argProduct?.Views.counter}</p> */}
               <p style={night === true ? ({ color: 'black' }) : ({ color: 'white' })}>
                 {priceCalculate.toFixed(2)}
                 {' '}

@@ -10,14 +10,12 @@ export default function RentPage() {
   useEffect(() => {
     dispatch(setOrdering());
   }, []);
-  console.log(user);
-  console.log('===============', order);
   return (
     <>
       <div>{user.f_name}</div>
       <div>
         {order?.map((el) => (
-          <OrderItem el={el} key={el.key} />
+          <OrderItem order={el} key={el.id} />
         ))}
 
       </div>
