@@ -13,8 +13,8 @@ module.exports = {
         references: {
           model: 'Products',
           key: 'id',
-          onDelete: 'CASCADE',
         },
+        onDelete: 'CASCADE',
       },
       user_buyer: {
         type: Sequelize.INTEGER,
