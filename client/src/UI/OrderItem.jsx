@@ -6,16 +6,20 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { useDispatch } from 'react-redux';
+import { cancelOrderAsync } from '../redux/actions/orderActions';
 
 export default function OrderItem({ order }) {
   const prodId = order.RentProducts[0].product_id;
   const userRenterId = order.RentProducts[0].user_renter;
-  console.log(order);
+  // console.log(order.id);
+  const dispatch = useDispatch();
   const acceptHandler = () => {
     axios(`/application/accept/${prodId}`);
   };
   const cancelHandler = () => {
-    axios.post('/application/decline', { user_renter: userRenterId, product_id: prodId });
+    // axios.post('/application/decline', { user_renter: userRenterId, product_id: prodId });
+    dispatch(cancelOrderAsync(order.id, userRenterId, prodId));
   };
   return (
     <Card sx={{ minWidth: 275 }}>
