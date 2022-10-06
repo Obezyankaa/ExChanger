@@ -5,6 +5,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination, Navigation } from 'swiper';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
+import VisibilityIcon from '@mui/icons-material/Visibility';
 import Map from '../Map/Map';
 import StarUserRating from '../../UI/StarUserRating';
 import Days from '../../UI/Days';
@@ -103,8 +104,12 @@ export default function ItemPage({
             <div className="first-screen__right-top">
               <p style={night === true ? ({ color: 'black' }) : ({ color: 'white' })}>{argProduct?.name}</p>
               <p style={night === true ? ({ color: 'black' }) : ({ color: 'white' })}>{argProduct?.Category?.name}</p>
+              <p style={night === true ? ({ color: 'black' }) : ({ color: 'white' })}>
+                <VisibilityIcon />
+                {' '}
+                { argProduct.id && argProduct?.Views[0].counter}
+              </p>
               <StarUserRating star={starRating} />
-              {/* <p>{argProduct?.Views.counter}</p> */}
               <p style={night === true ? ({ color: 'black' }) : ({ color: 'white' })}>
                 {priceCalculate.toFixed(2)}
                 {' '}

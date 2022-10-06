@@ -193,17 +193,17 @@ export default function Navbar({
                     open={Boolean(anchorElUser)}
                     onClose={handleCloseUserMenu}
                   >
-                    <Link to="/profile" style={{ textDecoration: 'none', color: '#17494D' }}>
+                    <Link to="/profile" style={{ textDecoration: 'none', color: '#3277ff' }}>
                       <MenuItem onClick={handleCloseUserMenu}>
                         <Typography textAlign="center">Личный кабинет</Typography>
                       </MenuItem>
                     </Link>
-                    <Link to="/settings" style={{ textDecoration: 'none', color: '#17494D' }}>
+                    <Link to="/settings" style={{ textDecoration: 'none', color: '#3277ff' }}>
                       <MenuItem onClick={handleCloseUserMenu}>
                         <Typography textAlign="center" value="1">Настройки профиля</Typography>
                       </MenuItem>
                     </Link>
-                    <Link to="/" onClick={() => dispatch(logoutUserAsync())} style={{ textDecoration: 'none', color: '#17494D' }}>
+                    <Link to="/" onClick={() => dispatch(logoutUserAsync())} style={{ textDecoration: 'none', color: '#3277ff' }}>
                       <MenuItem onClick={handleCloseUserMenu}>
                         <Typography textAlign="center">Выйти</Typography>
                       </MenuItem>

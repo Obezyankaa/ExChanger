@@ -17,7 +17,7 @@ export default function FormModalLog({ setLogActive }) {
     }));
   };
   return (
-    <form onSubmit={(e) => dispatch(loginUser(e, inputs, setLogActive))}>
+    <form autoComplete="off" onSubmit={(e) => dispatch(loginUser(e, inputs, setLogActive))}>
       <div className="form-conatainer" style={{ display: 'flex', flexDirection: 'column' }}>
         <Box
           sx={{
@@ -27,8 +27,8 @@ export default function FormModalLog({ setLogActive }) {
           autoComplete="off"
           style={{ display: 'flex', flexDirection: 'column' }}
         >
-          <TextField name="email" onChange={changeHandler} id="standard-basic" label="Ваш e-mail" variant="standard" style={{ width: '100%', backgroundColor: 'white' }} />
-          <TextField type="password" name="password" onChange={changeHandler} id="standard-basic" label="Ваш пароль" variant="standard" style={{ width: '100%', backgroundColor: 'white' }} />
+          <TextField autocomplete="off" name="email" onChange={changeHandler} id="standard-basic" label="Ваш e-mail" variant="standard" style={{ width: '100%', backgroundColor: 'white' }} />
+          <TextField autocomplete="off" type="password" name="password" onChange={changeHandler} id="standard-basic" label="Ваш пароль" variant="standard" style={{ width: '100%', backgroundColor: 'white' }} />
         </Box>
         <Button type="submit" variant="contained" endIcon={<SendIcon />}>
           Отправить
