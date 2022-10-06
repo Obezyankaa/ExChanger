@@ -57,10 +57,6 @@ export default function ItemPage({
     setChecker(true);
   };
 
-  const commentsModal = () => {
-    setComent(true);
-  };
-
   return (
     <>
       <div style={{ marginTop: '2%', marginLeft: '2%' }}>
@@ -145,8 +141,13 @@ export default function ItemPage({
 
             </div>
             <div className="first-screen__right-comments">
-              {coment && <CommentsModalka />}
-              <button onClick={commentsModal} type="sybmit">оставить комент</button>
+              {coment == true ? (
+                <CommentsModalka setComent={setComent} />
+              ) : (
+                <>
+                  <button onClick={() => setComent(true)} className="turbobuttons" type="button">Оставить комментарий</button>
+                </>
+              )}
             </div>
             <div className="first-screen__right-bottom">
               {argProduct.user_id !== user.id ? (
@@ -162,9 +163,7 @@ export default function ItemPage({
                   )}
                   <>
                   </>
-                  <Button onClick={commentsModal} variant="contained" color="success">
-                    Добавить в избранное
-                  </Button>
+
                 </>
               ) : (
                 <>
