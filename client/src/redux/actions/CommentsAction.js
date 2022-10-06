@@ -14,3 +14,11 @@ export const addComments = (e, input, setComent, uid, pid) => (dispatch) => {
     })
     .catch(console.log);
 };
+
+export const fetchComments = (id) => (dispatch) => {
+  axios(`api/v1/comment/${id}`)
+    .then((res) => {
+      dispatch(setComment(res.data));
+    })
+    .catch(console.log);
+};
