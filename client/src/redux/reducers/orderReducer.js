@@ -6,6 +6,7 @@ export default function userReducer(state = [], action) {
     case NEW_ORDER:
       return [...state, payload];
     case SET_ORDER:
+      console.log('редусеееееер', payload);
       return payload;
     default:
       return state;

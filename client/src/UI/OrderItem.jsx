@@ -7,6 +7,7 @@ import Typography from '@mui/material/Typography';
 import { Link } from 'react-router-dom';
 
 export default function OrderItem({ order }) {
+  console.log('--------->', order);
   return (
     <Card sx={{ minWidth: 275 }}>
       <CardContent>
@@ -25,7 +26,7 @@ export default function OrderItem({ order }) {
         <Typography sx={{ mb: 1.5 }} color="text.secondary">
           Сообщение от пользователя
           {' '}
-          <Link to={`/user/${order.RentProducts[0].user_renter}`}>
+          <Link to={`/user/${order?.RentProducts[0]?.user_renter?.id}`}>
             {order.RentProducts[0].f_name}
             {' '}
             {order.RentProducts[0].l_name}

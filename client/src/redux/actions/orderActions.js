@@ -21,6 +21,7 @@ export const addOrdering = (e, message, user, product, timer, setModal, setSend)
 export const setOrdering = () => (dispatch) => {
   axios.get('/order')
     .then((res) => {
+      console.log('экшн на ордер', res.data);
       dispatch(setOrder(res.data));
     })
     .catch(console.log);

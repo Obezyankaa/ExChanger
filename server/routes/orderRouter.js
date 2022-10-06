@@ -34,7 +34,9 @@ router.get('/', async (req, res) => {
         { model: RentProduct },
       ],
     });
-    res.json(allProducts);
+    const filterProd = allProducts.filter((el) => el.RentProducts.length > 0);
+    console.log(allProducts);
+    res.json(filterProd);
   } catch (err) {
     console.error(err);
   }

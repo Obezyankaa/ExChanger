@@ -9,18 +9,9 @@ const router = express.Router();
 
 router.post('/', fileMiddleware.array('dropPhoto', 5), async (req, res) => {
   try {
+    console.log(req.body);
     const category = await Category.findOne({ where: { name: req.body.category } });
     const resultGeocoder = await axios.get(`https://catalog.api.2gis.com/3.0/items/geocode?q=${encodeURIComponent(req.body.location)}&fields=items.point&key=ruqevb3357`);
-    // console.log({
-    //   name: req.body.name,
-    //   category_id: category.id,
-    //   description: req.body.description,
-    //   status: true,
-    //   price: req.body.price,
-    //   user_id: req.session.userSession.id,
-    //   location: `${resultGeocoder.data.result.items[0].point.lat}, ${resultGeocoder.data.result.items[0].point.lon}`,
-    //   timing: req.body.timing,
-    // });
     const newProduct = await Product.create({
       name: req.body.name,
       category_id: category.id,
