@@ -2,36 +2,38 @@ import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import Card from '../../UI/Card';
 
-export default function AllFavoriteProducts({ isSelectedFavorite }) {
+export default function AllFavoriteProducts() {
   const favorites = useSelector((state) => state.favorite);
   const [products, setProducts] = useState([]);
-  console.log('favorites', favorites);
   const [categoryInput, setCategoryInput] = useState({});
   const [findInput, setFindInput] = useState({ minRange: 0, maxRange: 5000 });
   useEffect(() => {
-    console.log('UseEffect');
-    setProducts(favorites.map((prod) => {
-      const images = prod?.Product?.ProductPhotos?.map((el) => el.photo);
-      return {
-        id: prod.Product.id,
-        categoryId: prod.Product.Category.id,
-        photos: images,
-        userName: prod.Product.User.f_name,
-        price: prod.Product.price,
-        userPhoto: prod.Product.User.photo,
-        description: prod.Product.description,
-        productName: prod.Product.name,
-        date: (new Date(prod.Product.createdAt)).toLocaleDateString([], { hour: '2-digit', minute: '2-digit' }),
-        userId: prod.Product.user_id,
-      };
-    }).filter((el) => Number(el.price) <= findInput.maxRange && Number(el.price) >= findInput.minRange)
-      .filter(
-        (el) => {
-          const keys = Object.keys(categoryInput)?.map((elem) => Number(elem));
-          return keys.length ? keys.includes(el.categoryId) && categoryInput[el.categoryId] === true : true;
-        },
-      ));
-  }, [categoryInput, findInput, favorites, isSelectedFavorite]);
+    setProducts(
+      favorites
+        .map((prod) => {
+          const images = prod?.Product?.ProductPhotos?.map((el) => el.photo);
+          return {
+            id: prod.Product.id,
+            categoryId: prod.Product.Category.id,
+            photos: images,
+            userName: prod.Product.User.f_name,
+            price: prod.Product.price,
+            userPhoto: prod.Product.User.photo,
+            description: prod.Product.description,
+            productName: prod.Product.name,
+            date: (new Date(prod.Product.createdAt)).toLocaleDateString([], { hour: '2-digit', minute: '2-digit' }),
+            userId: prod.Product.user_id,
+          };
+        })
+        .filter((el) => Number(el.price) <= findInput.maxRange && Number(el.price) >= findInput.minRange)
+        .filter(
+          (el) => {
+            const keys = Object.keys(categoryInput)?.map((elem) => Number(elem));
+            return keys.length ? keys.includes(el.categoryId) && categoryInput[el.categoryId] === true : true;
+          },
+        ),
+    );
+  }, [categoryInput, findInput, favorites]);
 
   const categories = useSelector((state) => state.categories);
   const changeHandler = (e) => {
@@ -53,16 +55,24 @@ export default function AllFavoriteProducts({ isSelectedFavorite }) {
             </label>
           </div>
         ))}
-        <p style={{ marginTop: '1rem' }}>Диапазон цены</p>
-
+        <p style={{ marginTop: '2rem', marginBottom: '0.5rem' }}>Цена</p>
+        <div style={{ display: 'flex' }}>
+          <div style={{ width: '1rem' }}>От</div>
+          <div style={{ width: '3rem', display: 'flex', justifyContent: 'center' }}>{findInput.minRange}</div>
+          <div style={{ width: '4rem' }}>руб/сут</div>
+        </div>
         <div className="range-slider">
           <input className="range-slider__range" type="range" name="minRange" value={findInput.minRange} onChange={changeHandler} min="0" max="5000" step="50" />
-          <span className="range-slider__value">{findInput.minRange}</span>
+          {/* <span className="range-slider__value">{findInput.minRange}</span> */}
         </div>
-
+        <div style={{ display: 'flex', marginTop: '0.5rem' }}>
+          <div style={{ width: '1rem' }}>До</div>
+          <div style={{ width: '3rem', display: 'flex', justifyContent: 'center' }}>{findInput.minRange}</div>
+          <div style={{ width: '4rem' }}>руб/сут</div>
+        </div>
         <div className="range-slider">
           <input className="range-slider__range" type="range" name="maxRange" value={findInput.maxRange} onChange={changeHandler} min="0" max="5000" step="50" />
-          <span className="range-slider__value">{findInput.maxRange}</span>
+          {/* <span className="range-slider__value">{findInput.maxRange}</span> */}
         </div>
       </div>
       <div style={{ width: '100%', display: 'flex' }}>
@@ -70,7 +80,7 @@ export default function AllFavoriteProducts({ isSelectedFavorite }) {
           display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'center',
         }}
         >
-          { products[0]?.id && products?.map((el) => <Card product={el} key={el.id} />)}
+          { products?.map((el) => <Card product={el} key={el.id} />)}
         </div>
       </div>
     </div>
