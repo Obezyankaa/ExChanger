@@ -39,6 +39,15 @@ export default function Navbar({
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
+  const checkLog = () => {
+    setLogActive(true);
+    setRegActive(false);
+  };
+
+  const checkReg = () => {
+    setLogActive(false);
+    setRegActive(true);
+  };
   return (
     <>
       <AppBar style={{ borderBottomLeftRadius: '1rem', borderBottomRightRadius: '1rem' }} position="sticky" color="">
@@ -117,13 +126,13 @@ export default function Navbar({
               <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
                 <Button
                   sx={{ my: 2, color: '#3277ff;', display: 'block' }}
-                  onClick={() => setRegActive(true)}
+                  onClick={checkReg}
                 >
                   Регистрация
                 </Button>
                 <Button
                   sx={{ my: 2, color: '#3277ff', display: 'block' }}
-                  onClick={() => setLogActive(true)}
+                  onClick={checkLog}
                 >
                   Авторизация
                 </Button>
