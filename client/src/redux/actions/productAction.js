@@ -31,14 +31,20 @@ export const addProduct = (e, inputs, setInputs, newStat, setSlider) => () => {
     });
 };
 
-export const deleteProductAsync = (id) => (dispatch) => {
-  axios.delete(`/product/${id}`)
-    .then(() => dispatch(deleteProduct(id)))
+export const deleteProductAsync = (id, navigate) => (dispatch) => {
+  axios.delete(`/useritems/${id}`)
+    .then(() => {
+      navigate('/');
+      dispatch(deleteProduct(id));
+    })
     .catch(console.log);
 };
 
-export const updateProductAsync = (product) => (dispatch) => {
-  axios.put('/product', { changedProduct: product }, { withCredentials: true })
-    .then(() => dispatch(updateProduct(product)))
+export const deleteItemFromList = (id, navigate) => (dispatch) => {
+  axios.delete(`/useritems/${id}`)
+    .then(() => {
+      navigate('/');
+      dispatch(deleteProduct(id));
+    })
     .catch(console.log);
 };
