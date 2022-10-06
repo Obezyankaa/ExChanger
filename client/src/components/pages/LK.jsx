@@ -17,10 +17,10 @@ export default function LK() {
           </div>
         </div>
         <div className="linkList" style={{ margin: '1rem' }}>
-          <div><Link to="1">Мои товары</Link></div>
-          <div><Link to="1">Мои отзывы</Link></div>
-          <div><Link to="1">Любимое</Link></div>
-          <div><Link to="1">Мои сообщения</Link></div>
+          <div><Link to="/">Мои товары</Link></div>
+          <div><Link to="/1">Мои отзывы</Link></div>
+          <div><Link to="/1">Любимое</Link></div>
+          <div><Link to="/1">Мои сообщения</Link></div>
         </div>
       </div>
       <div style={{ width: '100%', margin: '1rem' }}>
@@ -33,8 +33,8 @@ export default function LK() {
               justifyContent: 'space-evenly',
             }}
           >
-            <Link className="nav-link" href="/">Active</Link>
-            <Link className="nav-link" href="/">Archive</Link>
+            <Link className="nav-link" to="/">Active</Link>
+            <Link className="nav-link" to="/">Archive</Link>
           </div>
         </nav>
       </div>
