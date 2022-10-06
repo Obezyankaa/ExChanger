@@ -8,7 +8,7 @@ export const setProducts = (payload) => ({ type: SET_PRODUCTS, payload });
 export const deleteProduct = (payload) => ({ type: DELETE_PRODUCT, payload });
 export const updateProduct = (payload) => ({ type: UPDATE_PRODUCT, payload });
 
-export const addProduct = (e, inputs, setInputs, newStat, setSlider) => (dispatch) => {
+export const addProduct = (e, inputs, setInputs, newStat, setSlider) => () => {
   e.preventDefault();
   const formData = new FormData();
   for (const key in inputs) {

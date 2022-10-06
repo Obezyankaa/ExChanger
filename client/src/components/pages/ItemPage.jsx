@@ -1,6 +1,6 @@
-import React, {
-  useCallback, useEffect, useState, memo,
-} from 'react';
+/* eslint-disable react/button-has-type */
+import React, { useEffect, useState } from 'react';
+import Button from '@mui/material/Button';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination, Navigation } from 'swiper';
 import { useDispatch, useSelector } from 'react-redux';
@@ -18,9 +18,10 @@ import Ucant from '../../UI/Ucant';
 import ItemModalRegistration from '../../UI/ItemModalRegistration';
 import ItemModalLog from '../../UI/ItemModalLog';
 import ModalItemRent from '../../UI/ModalItemRent';
+import CommentsModalka from '../../UI/CommentsModalka';
 
-function ItemPage({
-  regActive, setRegActive, logActive, setLogActive,
+export default function ItemPage({
+  night, regActive, setRegActive, logActive, setLogActive,
 }) {
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
@@ -33,6 +34,7 @@ function ItemPage({
   const [itemlog, setItemlog] = useState(false);
   const [rent, setRent] = useState(false);
   const [send, setSend] = useState(false);
+  const [coment, setComent] = useState(false);
 
   const [inputs, setInputs] = useState({ timing: 1 });
   const starRating = useSelector((state) => state.gradeProduct);
@@ -40,12 +42,12 @@ function ItemPage({
     dispatch(countGradeProd(id));
   }, [starRating.state]);
 
-  const changeHandler = useCallback((e) => {
+  const changeHandler = (e) => {
     setInputs((prev) => ({
       ...prev,
       [e.target.name]: e.target.value,
     }));
-  });
+  };
   const priceCalculate = argProduct.price * inputs.timing;
   useEffect(() => {
     dispatch(productArg(id));
@@ -59,7 +61,7 @@ function ItemPage({
   return (
     <>
       <div style={{ marginTop: '2%', marginLeft: '2%' }}>
-        <BreadCrumps itemName={argProduct?.name} category={argProduct?.Category?.name} />
+        <BreadCrumps night={night} itemName={argProduct?.name} category={argProduct?.Category?.name} />
       </div>
       <div className="first-screen">
         <div className="first-screen__content">
@@ -100,18 +102,17 @@ function ItemPage({
           </div>
           <div className="first-screen__right">
             <div className="first-screen__right-top">
-              <p>{argProduct?.name}</p>
-              <p>{argProduct?.Category?.name}</p>
-              {argProduct.id && <p>{argProduct?.Views[0].counter}</p>}
+              <p style={night === true ? ({ color: 'black' }) : ({ color: 'white' })}>{argProduct?.name}</p>
+              <p style={night === true ? ({ color: 'black' }) : ({ color: 'white' })}>{argProduct?.Category?.name}</p>
               <StarUserRating star={starRating} />
-              <p>
+              <p style={night === true ? ({ color: 'black' }) : ({ color: 'white' })}>
                 {priceCalculate.toFixed(2)}
                 {' '}
                 ₽
               </p>
             </div>
             <div className="first-screen__right-mid">
-              <p>
+              <p style={night === true ? ({ color: '#626262' }) : ({ color: 'white' })}>
                 Максимальный срок аренды:
                 {' '}
                 {argProduct?.timing}
@@ -139,6 +140,15 @@ function ItemPage({
               <p style={{ marginTop: '1px' }}>{argProduct?.description}</p>
 
             </div>
+            <div className="first-screen__right-comments">
+              {coment == true ? (
+                <CommentsModalka setComent={setComent} />
+              ) : (
+                <>
+                  <button onClick={() => setComent(true)} className="turbobuttons" type="button">Оставить комментарий</button>
+                </>
+              )}
+            </div>
             <div className="first-screen__right-bottom">
               {argProduct.user_id !== user.id ? (
                 <>
@@ -153,12 +163,12 @@ function ItemPage({
                   )}
                   <>
                   </>
-                  <button className="turbobuttons" type="button">Добавить в избранное</button>
+
                 </>
               ) : (
                 <>
-                  <button onClick={modalopen} className="turbobuttons" type="button">Изменить данные о товаре</button>
-                  <button className="turbobuttons" type="button">Снять с доски</button>
+                  <Button type="submit" variant="contained" onClick={modalopen}>Изменить данные о товаре</Button>
+                  <Button type="submit" variant="contained">Снять с доски</Button>
                 </>
               )}
             </div>
@@ -201,5 +211,3 @@ function ItemPage({
     </>
   );
 }
-
-export default memo(ItemPage);

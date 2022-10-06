@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import ModalAddProd from '../../UI/ModalAddProd';
 import UserAllProducts from '../../UI/UserAllProducts';
 import AllFavoriteProducts from './AllFavoritesProducts';
@@ -9,6 +10,7 @@ export default function Profile({ night, setAddProdActive, addProdActive }) {
   const [btn, setBtn] = useState(true);
   const user = useSelector((state) => state.user);
   const [allProducts, setAllProducts] = useState(false);
+
   const [isSelectedFavorite, setIsSelectedFavorite] = useState(false);
   return (
     <>
@@ -35,7 +37,7 @@ export default function Profile({ night, setAddProdActive, addProdActive }) {
                   </a>
                   <>
                     {btn === true ? (
-                      <button className="first-screen-profile__btn__profile" onClick={() => setBtn(false)} type="button">Показать номер</button>
+                      <Link to={`/myorders/${user.id}`}><button className="first-screen-profile__btn__profile" type="button">Мои заказы</button></Link>
                     ) : (
                       <button onClick={() => setBtn(true)} type="button">{user.phone}</button>
                     )}

@@ -7,10 +7,16 @@ export default function OtherAllProducts({ id }) {
   const items = useSelector((state) => state.userItems.filter((el) => el.user_id == id));
   console.log(items, id);
   return (
-    <div style={{ display: 'flex', justifyContent: 'space-around', flexWrap: 'wrap' }}>
-      {items?.map((el) => (
-        <CardUser el={el} key={el.id} />
-      ))}
+    <div style={{ backgroundColor: 'red' }}>
+      <div style={{
+        display: 'flex', justifyContent: 'space-around', flexWrap: 'wrap',
+      }}
+      >
+        {items?.map((el) => (
+          <CardUser el={el} key={el.id} />
+        ))}
+      </div>
     </div>
+
   );
 }

@@ -81,6 +81,7 @@ export default function Card({ product }) {
               <p className="creator__info" style={{ color: 'aqua' }}>
                 <Link className="creator__name" to={`/user/${userId}`}>{userName}</Link>
               </p>
+
               <div style={{ width: '100%', display: 'flex', justifyContent: 'flex-end' }}>
                 <input className="like" type="checkbox" id={`heart${product.id}`} onChange={changeFavoriteHandler} checked={isFavorite} />
                 <label htmlFor={`heart${product.id}`} />

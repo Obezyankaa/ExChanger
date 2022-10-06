@@ -6,7 +6,7 @@ import TextField from '@mui/material/TextField';
 import { useDispatch, useSelector } from 'react-redux';
 import { useState, useEffect } from 'react';
 import { userUpdater } from '../redux/actions/usersAction';
-import SliderMylter from './SliderMylter';
+// import SliderMylter from './SliderMylter';
 import './index.css';
 
 export default function UpdateForm() {
@@ -44,7 +44,7 @@ export default function UpdateForm() {
           autoComplete="off"
           style={{ display: 'flex', flexDirection: 'column' }}
         >
-          <TextField name="f_name" onChange={changeHandler} id="standard-basic" value={inputs.f_name} label="Новое имя" variant="standard" style={{ width: '100%' }} />
+          <TextField className="test" name="f_name" onChange={changeHandler} id="standard-basic" value={inputs.f_name} label="Новое имя" variant="standard" style={{ width: '100%' }} />
           <TextField name="l_name" onChange={changeHandler} id="standard-basic" value={inputs.l_name} label="Новая фамилия" variant="standard" style={{ width: '100%' }} />
           <TextField name="email" onChange={changeHandler} id="standard-basic" value={inputs.email} label="Новая почта" variant="standard" style={{ width: '100%' }} />
           <TextField name="phone" onChange={changeHandler} id="standard-basic" value={inputs.phone} label="Новый телефон" variant="standard" style={{ width: '100%' }} />
@@ -66,7 +66,7 @@ export default function UpdateForm() {
         <Button className="updateForm__btn" type="submit" variant="contained" endIcon={<SendIcon />}>
           Отправить
         </Button>
-        <SliderMylter />
+        {/* <SliderMylter /> */}
       </div>
     </form>
   );

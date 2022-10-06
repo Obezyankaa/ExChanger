@@ -118,7 +118,6 @@ export default function Navbar({
                 <Button
                   sx={{ my: 2, color: '#3277ff;', display: 'block' }}
                   onClick={() => setRegActive(true)}
-                  s
                 >
                   Регистрация
                 </Button>
@@ -128,9 +127,9 @@ export default function Navbar({
                 >
                   Авторизация
                 </Button>
-                <Link to="/allproducts">
+                <Link className="lint-prodyct" to="/allproducts">
                   <Button
-                    sx={{ my: 2, color: '#17494D', display: 'block' }}
+                    sx={{ my: 2, color: '#3277ff', display: 'block' }}
                   >
                     Все товары
                   </Button>
@@ -144,9 +143,9 @@ export default function Navbar({
                 >
                   Добавить объявление
                 </Button>
-                <Link to="/allproducts">
+                <Link className="lint-prodyct" to="/allproducts">
                   <Button
-                    sx={{ my: 2, color: '#17494D', display: 'block' }}
+                    sx={{ my: 2, color: '#3277ff', display: 'block' }}
                   >
                     Все товары
                   </Button>
