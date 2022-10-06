@@ -42,12 +42,12 @@ export default function ItemPage({
     dispatch(countGradeProd(id));
   }, [starRating.state]);
 
-  const changeHandler = useCallback((e) => {
+  const changeHandler = (e) => {
     setInputs((prev) => ({
       ...prev,
       [e.target.name]: e.target.value,
     }));
-  });
+  };
   const priceCalculate = argProduct.price * inputs.timing;
   useEffect(() => {
     dispatch(productArg(id));
@@ -56,10 +56,6 @@ export default function ItemPage({
   const modalopen = () => {
     setRent(true);
     setChecker(true);
-  };
-
-  const commentsModal = () => {
-    setComent(true);
   };
 
   return (
@@ -145,8 +141,13 @@ export default function ItemPage({
 
             </div>
             <div className="first-screen__right-comments">
-              {coment && <CommentsModalka />}
-              <button onClick={commentsModal} type="sybmit">оставить комент</button>
+              {coment == true ? (
+                <CommentsModalka setComent={setComent} />
+              ) : (
+                <>
+                  <button onClick={() => setComent(true)} className="turbobuttons" type="button">Оставить комментарий</button>
+                </>
+              )}
             </div>
             <div className="first-screen__right-bottom">
               {argProduct.user_id !== user.id ? (
@@ -162,9 +163,7 @@ export default function ItemPage({
                   )}
                   <>
                   </>
-                  <Button onClick={commentsModal} variant="contained" color="success">
-                    Добавить в избранное
-                  </Button>
+
                 </>
               ) : (
                 <>

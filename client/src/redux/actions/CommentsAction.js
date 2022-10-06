@@ -1,17 +1,16 @@
 import axios from 'axios';
+import { SET_COMMENTS, ADD_COMMENTS } from '../types';
 
-import {
-  COMMENTS,
-} from '../types';
+export const addComment = (payload) => ({ type: ADD_COMMENTS, payload });
+export const setComment = (payload) => ({ type: SET_COMMENTS, payload });
 
-export const setComments = (payload) => ({ type: COMMENTS, payload });
-
-export const addComments = (e, inputs, setSend) => (dispatch) => {
+export const addComments = (e, input, setComent, uid, pid) => (dispatch) => {
   e.preventDefault();
-  console.log(inputs);
-  axios.post('/comments')
+  console.log(input, uid, pid);
+  axios.post('api/v1/addcomment', { input, uid, pid })
     .then((res) => {
-      dispatch(setComments(res.data));
+      setComent(false);
+      dispatch(addComment(res.data));
     })
     .catch(console.log);
 };
