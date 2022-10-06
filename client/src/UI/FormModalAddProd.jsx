@@ -4,18 +4,14 @@ import SendIcon from '@mui/icons-material/Send';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import { Autocomplete, Chip, ListItem } from '@mui/material';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
-import { allCategories } from '../redux/actions/categoriesAction';
 import { addProduct } from '../redux/actions/productAction';
 
 export default function FormModalAddProd({ setSlider, setAddProdActive }) {
   const dispatch = useDispatch();
   const categoriesArr = useSelector((state) => state.categories);
-  useEffect(() => {
-    dispatch(allCategories());
-  }, []);
   const [inputs, setInputs] = useState({
     dropPhoto: [], name: '', category: '', description: '', price: '', location: '', timing: '',
   });
