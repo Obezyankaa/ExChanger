@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import Card from '../../UI/Card';
 
-export default function AllFavoriteProducts() {
+export default function AllFavoriteProducts(showFilter) {
   const favorites = useSelector((state) => state.favorite);
   const [products, setProducts] = useState([]);
   const [categoryInput, setCategoryInput] = useState({});
@@ -45,6 +45,8 @@ export default function AllFavoriteProducts() {
 
   return (
     <div style={{ display: 'flex', marginLeft: '7rem' }}>
+      {showFilter === 1
+      && (
       <div style={{ marginRight: '3rem', marginTop: '1rem' }}>
         <p style={{ marginTop: '1rem' }}>Категория</p>
         {categories?.map((el) => (
@@ -75,6 +77,7 @@ export default function AllFavoriteProducts() {
           {/* <span className="range-slider__value">{findInput.maxRange}</span> */}
         </div>
       </div>
+      )}
       <div style={{ width: '100%', display: 'flex' }}>
         <div style={{
           display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'center',
