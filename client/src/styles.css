@@ -262,7 +262,7 @@ body {
     display: flex;
     -webkit-box-pack: justify;
         -ms-flex-pack: justify;
-        margin-left: 140px;
+        margin-left: 310px;
     padding: 40px 80px 40px 80px;
   }
   .first-screen-profile-profile__leftblock {
@@ -783,7 +783,7 @@ body {
 
 .item__creator__span {
   font-size: 10px;
-  color: #87919d;
+  color: #ffffff;
 }
 
 .creator__name {

@@ -59,7 +59,12 @@
 
   .first-screen-profile__photo {
     width: 360px;
-    height: 520px;
+    height: 560px;
+    border-radius: 3rem;
+  }
+
+  .first-screen-profile__photo__redact {
+    width: 320px;
     border-radius: 3rem;
   }
 
