@@ -45,7 +45,6 @@ export default function AllFavoriteProducts() {
 
   return (
     <div style={{ display: 'flex', marginLeft: '7rem' }}>
-
       <div style={{ marginRight: '3rem', marginTop: '1rem' }}>
         <p style={{ marginTop: '1rem' }}>Категория</p>
         {categories?.map((el) => (
@@ -56,25 +55,19 @@ export default function AllFavoriteProducts() {
             </label>
           </div>
         ))}
-        <p style={{ marginTop: '2rem', marginBottom: '0.5rem' }}>Цена</p>
-        <div style={{ display: 'flex' }}>
-          <div style={{ width: '1.2rem' }}>От</div>
-          <div style={{ width: '3rem', display: 'flex', justifyContent: 'center' }}>{findInput.minRange}</div>
-          <div style={{ width: '4rem' }}>руб/сут</div>
-        </div>
+        <p style={{ marginTop: '2rem', marginBottom: '0.5rem' }}>Диапазон цены</p>
+
         <div className="range-slider">
           <input className="range-slider__range" type="range" name="minRange" value={findInput.minRange} onChange={changeHandler} min="0" max="5000" step="50" />
+          <span className="range-slider__value">{findInput.minRange}</span>
         </div>
-        <div style={{ display: 'flex', marginTop: '0.5rem' }}>
-          <div style={{ width: '1.2rem' }}>До</div>
-          <div style={{ width: '3rem', display: 'flex', justifyContent: 'center' }}>{findInput.maxRange}</div>
-          <div style={{ width: '4rem' }}>руб/сут</div>
-        </div>
+
         <div className="range-slider">
           <input className="range-slider__range" type="range" name="maxRange" value={findInput.maxRange} onChange={changeHandler} min="0" max="5000" step="50" />
+          <span className="range-slider__value">{findInput.maxRange}</span>
         </div>
-      </div>
 
+      </div>
       <div style={{ width: '100%', display: 'flex' }}>
         <div style={{
           display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'center',

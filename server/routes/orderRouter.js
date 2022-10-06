@@ -6,10 +6,16 @@ const router = express.Router();
 router.post('/:id', async (req, res) => {
   try {
     const {
-      pid, uid, message, timing,
+      user, product, message, timing,
     } = req.body;
+    const userRenter = await User.findOne({ where: { id: user } });
     const newOrder = await RentProduct.create({
-      user_renter: uid, timing, message, product_id: pid,
+      user_renter: user,
+      f_name: userRenter.dataValues.f_name,
+      l_name: userRenter.dataValues.l_name,
+      product_id: product,
+      message,
+      timing,
     });
     res.json(newOrder);
   } catch (err) {
@@ -20,7 +26,6 @@ router.post('/:id', async (req, res) => {
 router.get('/', async (req, res) => {
   try {
     const { id } = req.session.userSession;
-    console.log(id);
     const allProducts = await Product.findAll({
       where: {
         user_id: id,
@@ -29,15 +34,7 @@ router.get('/', async (req, res) => {
         { model: RentProduct },
       ],
     });
-    console.log('allProducts', allProducts);
-    const myOrder = await Promise.all(allProducts.map((el) => RentProduct.findOne({
-      where: { product_id: el.dataValues.id },
-      include: [
-        { model: User },
-      ],
-    })));
-    console.log('myOrder', myOrder);
-    res.json(myOrder);
+    res.json(allProducts);
   } catch (err) {
     console.error(err);
   }

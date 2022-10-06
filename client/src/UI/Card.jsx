@@ -10,7 +10,7 @@ export default function Card({ product }) {
   const {
     photos, userName, userPhoto, description, productName, price, date, userId, id,
   } = product;
-  console.log(product, '-----------------');
+  // console.log(photos, '-----------------');
   // console.log('product liked:', product);
   const dispatch = useDispatch();
   const [isFavorite, setIsFavorite] = useState(false);

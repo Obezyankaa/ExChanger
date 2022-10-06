@@ -12,35 +12,6 @@ export default function Profile({ night, setAddProdActive, addProdActive }) {
   const [allProducts, setAllProducts] = useState(false);
 
   const [isSelectedFavorite, setIsSelectedFavorite] = useState(false);
-  console.log('isSelectedFavorite', isSelectedFavorite);
-  //   const favorites = useSelector((state) => state.favorite);
-  //   const [changeFavoritState, setChangeFavoritState] = useState(0);
-  //   console.log('favorites', favorites);
-  //   const [categoryInput, setCategoryInput] = useState({});
-  //   const [findInput, setFindInput] = useState({ minRange: 0, maxRange: 5000 });
-  //   useEffect(() => {
-  //     setProducts(favorites.map((prod) => {
-  //       console.log('1', prod);
-  //       const images = prod.Product.ProductPhotos.map((el) => el.photo);
-  //       return ({
-  //         id: prod.Product.id,
-  //         categoryId: prod.Product.Category.id,
-  //         photos: images,
-  //         userName: prod.Product.User.f_name,
-  //         price: prod.Product.price,
-  //         userPhoto: prod.Product.User.photo,
-  //         description: prod.Product.description,
-  //         productName: prod.Product.name,
-  //         date: (new Date(prod.Product.createdAt)).toLocaleDateString([], { hour: '2-digit', minute: '2-digit' }),
-  //         userId: prod.Product.user_id,
-  //       });
-  //     }));
-  //   }, [categoryInput, findInput, favorites, changeFavoritState]);
-  // //   console.log('products', products);
-  //   const [showedProducts, setShowedProducts] = useState(products);
-  //   const categories = useSelector((state) => state.categories);
-  //   const changeHandler = (e) => {
-  //     setFindInput((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   return (
     <>
       <div className="first-screen-profile">
@@ -66,7 +37,7 @@ export default function Profile({ night, setAddProdActive, addProdActive }) {
                   </a>
                   <>
                     {btn === true ? (
-                      <Link to={`/myorders/${user.id}`}><button className="first-screen-profile__btn__profile" type="button">Мои заказы</button></Link>
+                      <Link to="/myorders"><button className="first-screen-profile__btn__profile" type="button">Мои заказы</button></Link>
                     ) : (
                       <button onClick={() => setBtn(true)} type="button">{user.phone}</button>
                     )}
@@ -122,14 +93,14 @@ export default function Profile({ night, setAddProdActive, addProdActive }) {
       <div>
         {allProducts === true ? (
           <div>
-            <UserAllProducts isSelectedFavorite={isSelectedFavorite} />
+            <UserAllProducts />
           </div>
         ) : (
           <div />
         )}
         {isSelectedFavorite && (
         <div>
-          <AllFavoriteProducts isSelectedFavorite={isSelectedFavorite} />
+          <AllFavoriteProducts />
           <div style={{ height: '10rem' }} />
         </div>
         )}

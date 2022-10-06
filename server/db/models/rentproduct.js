@@ -16,7 +16,11 @@ module.exports = (sequelize, DataTypes) => {
   }
   RentProduct.init({
     user_renter: DataTypes.INTEGER,
+    f_name: DataTypes.TEXT,
+    l_name: DataTypes.TEXT,
     product_id: DataTypes.INTEGER,
+    message: DataTypes.TEXT,
+    timing: DataTypes.INTEGER,
   }, {
     sequelize,
     modelName: 'RentProduct',

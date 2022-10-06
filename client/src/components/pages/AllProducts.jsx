@@ -15,7 +15,7 @@ export default function AllProducts({
   const [categoryInput, setCategoryInput] = useState({});
   useEffect(() => {
     axios.get('/product').then((response) => {
-      setProducts(() => response.data.map((prod) => {
+      setProducts(response.data.map((prod) => {
         const images = prod.ProductPhotos.map((el) => el.photo);
         return ({
           id: prod.id,
@@ -29,25 +29,23 @@ export default function AllProducts({
           date: (new Date(prod.createdAt)).toLocaleDateString([], { hour: '2-digit', minute: '2-digit' }),
           userId: prod.User.id,
         });
-      }));
+      })
+        .filter((el) => Number(el.price) <= findInput.maxRange && Number(el.price) >= findInput.minRange)
+        .filter(
+          (el) => {
+            const keys = Object.keys(categoryInput)?.map((elem) => Number(elem));
+            return keys.length ? keys.includes(el.categoryId) && categoryInput[el.categoryId] === true : true;
+          },
+        ));
     });
   }, [categoryInput, findInput]);
-  console.log(products);
+
   const changeHandler = (e) => {
     setFindInput((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
   const changeCategoryHandler = (e) => {
     setCategoryInput((prev) => ({ ...prev, [e.target.name]: e.target.value !== 'true' }));
   };
-  useEffect(() => {
-    setProducts(() => products.filter((el) => Number(el.price) <= findInput.maxRange && Number(el.price) >= findInput.minRange)
-      .filter(
-        (el) => {
-          const keys = Object.keys(categoryInput)?.map((elem) => Number(elem));
-          return keys.length ? keys.includes(el.categoryId) && categoryInput[el.categoryId] === true : true;
-        },
-      ));
-  }, [categoryInput, findInput]);
 
   return (
     <div style={{ display: 'flex', marginLeft: '7rem' }}>
@@ -61,18 +59,25 @@ export default function AllProducts({
             </label>
           </div>
         ))}
-        <p style={{ marginTop: '1rem' }}>Диапазон цены</p>
-
+        <p style={{ marginTop: '2rem', marginBottom: '0.5rem' }}>Цена</p>
+        <div style={{ display: 'flex' }}>
+          <div style={{ width: '1.2rem' }}>От</div>
+          <div style={{ width: '3rem', display: 'flex', justifyContent: 'center' }}>{findInput.minRange}</div>
+          <div style={{ width: '4rem' }}>руб/сут</div>
+        </div>
         <div className="range-slider">
           <input className="range-slider__range" type="range" name="minRange" value={findInput.minRange} onChange={changeHandler} min="0" max="5000" step="50" />
-          <span className="range-slider__value">{findInput.minRange}</span>
         </div>
-
+        <div style={{ display: 'flex', marginTop: '0.5rem' }}>
+          <div style={{ width: '1.2rem' }}>До</div>
+          <div style={{ width: '3rem', display: 'flex', justifyContent: 'center' }}>{findInput.maxRange}</div>
+          <div style={{ width: '4rem' }}>руб/сут</div>
+        </div>
         <div className="range-slider">
           <input className="range-slider__range" type="range" name="maxRange" value={findInput.maxRange} onChange={changeHandler} min="0" max="5000" step="50" />
-          <span className="range-slider__value">{findInput.maxRange}</span>
         </div>
       </div>
+
       <div style={{ width: '100%', display: 'flex' }}>
         <div style={{
           display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'center',

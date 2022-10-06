@@ -1,4 +1,5 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import Slider from '../../UI/Home/slider/Slider';
 import ModalAddProd from '../../UI/ModalAddProd';
 import ModalLog from '../../UI/ModalLog';
@@ -8,6 +9,7 @@ import './index.css';
 export default function Main({
   regActive, logActive, setRegActive, setLogActive, setAddProdActive, addProdActive,
 }) {
+  const user = useSelector((state) => state.user);
   return (
     <>
       <div className="intro">
@@ -18,8 +20,13 @@ export default function Main({
           <p>ExChanger</p>
           <p>Доступный шеринг для обычных людей</p>
           <div className="intro__content-btn">
-            <button onClick={() => setLogActive(true)} type="button" className="btn-padding border-button" style={{ marginRight: '10px' }}>Войти</button>
-            <button onClick={() => setRegActive(true)} type="button" className="border-button" style={{ marginLeft: '10px' }}>Регистрация</button>
+            {!user.id
+            && (
+            <>
+              <button onClick={() => setLogActive(true)} type="button" className="btn-padding border-button" style={{ marginRight: '10px' }}>Войти</button>
+              <button onClick={() => setRegActive(true)} type="button" className="border-button" style={{ marginLeft: '10px' }}>Регистрация</button>
+            </>
+            )}
           </div>
         </div>
       </div>

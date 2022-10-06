@@ -4,11 +4,11 @@ import { SET_ORDER, NEW_ORDER } from '../types';
 export const addOrder = (payload) => ({ type: NEW_ORDER, payload });
 export const setOrder = (payload) => ({ type: SET_ORDER, payload });
 
-export const addOrdering = (e, message, uid, pid, timer, setModal, setSend) => (dispatch) => {
+export const addOrdering = (e, message, user, product, timer, setModal, setSend) => (dispatch) => {
   e.preventDefault();
   const { timing } = timer;
-  axios.post(`/order/${pid}`, {
-    message, uid, pid, timing,
+  axios.post(`/order/${product}`, {
+    message, user, product, timing,
   })
     .then((res) => {
       setModal(false);
@@ -21,7 +21,7 @@ export const addOrdering = (e, message, uid, pid, timer, setModal, setSend) => (
 export const setOrdering = () => (dispatch) => {
   axios.get('/order')
     .then((res) => {
-      dispatch(console.log(res.data));
+      dispatch(setOrder(res.data));
     })
     .catch(console.log);
 };
