@@ -6,7 +6,7 @@ import {
 
 export const setComments = (payload) => ({ type: COMMENTS, payload });
 
-export const addComments = (e, inputs, setSend) => (dispatch) => {
+export const addComments = (e, inputs) => (dispatch) => {
   e.preventDefault();
   console.log(inputs);
   axios.post('/comments')

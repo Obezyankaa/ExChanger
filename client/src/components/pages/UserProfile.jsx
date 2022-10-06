@@ -6,7 +6,6 @@ import ModalAddProd from '../../UI/ModalAddProd';
 import ModalLog from '../../UI/ModalLog';
 import ModalRegistration from '../../UI/ModalRegistration';
 import OtherAllProducts from '../../UI/OtherAllProducts';
-import StarUserRating from '../../UI/StarUserRating';
 import Telega from '../../UI/Telega';
 
 export default function UserProfile({
@@ -39,7 +38,6 @@ export default function UserProfile({
                   <p />
                   <p>{users.f_name}</p>
                   <p>{users.l_name}</p>
-                  <StarUserRating />
                 </div>
                 <div className="first-screen-profile__leftblock-skils">
                   <p>Свяжитесь с пользователем</p>

@@ -35,19 +35,18 @@ export default function ItemPage({
   const [rent, setRent] = useState(false);
   const [send, setSend] = useState(false);
   const [coment, setComent] = useState(false);
-
   const [inputs, setInputs] = useState({ timing: 1 });
   const starRating = useSelector((state) => state.gradeProduct);
   useEffect(() => {
     dispatch(countGradeProd(id));
   }, [starRating.state]);
 
-  const changeHandler = useCallback((e) => {
+  const changeHandler = (e) => {
     setInputs((prev) => ({
       ...prev,
       [e.target.name]: e.target.value,
     }));
-  });
+  };
   const priceCalculate = argProduct.price * inputs.timing;
   useEffect(() => {
     dispatch(productArg(id));
@@ -109,6 +108,7 @@ export default function ItemPage({
               <p style={night === true ? ({ color: 'black' }) : ({ color: 'white' })}>{argProduct?.name}</p>
               <p style={night === true ? ({ color: 'black' }) : ({ color: 'white' })}>{argProduct?.Category?.name}</p>
               <StarUserRating star={starRating} />
+              {/* <p>{argProduct?.Views.counter}</p> */}
               <p style={night === true ? ({ color: 'black' }) : ({ color: 'white' })}>
                 {priceCalculate.toFixed(2)}
                 {' '}

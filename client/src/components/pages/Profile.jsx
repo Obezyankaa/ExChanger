@@ -66,7 +66,7 @@ export default function Profile({ night, setAddProdActive, addProdActive }) {
                   </a>
                   <>
                     {btn === true ? (
-                      <Link to={`/myorders/${user.id}`}><button className="first-screen-profile__btn__profile" type="button">Мои заказы</button></Link>
+                      <Link to="/myorders"><button className="first-screen-profile__btn__profile" type="button">Мои заказы</button></Link>
                     ) : (
                       <button onClick={() => setBtn(true)} type="button">{user.phone}</button>
                     )}
