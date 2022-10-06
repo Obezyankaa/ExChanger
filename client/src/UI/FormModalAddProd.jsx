@@ -36,7 +36,7 @@ export default function FormModalAddProd({ setSlider, setAddProdActive }) {
     dispatch(addProduct(e, inputs, setInputs, setAddProdActive, setSlider))
   );
   return (
-    <form onSubmit={submitHendler}>
+    <form autoComplete="off" onSubmit={submitHendler}>
       <div className="form-conatainer" style={{ display: 'flex', flexDirection: 'column' }}>
         <Box
           sx={{
@@ -46,7 +46,7 @@ export default function FormModalAddProd({ setSlider, setAddProdActive }) {
           autoComplete="off"
           style={{ display: 'flex', flexDirection: 'column' }}
         >
-          <TextField name="name" value={inputs.name} onChange={changeHandler} label="Название товара" variant="standard" style={{ width: '100%', backgroundColor: 'white' }} type="text" />
+          <TextField autocomplete="off" name="name" value={inputs.name} onChange={changeHandler} label="Название товара" variant="standard" style={{ width: '100%', backgroundColor: 'white' }} type="text" />
           <Autocomplete
             style={{ width: '100%', backgroundColor: 'white' }}
             options={categoriesArr}
@@ -59,6 +59,7 @@ export default function FormModalAddProd({ setSlider, setAddProdActive }) {
             clearOnEscape
             renderInput={(params) => (
               <TextField
+                autocomplete="off"
                 {...params}
                 name="category"
                 label="Категория"
@@ -68,10 +69,10 @@ export default function FormModalAddProd({ setSlider, setAddProdActive }) {
               />
             )}
           />
-          <TextField name="description" value={inputs.description} onChange={changeHandler} label="Описание" variant="standard" style={{ width: '100%', backgroundColor: 'white' }} type="text" />
-          <TextField name="price" value={inputs.price} onChange={changeHandler} label="Цена за день использования" variant="standard" style={{ width: '100%', backgroundColor: 'white' }} type="text" />
-          <TextField name="location" value={inputs.location} onChange={changeHandler} label="Адрес" variant="standard" style={{ width: '100%', backgroundColor: 'white' }} type="text" />
-          <TextField name="timing" value={inputs.timing} onChange={changeHandler} label="Максимальное время аренды" variant="standard" style={{ width: '100%', backgroundColor: 'white' }} type="text" />
+          <TextField autocomplete="off" name="description" value={inputs.description} onChange={changeHandler} label="Описание" variant="standard" style={{ width: '100%', backgroundColor: 'white' }} type="text" />
+          <TextField autocomplete="off" name="price" value={inputs.price} onChange={changeHandler} label="Цена за день использования" variant="standard" style={{ width: '100%', backgroundColor: 'white' }} type="text" />
+          <TextField autocomplete="off" name="location" value={inputs.location} onChange={changeHandler} label="Адрес" variant="standard" style={{ width: '100%', backgroundColor: 'white' }} type="text" />
+          <TextField autocomplete="off" name="timing" value={inputs.timing} onChange={changeHandler} label="Максимальное время аренды" variant="standard" style={{ width: '100%', backgroundColor: 'white' }} type="text" />
           <Button
             variant="contained"
             component="label"

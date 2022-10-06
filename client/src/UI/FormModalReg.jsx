@@ -25,14 +25,13 @@ export default function FormModalReg({ setRegActive }) {
     }));
   };
   return (
-    <form onSubmit={(e) => dispatch(signupUser(e, inputs, setRegActive))}>
+    <form autoComplete="off" onSubmit={(e) => dispatch(signupUser(e, inputs, setRegActive))}>
       <div className="form-conatainer" style={{ display: 'flex', flexDirection: 'column' }}>
         <Box
           sx={{
             '& > :not(style)': { m: 1, width: '25ch' },
           }}
           noValidate
-          autoComplete="off"
           style={{ display: 'flex', flexDirection: 'column' }}
         >
           <TextField name="f_name" onChange={changeHandler} id="standard-basic" label="Ваше имя" variant="standard" style={{ width: '100%' }} />

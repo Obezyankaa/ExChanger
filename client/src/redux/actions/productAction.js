@@ -28,7 +28,6 @@ export const addProduct = (e, inputs, setInputs, newStat, setSlider) => () => {
       });
       setSlider(false);
       newStat(false);
-      dispatch({ type: 'ADD_PRODUCT_ACTION' });
     });
 };
 
