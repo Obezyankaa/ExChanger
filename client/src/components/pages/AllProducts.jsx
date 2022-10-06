@@ -34,7 +34,7 @@ export default function AllProducts({
         .filter(
           (el) => {
             const keys = Object.keys(categoryInput)?.map((elem) => Number(elem));
-            return keys.length ? keys.includes(el.categoryId) && categoryInput[el.categoryId] === true : true;
+            return Object.values(categoryInput).includes(true) ? keys.includes(el.categoryId) && categoryInput[el.categoryId] === true : true;
           },
         ));
     });
@@ -50,7 +50,7 @@ export default function AllProducts({
   return (
     <div style={{ display: 'flex', marginLeft: '7rem' }}>
       <div style={{ marginRight: '3rem', marginTop: '1rem' }}>
-        <p style={{ marginTop: '1rem' }}>Категория</p>
+        <p style={{ marginTop: '1rem', fontWeight: '500' }}>Категория</p>
         {categories.map((el) => (
           <div key={el.id} className="form-check">
             <input className="form-check-input" type="checkbox" id="flexCheckDefault" onChange={changeCategoryHandler} checked={categoryInput[el.id]} value={categoryInput[el.id]} name={el.id} />
@@ -59,22 +59,22 @@ export default function AllProducts({
             </label>
           </div>
         ))}
-        <p style={{ marginTop: '2rem', marginBottom: '0.5rem' }}>Цена</p>
+        <p style={{ marginTop: '2rem', marginBottom: '0.5rem', fontWeight: '500' }}>Цена аренды</p>
         <div style={{ display: 'flex' }}>
           <div style={{ width: '1.2rem' }}>От</div>
-          <div style={{ width: '3rem', display: 'flex', justifyContent: 'center' }}>{findInput.minRange}</div>
+          <div style={{ width: '4rem', display: 'flex', justifyContent: 'center' }}>{findInput.minRange}</div>
           <div style={{ width: '4rem' }}>руб/сут</div>
         </div>
         <div className="range-slider">
-          <input className="range-slider__range" type="range" name="minRange" value={findInput.minRange} onChange={changeHandler} min="0" max="5000" step="50" />
+          <input className="range-slider__range" type="range" name="minRange" value={findInput.minRange} onChange={changeHandler} min="0" max="5000" step="50" style={{ width: '80%' }} />
         </div>
         <div style={{ display: 'flex', marginTop: '0.5rem' }}>
           <div style={{ width: '1.2rem' }}>До</div>
-          <div style={{ width: '3rem', display: 'flex', justifyContent: 'center' }}>{findInput.maxRange}</div>
+          <div style={{ width: '4rem', display: 'flex', justifyContent: 'center' }}>{findInput.maxRange}</div>
           <div style={{ width: '4rem' }}>руб/сут</div>
         </div>
         <div className="range-slider">
-          <input className="range-slider__range" type="range" name="maxRange" value={findInput.maxRange} onChange={changeHandler} min="0" max="5000" step="50" />
+          <input className="range-slider__range" type="range" name="maxRange" value={findInput.maxRange} onChange={changeHandler} min="0" max="5000" step="50" style={{ width: '80%' }} />
         </div>
       </div>
 
