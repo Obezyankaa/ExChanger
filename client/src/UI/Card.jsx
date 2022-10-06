@@ -63,11 +63,11 @@ export default function Card({ product }) {
               <h1 className="item__title">{productName}</h1>
 
             </Link>
-            <p className="item__desc" style={{ color: 'aqua' }}>{description}</p>
+            <p className="item__desc">{description}</p>
             <div className="item__price__time">
               <div className="item__price" style={{ alignItems: 'center', display: 'flex' }}>
                 <span className="price-eth">{price}</span>
-                <p style={{ color: 'aqua', margin: '0rem 0rem 0rem 0.5rem' }}>
+                <p className="item__rud" style={{ margin: '0rem 0rem 0rem 0.5rem' }}>
                   руб/сут
                 </p>
               </div>
@@ -78,8 +78,13 @@ export default function Card({ product }) {
             </div>
             <div className="item__creator">
               <img className="creator__img" src={`http://localhost:3001/images/${userPhoto}`} alt="creator_avator" />
-              <p className="creator__info" style={{ color: 'aqua' }}>
-                <Link className="creator__name" to={`/user/${userId}`}>{userName}</Link>
+              <p className="creator__info">
+                <Link className="creator__name" to={`/user/${userId}`}>
+                  {' '}
+                  <span className="item__creator__span">пользователь</span>
+                  {' '}
+                  {userName}
+                </Link>
               </p>
 
               <div style={{ width: '100%', display: 'flex', justifyContent: 'flex-end' }}>

@@ -13,7 +13,7 @@ export default function BreadCrumps({ night, itemName, category }) {
       key="1"
       color="inherit"
       to="/"
-      style={night === true ? ({ color: 'black' }) : ({ color: 'white' })}
+      style={!night === true ? ({ textDecoration: 'none', color: 'black' }) : ({ textDecoration: 'none', color: 'white' })}
     >
       Главная
     </Link>,
@@ -21,7 +21,7 @@ export default function BreadCrumps({ night, itemName, category }) {
       underline="hover"
       key="2"
       color="inherit"
-      style={night === true ? ({ color: 'black' }) : ({ color: 'white' })}
+      style={!night === true ? ({ textDecoration: 'none', color: 'black' }) : ({ textDecoration: 'none', color: 'white' })}
       to="/material-ui/getting-started/installation/" // линка на категорию
     >
       {category}
@@ -31,7 +31,7 @@ export default function BreadCrumps({ night, itemName, category }) {
     </Typography>,
   ];
   return (
-    <Stack style={night === true ? ({ color: 'black' }) : ({ color: 'white' })} spacing={1}>
+    <Stack style={!night === true ? ({ color: 'black' }) : ({ color: 'white' })} spacing={1}>
       <Breadcrumbs
         separator={<NavigateNextIcon fontSize="small" />}
         aria-label="breadcrumb"

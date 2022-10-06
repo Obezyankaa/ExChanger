@@ -20,9 +20,11 @@ import ItemModalRegistration from '../../UI/ItemModalRegistration';
 import ItemModalLog from '../../UI/ItemModalLog';
 import ModalItemRent from '../../UI/ModalItemRent';
 import CommentsModalka from '../../UI/CommentsModalka';
+import './index.css';
 import CommentList from '../../UI/CommentList';
 
 export default function ItemPage({
+  modal, setModal,
   night, regActive, setRegActive, logActive, setLogActive,
 }) {
   const user = useSelector((state) => state.user);
@@ -37,6 +39,7 @@ export default function ItemPage({
   const [rent, setRent] = useState(false);
   const [send, setSend] = useState(false);
   const [coment, setComent] = useState(false);
+  // const [modul, setModul] = useState(false);
   const [inputs, setInputs] = useState({ timing: 1 });
   const starRating = useSelector((state) => state.gradeProduct);
   useEffect(() => {
@@ -103,9 +106,9 @@ export default function ItemPage({
           </div>
           <div className="first-screen__right">
             <div className="first-screen__right-top">
-              <p style={night === true ? ({ color: 'black' }) : ({ color: 'white' })}>{argProduct?.name}</p>
-              <p style={night === true ? ({ color: 'black' }) : ({ color: 'white' })}>{argProduct?.Category?.name}</p>
-              <p style={night === true ? ({ color: 'black' }) : ({ color: 'white' })}>
+              <p style={!night === true ? ({ color: 'black' }) : ({ color: 'white' })}>{argProduct?.name}</p>
+              <p style={!night === true ? ({ color: 'black' }) : ({ color: 'white' })}>{argProduct?.Category?.name}</p>
+              <p style={!night === true ? ({ color: 'black' }) : ({ color: 'white' })}>
                 <VisibilityIcon />
                 {' '}
                 { argProduct.id && argProduct?.Views[0].counter}
@@ -118,7 +121,7 @@ export default function ItemPage({
               </p>
             </div>
             <div className="first-screen__right-mid">
-              <p style={night === true ? ({ color: '#626262' }) : ({ color: 'white' })}>
+              <p style={!night === true ? ({ color: '#626262' }) : ({ color: 'white' })}>
                 Максимальный срок аренды:
                 {' '}
                 {argProduct?.timing}
@@ -155,7 +158,7 @@ export default function ItemPage({
               )}
               {coment == false && user.id !== argProduct.user_id ? (
                 <>
-                  <button onClick={() => setComent(true)} className="turbobuttons" type="button">Оставить комментарий</button>
+                  <button onClick={() => setComent(true)} variant="contained" color="success" type="button">Оставить комментарий</button>
                 </>
               ) : (
                 <></>
@@ -166,11 +169,11 @@ export default function ItemPage({
                 <>
                   {send === true ? (
                     <>
-                      <button onClick={modalopen} className="turbobuttons" type="button">Заявка отправлена</button>
+                      <Button onClick={modalopen} variant="outlined" type="button">Заявка отправлена</Button>
                     </>
                   ) : (
                     <>
-                      <button onClick={modalopen} className="turbobuttons" type="button">Взять в аренду</button>
+                      <Button onClick={modalopen} variant="outlined" type="button">Взять в аренду</Button>
                     </>
                   )}
                   <>
@@ -204,7 +207,7 @@ export default function ItemPage({
         <></>
       )}
       {!user.id && cheker == true ? (
-        <Ucant cheker={cheker} setChecker={setChecker} argProduct={argProduct} setItemreg={setItemreg} setItemlog={setItemlog} />
+        <Ucant modal={modal} setModal={setModal} cheker={cheker} setChecker={setChecker} argProduct={argProduct} setItemreg={setItemreg} setItemlog={setItemlog} />
       ) : (
         <></>
       )}
