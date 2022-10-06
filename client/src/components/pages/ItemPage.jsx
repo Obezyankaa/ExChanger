@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unknown-property */
 /* eslint-disable react/button-has-type */
 import React, { useEffect, useState } from 'react';
 import Button from '@mui/material/Button';
@@ -114,7 +115,7 @@ export default function ItemPage({
                 { argProduct.id && argProduct?.Views[0].counter}
               </p>
               <StarUserRating star={starRating} />
-              <p style={night === true ? ({ color: 'black' }) : ({ color: 'white' })}>
+              <p style={!night === true ? ({ color: 'black' }) : ({ color: 'white' })}>
                 {priceCalculate.toFixed(2)}
                 {' '}
                 ₽
@@ -193,7 +194,7 @@ export default function ItemPage({
       <div className="map">
         <Map coordinates={argProduct.location} />
       </div>
-      <div>
+      <div className="comments__block">
         <CommentList id={num} />
       </div>
       {regActive === true ? (

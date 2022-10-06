@@ -99,7 +99,6 @@ export default function UserProfile({
       <div>
         <OtherAllProducts id={id} />
       </div>
-
     </>
   );
 }

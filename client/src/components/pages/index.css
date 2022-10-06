@@ -86,3 +86,27 @@
     width: 400px;
     height: 400px;
   } */
+
+  .comments__block {
+    padding: 2rem 2rem;
+  }
+
+  .comments__heading {
+    font-family: 'Rubik', sans-serif;
+    font-size: 30px;
+  }
+
+  .comments__cart__text {
+    display: flex;
+    align-items: center;
+  }
+
+  .comments__cart__avatar {
+    margin-right: 10px;
+  }
+
+  .comments__cart__time {
+    font-size: 11px;
+    color: #9e9e9e;
+  }
+  

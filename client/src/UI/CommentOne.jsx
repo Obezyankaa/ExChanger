@@ -1,35 +1,33 @@
 import * as React from 'react';
 import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
+// import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
-import Button from '@mui/material/Button';
+// import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Avatar from '@mui/material/Avatar';
+import './index.css';
 
 export default function CommentOne({ el }) {
   return (
-    <Card sx={{ minWidth: 275 }}>
+    <Card className="comments__cart">
       <CardContent>
-        <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-          <Avatar src={`http://localhost:3001/images/${el?.User?.photo}`} />
-          {el?.User?.f_name}
-          {' '}
-          {el?.User?.l_name}
+        <Typography className="comments__cart__text" color="text.secondary" gutterBottom>
+          <Avatar className="comments__cart__avatar" src={`http://localhost:3001/images/${el?.User?.photo}`} />
+          <Typography>
+            {el?.User?.f_name}
+            {' '}
+            {el?.User?.l_name}
+            {' '}
+            <Typography style={{ color: '#9e9e9e', fontSize: '11px' }}>
+              {el?.createdAt.slice(0, 10).replaceAll('-', ' ')
+                .split('')}
+            </Typography>
+          </Typography>
         </Typography>
-        <Typography variant="h5" component="div">
+        <Typography variant="h6" component="div">
           {el?.text}
         </Typography>
-        <Typography sx={{ mb: 1.5 }} color="text.secondary">
-          {el?.createdAt.slice(0, 10).replaceAll('-', ' ')
-            .split('')}
-        </Typography>
-        <Typography variant="body2">
-          well meaning and kindly.
-        </Typography>
       </CardContent>
-      <CardActions>
-        <Button size="small">Learn More</Button>
-      </CardActions>
     </Card>
   );
 }
