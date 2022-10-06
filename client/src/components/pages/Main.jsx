@@ -10,7 +10,6 @@ export default function Main({
   regActive, logActive, setRegActive, setLogActive, setAddProdActive, addProdActive,
 }) {
   const user = useSelector((state) => state.user);
-  console.log(user);
   return (
     <>
       <div className="intro">
