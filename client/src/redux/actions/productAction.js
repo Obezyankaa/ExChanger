@@ -31,16 +31,17 @@ export const addProduct = (e, inputs, setInputs, newStat, setSlider) => () => {
     });
 };
 
-export const deleteProductAsync = (id, navigate) => (dispatch) => {
-  axios.delete(`/useritems/${id}`)
-    .then(() => {
-      navigate('/');
-      dispatch(deleteProduct(id));
-    })
-    .catch(console.log);
-};
+// export const deleteProductAsync = (id, navigate) => (dispatch) => {
+//   axios.delete(`/useritems/${id}`)
+//     .then(() => {
+//       navigate('/');
+//       dispatch(deleteProduct(id));
+//     })
+//     .catch(console.log);
+// };
 
 export const deleteItemFromList = (id, navigate) => (dispatch) => {
+  console.log('actions === id ----', id);
   axios.delete(`/useritems/${id}`)
     .then(() => {
       navigate('/');
