@@ -15,3 +15,13 @@ export const submitGradeProduct = (input) => (dispatch) => {
     .then(dispatch(countGradeProd(input.id)))
     .catch(console.log);
 };
+
+// Ниже код написал Саша
+// export const submitGradeProduct = (input) => async (dispatch) => {
+//   // eslint-disable-next-line no-unused-vars
+//   const axiosRes1 = await axios.post(`/grade/${input.id}`, input);
+//   const axiosRes2 = await axios.get(`/grade/${input.id}`);
+//   dispatch(setGradeProduct(axiosRes2.data));
+//   // .then(dispatch(countGradeProd(input.id)))
+//   // .catch(console.log);
+// };

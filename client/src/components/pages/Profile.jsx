@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import ModalAddProd from '../../UI/ModalAddProd';
-import StarUserRating from '../../UI/StarUserRating';
+// import StarUserRating from '../../UI/StarUserRating';
 import UserAllProducts from '../../UI/UserAllProducts';
 import AllFavoriteProducts from './AllFavoritesProducts';
 import './index.css';
@@ -50,7 +50,7 @@ export default function Profile({ night, setAddProdActive, addProdActive }) {
                 <p />
                 <p style={night === true ? ({ color: 'black' }) : ({ color: 'white' })}>{user.f_name}</p>
                 <p style={night === true ? ({ color: 'black' }) : ({ color: 'white' })}>{user.l_name}</p>
-                <StarUserRating />
+                {/* <StarUserRating /> */}
               </div>
               <div className="first-screen-profile__leftblock-skils">
                 <p>Свяжитесь с пользователем</p>

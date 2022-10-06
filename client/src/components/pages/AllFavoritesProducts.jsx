@@ -9,10 +9,8 @@ export default function AllFavoriteProducts({ isSelectedFavorite }) {
   const [categoryInput, setCategoryInput] = useState({});
   const [findInput, setFindInput] = useState({ minRange: 0, maxRange: 5000 });
   useEffect(() => {
-    console.log('prod', products);
-    // setProducts(
-    const a = favorites?.map((prod) => {
-      console.log('1', prod);
+    console.log('UseEffect');
+    setProducts(favorites.map((prod) => {
       const images = prod?.Product?.ProductPhotos?.map((el) => el.photo);
       return {
         id: prod.Product.id,
@@ -26,14 +24,14 @@ export default function AllFavoriteProducts({ isSelectedFavorite }) {
         date: (new Date(prod.Product.createdAt)).toLocaleDateString([], { hour: '2-digit', minute: '2-digit' }),
         userId: prod.Product.user_id,
       };
-    });
-    console.log('AAAAAAA========>', a);
-    setProducts(a);
-    // );
-    console.log('pr2', products);
+    }).filter((el) => Number(el.price) <= findInput.maxRange && Number(el.price) >= findInput.minRange)
+      .filter(
+        (el) => {
+          const keys = Object.keys(categoryInput)?.map((elem) => Number(elem));
+          return keys.length ? keys.includes(el.categoryId) && categoryInput[el.categoryId] === true : true;
+        },
+      ));
   }, [categoryInput, findInput, favorites, isSelectedFavorite]);
-
-  console.log('pr3', products);
 
   const categories = useSelector((state) => state.categories);
   const changeHandler = (e) => {
@@ -42,21 +40,11 @@ export default function AllFavoriteProducts({ isSelectedFavorite }) {
   const changeCategoryHandler = (e) => {
     setCategoryInput((prev) => ({ ...prev, [e.target.name]: e.target.value !== 'true' }));
   };
-  useEffect(() => {
-    setProducts(() => products?.filter((el) => Number(el.price) <= findInput.maxRange && Number(el.price) >= findInput.minRange)
-      .filter(
-        (el) => {
-          const keys = Object.keys(categoryInput)?.map((elem) => Number(elem));
-          return keys.length ? keys.includes(el.categoryId) && categoryInput[el.categoryId] === true : true;
-        },
-      ));
-  }, [categoryInput, findInput]);
 
   return (
     <div style={{ display: 'flex', marginLeft: '7rem' }}>
       <div style={{ marginRight: '3rem', marginTop: '1rem' }}>
         <p style={{ marginTop: '1rem' }}>Категория</p>
-        {console.log(categories)}
         {categories?.map((el) => (
           <div key={el.id} className="form-check">
             <input className="form-check-input" type="checkbox" id="flexCheckDefault" onChange={changeCategoryHandler} checked={categoryInput[el.id]} value={categoryInput[el.id]} name={el.id} />
@@ -82,7 +70,7 @@ export default function AllFavoriteProducts({ isSelectedFavorite }) {
           display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'center',
         }}
         >
-          { products.map((el) => <Card product={el} key={el.id} />)}
+          { products[0]?.id && products?.map((el) => <Card product={el} key={el.id} />)}
         </div>
       </div>
     </div>
