@@ -21,7 +21,7 @@ export default function Settings({ night, setAddProdActive, addProdActive }) {
             <UpdateForm night={night} />
             <div className="first-screen-profile__rightblock">
               <div className="first-screen-profile__rightblock-photo">
-                <img className="first-screen-profile__photo" src={`http://localhost:3001/images/${user.photo}`} alt="" style={{ marginTop: '20%', marginRight: '50%' }} />
+                <img className="first-screen-profile__photo__redact" src={`http://localhost:3001/images/${user.photo}`} alt="..." />
               </div>
             </div>
           </div>

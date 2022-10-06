@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchComments } from '../redux/actions/CommentsAction';
 import CommentOne from './CommentOne';
+import './index.css';
 
 export default function CommentList({ id }) {
   const dispatch = useDispatch();
@@ -12,7 +13,7 @@ export default function CommentList({ id }) {
   console.log(comments);
   return (
     <>
-      <p>Комменты</p>
+      <h2 className="comments__heading">Комменты</h2>
       {comments?.map((el) => (
         <>
           <CommentOne el={el} key={el.id} />
