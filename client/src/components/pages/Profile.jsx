@@ -28,13 +28,13 @@ export default function Profile({ night, setAddProdActive, addProdActive }) {
               </div>
               <div className="first-screen-profile__leftblock-form">
                 <form className="first-screen-profile__form" action="form\thanks\thanks.html">
-                  <a target="blank" className="first-screen-profile__link" href={`https://t.me/${user.telegram}`}>
+                  <Link target="blank" className="first-screen-profile__link" to={`https://t.me/${user.telegram}`}>
                     <button type="button">
                       Вы указали профиль
                       {' '}
                       {user.telegram}
                     </button>
-                  </a>
+                  </Link>
                   <>
                     {btn === true ? (
                       <Link to="/myorders"><button className="first-screen-profile__btn__profile" type="button">Мои заказы</button></Link>

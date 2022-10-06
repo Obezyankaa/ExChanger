@@ -976,3 +976,73 @@ body {
   transition: .5s ease;
   color: rgb(211, 26, 26);
 }
+
+.sliderBlock {
+  margin-top: 30px;
+  height: 200px;
+  width: 400px;
+  margin-left: 50px;
+  display: flex;
+  align-items: center;
+}
+
+.sliderBlock p {
+  text-align: center;
+}
+
+.sliderBlock:first-child {
+  background-image: url("https://pirania45.ru/upload/iblock/e1d/q0spufzpy5qg6clojgqtbnq7iq339nnq/instrumenty_stolyara_i_plotnika.jpg");
+  display: flex;
+  align-items: center;
+}
+.sliderBlock:nth-child(2) {
+background-image: url("https://www.kp40.ru/pictures/releases/68757/picture-845h.jpg");
+display: flex;
+align-items: center;
+}
+
+.sliderBlock:nth-child(3) {
+  background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRvgy9W39FNmu6ANjCI_3jYauSx9f2n-T0-7Q&usqp=CAU");
+  }
+
+.sliderBlock:nth-child(4) {
+    background-image: url("https://cdn.lifehacker.ru/wp-content/uploads/2018/01/hobby_1518206316-630x315.jpg");
+    }
+
+.sliderBlock:nth-child(5) {
+background-image: url("https://nvph.ru/assets/images/OBORUDOVANIE/prom/7.jpg");
+      }
+
+.sliderBlock:nth-child(6) {
+background-image: url("https://assum.ru/wp-content/uploads/2021/03/professionalnoe-oborudovanie-dlja-barov-restoranov.jpg");
+        }
+
+.sliderBlock:nth-child(7) {
+background-image: url("https://forwardstroy.ru/upload/iblock/9a7/9a702361fd9ffa9116a12698210bca5d.png");
+                  }
+
+.sliderBlock:last-child {
+background-image: url("https://n1s1.hsmedia.ru/74/b4/11/74b411a08975eb25b7615d2f555f2248/690x380_0x0a330c2a_17582314501611305879.jpeg");
+}
+
+.sliderBlock p {
+  font-family: 'Rubik', sans-serif;    
+  margin-top: 5%;
+  font-size: 30px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  line-height: 20px;
+  color: white;
+}
+
+.sliderBlock div ::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 5;
+  width: 100%;
+  height: 100%;
+  content: "";
+  background-color: rgba(0, 0, 0, 0.9);
+}
+

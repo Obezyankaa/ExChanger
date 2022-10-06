@@ -28,8 +28,6 @@ export const addProduct = (e, inputs, setInputs, newStat, setSlider) => () => {
       });
       setSlider(false);
       newStat(false);
-      // eslint-disable-next-line no-undef
-      dispatch({ type: 'ADD_PRODUCT_ACTION' });
     });
 };
 

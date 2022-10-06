@@ -32,10 +32,10 @@ export default function ItemFormModal({ input, setRent, setSend }) {
     }));
   };
   return (
-    <form onSubmit={(e) => dispatch(addOrdering(e, inputs.message, user.id, product.id, timer, setRent, setSend))}>
+    <form autoComplete="off" onSubmit={(e) => dispatch(addOrdering(e, inputs.message, user.id, product.id, timer, setRent, setSend))}>
       <div className="days" style={{ marginLeft: 'auto', marginRight: 'auto' }} />
-      <TextField type="text" onChange={changeHandler} value={inputs.message} name="message" id="standard-basic" label="Сообщение" variant="standard" style={{ width: '100%', backgroundColor: 'white' }} />
-      <TextField type="text" onChange={changeHandlerTiming} value={timer.timing} name="timing" id="standard-basic" label="Время аренды" variant="standard" style={{ width: '100%', backgroundColor: 'white' }} />
+      <TextField autocomplete="off" type="text" onChange={changeHandler} value={inputs.message} name="message" id="standard-basic" label="Сообщение" variant="standard" style={{ width: '100%', backgroundColor: 'white' }} />
+      <TextField autocomplete="off" type="text" onChange={changeHandlerTiming} value={timer.timing} name="timing" id="standard-basic" label="Время аренды" variant="standard" style={{ width: '100%', backgroundColor: 'white' }} />
       <p>{`Цена аренды ${priceCalculate}`}</p>
       <p>Не уверенны в сроках? Выберите новое время, с помощью бегунка ниже</p>
       <Days changeHandlerTiming={changeHandlerTiming} timer={timer} max={max} />

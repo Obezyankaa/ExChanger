@@ -5,6 +5,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination, Navigation } from 'swiper';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
+import VisibilityIcon from '@mui/icons-material/Visibility';
 import Map from '../Map/Map';
 import StarUserRating from '../../UI/StarUserRating';
 import Days from '../../UI/Days';
@@ -20,6 +21,7 @@ import ItemModalLog from '../../UI/ItemModalLog';
 import ModalItemRent from '../../UI/ModalItemRent';
 import CommentsModalka from '../../UI/CommentsModalka';
 import './index.css';
+import CommentList from '../../UI/CommentList';
 
 export default function ItemPage({
   modal, setModal,
@@ -106,9 +108,13 @@ export default function ItemPage({
             <div className="first-screen__right-top">
               <p style={!night === true ? ({ color: 'black' }) : ({ color: 'white' })}>{argProduct?.name}</p>
               <p style={!night === true ? ({ color: 'black' }) : ({ color: 'white' })}>{argProduct?.Category?.name}</p>
-              <StarUserRating star={starRating} />
-              {/* <p>{argProduct?.Views.counter}</p> */}
               <p style={!night === true ? ({ color: 'black' }) : ({ color: 'white' })}>
+                <VisibilityIcon />
+                {' '}
+                { argProduct.id && argProduct?.Views[0].counter}
+              </p>
+              <StarUserRating star={starRating} />
+              <p style={night === true ? ({ color: 'black' }) : ({ color: 'white' })}>
                 {priceCalculate.toFixed(2)}
                 {' '}
                 ₽
@@ -148,8 +154,14 @@ export default function ItemPage({
                 <CommentsModalka setComent={setComent} />
               ) : (
                 <>
-                  <Button onClick={() => setComent(true)} variant="contained" color="success" type="button">Оставить комментарий</Button>
                 </>
+              )}
+              {coment == false && user.id !== argProduct.user_id ? (
+                <>
+                  <button onClick={() => setComent(true)} variant="contained" color="success" type="button">Оставить комментарий</button>
+                </>
+              ) : (
+                <></>
               )}
             </div>
             <div className="first-screen__right-bottom">
@@ -180,6 +192,9 @@ export default function ItemPage({
       </div>
       <div className="map">
         <Map coordinates={argProduct.location} />
+      </div>
+      <div>
+        <CommentList id={num} />
       </div>
       {regActive === true ? (
         <ModalRegistration setRegActive={setRegActive} />

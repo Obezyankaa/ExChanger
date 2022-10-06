@@ -1,6 +1,6 @@
 import { ADD_COMMENTS, SET_COMMENTS } from '../types';
 
-export default function userReducer(state = {}, action) {
+export default function userReducer(state = [], action) {
   const { type, payload } = action;
   switch (type) {
     case ADD_COMMENTS:
