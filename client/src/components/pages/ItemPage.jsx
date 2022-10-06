@@ -194,8 +194,8 @@ export default function ItemPage({
       <div className="map">
         <Map coordinates={argProduct.location} />
       </div>
-      <div className="comments__block">
-        <CommentList id={num} />
+      <div style={!night === true ? ({ backgroundColor: 'white', color: 'white', height: '100vh' }) : ({ backgroundColor: '#202124', color: 'white', height: '100vh' })} className="comments__block">
+        <CommentList night={night} id={num} />
       </div>
       {regActive === true ? (
         <ModalRegistration setRegActive={setRegActive} />

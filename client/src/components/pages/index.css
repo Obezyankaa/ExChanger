@@ -71,6 +71,10 @@
   .first-screen-profile__rightblock-photo {
     width: 50px;
   }
+  
+  .first-screen-profile__btn {
+    border-radius: 1rem;
+  }
 
   .updateForm {
     width: 700px;
