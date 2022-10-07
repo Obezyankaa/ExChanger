@@ -5,7 +5,7 @@ import OrderItem from '../../UI/OrderItem';
 
 export default function RentPage() {
   const dispatch = useDispatch();
-  const user = useSelector((state) => state.user);
+  // const user = useSelector((state) => state.user);
   const order = useSelector((state) => state.order);
   useEffect(() => {
     dispatch(setOrdering());
@@ -13,7 +13,7 @@ export default function RentPage() {
   console.log(order);
   return (
     <>
-      <div>{user.f_name}</div>
+      {/* <div>{user.f_name}</div> */}
       {order.length === 0 ? (
         <div>Нет заявок</div>
       ) : (

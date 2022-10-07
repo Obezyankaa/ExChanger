@@ -120,6 +120,7 @@ export default function Profile({ night, setAddProdActive, addProdActive }) {
         {allProducts === true ? (
           <div>
             <UserAllProducts />
+            <div style={{ height: '10rem' }} />
           </div>
         ) : (
           <div />
@@ -133,6 +134,7 @@ export default function Profile({ night, setAddProdActive, addProdActive }) {
         {active === true ? (
           <div>
             <AllActiveProducts />
+            <div style={{ height: '10rem' }} />
           </div>
         ) : (
           <div />

@@ -5,17 +5,22 @@ import './slider.css';
 import { useSelector } from 'react-redux';
 import SliderItem from '../../SliderItem';
 
-export default function Slider() {
+export default function Slider({ night }) {
   const categories = useSelector((state) => state.categories);
   return (
     <>
-      <div className="slider-container">
+      <div className={!night === true ? ('slider-container') : ('slider-container2')}>
         <Marquee>
           {categories?.map((item) => (
-            <SliderItem item={item} key={item.id} />
+            <SliderItem
+              item={item}
+              key={item.id}
+            />
           ))}
         </Marquee>
       </div>
     </>
   );
 }
+
+// {night === true ? ('overlay') : ('overlay2')}

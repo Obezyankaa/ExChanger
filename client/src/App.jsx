@@ -51,7 +51,7 @@ function App() {
         <Route path="/allproducts" element={<AllProducts regActive={regActive} setRegActive={setRegActive} setLogActive={setLogActive} logActive={logActive} setAddProdActive={setAddProdActive} addProdActive={addProdActive} />} />
         <Route path="/profile" element={<Profile night={night} setNight={setNight} setAddProdActive={setAddProdActive} addProdActive={addProdActive} />} />
         <Route path="/allFavoriteProducts" element={<AllFavoriteProducts />} />
-        <Route path="/user/:id" element={<UserProfile regActive={regActive} setRegActive={setRegActive} setLogActive={setLogActive} logActive={logActive} setAddProdActive={setAddProdActive} addProdActive={addProdActive} />} />
+        <Route path="/user/:id" element={<UserProfile night={night} regActive={regActive} setRegActive={setRegActive} setLogActive={setLogActive} logActive={logActive} setAddProdActive={setAddProdActive} addProdActive={addProdActive} />} />
         <Route path="/slider" element={<SliderMylter />} />
         <Route path="/myorders" element={<RentPage />} />
         <Route path="/com" element={<CommentList />} />
