@@ -11,11 +11,12 @@ export default function AllProducts({
 }) {
   const [products, setProducts] = useState([]);
   const categories = useSelector((state) => state.categories);
-  const [findInput, setFindInput] = useState({ minRange: 0, maxRange: 5000 });
+  const [findInput, setFindInput] = useState({ minRange: 0, maxRange: 10000 });
   const [categoryInput, setCategoryInput] = useState({});
   useEffect(() => {
     axios.get('/product').then((response) => {
       setProducts(response.data.map((prod) => {
+        console.log(prod);
         const images = prod.ProductPhotos.map((el) => el.photo);
         return ({
           id: prod.id,
@@ -63,18 +64,18 @@ export default function AllProducts({
         <div style={{ display: 'flex' }}>
           <div style={{ width: '1.2rem' }}>От</div>
           <div style={{ width: '4rem', display: 'flex', justifyContent: 'center' }}>{findInput.minRange}</div>
-          <div style={{ width: '4rem' }}>руб/сут</div>
+          <div style={{ width: '4rem' }}>₽/сут</div>
         </div>
         <div className="range-slider">
-          <input className="range-slider__range" type="range" name="minRange" value={findInput.minRange} onChange={changeHandler} min="0" max="5000" step="50" style={{ width: '80%' }} />
+          <input className="range-slider__range" type="range" name="minRange" value={findInput.minRange} onChange={changeHandler} min="0" max="10000" step="50" style={{ width: '80%' }} />
         </div>
         <div style={{ display: 'flex', marginTop: '0.5rem' }}>
           <div style={{ width: '1.2rem' }}>До</div>
           <div style={{ width: '4rem', display: 'flex', justifyContent: 'center' }}>{findInput.maxRange}</div>
-          <div style={{ width: '4rem' }}>руб/сут</div>
+          <div style={{ width: '4rem' }}>₽/сут</div>
         </div>
         <div className="range-slider">
-          <input className="range-slider__range" type="range" name="maxRange" value={findInput.maxRange} onChange={changeHandler} min="0" max="5000" step="50" style={{ width: '80%' }} />
+          <input className="range-slider__range" type="range" name="maxRange" value={findInput.maxRange} onChange={changeHandler} min="0" max="10000" step="50" style={{ width: '80%' }} />
         </div>
       </div>
 
@@ -83,7 +84,7 @@ export default function AllProducts({
           display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'center',
         }}
         >
-          {products.map((el) => <Card product={el} key={el.id} />)}
+          {products?.map((el) => <Card product={el} key={el.id} />)}
         </div>
         <div style={{ height: '3rem' }} />
       </div>

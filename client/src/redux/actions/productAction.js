@@ -44,7 +44,7 @@ export const deleteItemFromList = (id, navigate) => (dispatch) => {
   console.log('actions === id ----', id);
   axios.delete(`/useritems/${id}`)
     .then(() => {
-      navigate('/');
+      navigate('/allproducts');
       dispatch(deleteProduct(id));
     })
     .catch(console.log);

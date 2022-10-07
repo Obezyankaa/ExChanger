@@ -21,7 +21,7 @@ export default function DeleteModal({ deleter, setDeleter, argProduct }) {
     setDeleter(false);
   };
 
-  const delClose = (id, navigate) => {
+  const delClose = () => {
     dispatch(deleteItemFromList(id, navigate));
     setDeleter(false);
   };
