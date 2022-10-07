@@ -33,7 +33,7 @@ export default function FormModalReg({ setRegActive }) {
       <div className="form-conatainer" style={{ display: 'flex', flexDirection: 'column' }}>
         <Box
           sx={{
-            '& > :not(style)': { m: 1, width: '25ch' },
+            '& > :not(style)': { m: 1, width: '26ch' },
           }}
           noValidate
           style={{ display: 'flex', flexDirection: 'column' }}

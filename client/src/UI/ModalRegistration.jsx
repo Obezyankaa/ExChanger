@@ -18,7 +18,7 @@ export default function ModalRegistration({ setRegActive }) {
       <div
         className="modalwindow"
         style={{
-          width: '40%', height: '60%', marginLeft: 'auto', marginRight: 'auto', marginTop: '10%', border: '3px solid rgba(0, 0, 0, 0.05)', borderRadius: '10px', backgroundColor: 'white', opacity: '1',
+          width: '40%', height: '65%', marginLeft: 'auto', marginRight: 'auto', marginTop: '10%', border: '3px solid rgba(0, 0, 0, 0.05)', borderRadius: '10px', backgroundColor: 'white', opacity: '1',
         }}
         onClick={(e) => {
           e.stopPropagation();
