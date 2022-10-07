@@ -10,11 +10,11 @@ import './index.css';
 export default function CommentOne({ el, night }) {
   return (
     // eslint-disable-next-line react/jsx-no-duplicate-props
-    <Card style={!night === true ? ({ backgroundColor: 'white', color: 'white' }) : ({ backgroundColor: '#202124', color: 'white' })} className="comments__block" className="comments__cart">
+    <Card style={!night === true ? ({ backgroundColor: 'white', color: 'white', marginBottom: '10px' }) : ({ backgroundColor: '#202124', color: 'white', marginBottom: '10px' })}>
       <CardContent>
         <Typography className="comments__cart__text" color="text.secondary" gutterBottom>
           <Avatar className="comments__cart__avatar" src={`http://localhost:3001/images/${el?.User?.photo}`} />
-          <Typography>
+          <Typography style={!night === true ? ({ color: '#494747' }) : ({ color: 'white' })}>
             {el?.User?.f_name}
             {' '}
             {el?.User?.l_name}

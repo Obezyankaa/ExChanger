@@ -90,7 +90,7 @@ export default function Profile({ night, setAddProdActive, addProdActive }) {
       ) : (
         <div />
       )}
-      <div>
+      <div style={!night === true ? ({ backgroundColor: 'white', color: 'white' }) : ({ backgroundColor: '#202124', color: 'white' })}>
         {allProducts === true ? (
           <div>
             <UserAllProducts />
