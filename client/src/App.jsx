@@ -15,6 +15,7 @@ import UserProfile from './components/pages/UserProfile';
 import AllProducts from './components/pages/AllProducts';
 import { fetchUserItems } from './redux/actions/userItemsAction';
 import AllFavoriteProducts from './components/pages/AllFavoritesProducts';
+import AllActiveProducts from './components/pages/AllActiveProducts';
 import SliderMylter from './UI/SliderMylter';
 import RentPage from './components/pages/RentPage';
 import CommentList from './UI/CommentList';
@@ -54,6 +55,7 @@ function App() {
         <Route path="/slider" element={<SliderMylter />} />
         <Route path="/myorders" element={<RentPage />} />
         <Route path="/com" element={<CommentList />} />
+        <Route path="/allActiveProducts" element={<AllActiveProducts />} />
       </Routes>
     </div>
   );
