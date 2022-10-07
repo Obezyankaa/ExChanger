@@ -10,7 +10,6 @@ export default function Card({ product }) {
   const {
     photos, userName, userPhoto, description, productName, price, date, userId, id,
   } = product;
-  console.log(product);
   let smallDescr = '';
   if (description.length > 50) {
     smallDescr = `${description.substr(0, 47)}...`;
@@ -19,17 +18,13 @@ export default function Card({ product }) {
   }
   const dispatch = useDispatch();
   const [isFavorite, setIsFavorite] = useState(false);
-  // const isFavorite = useSelector((state) => state.changeFavoriteState);
-  // console.log('isFavorite', isFavorite);
+
   useEffect(() => {
     axios.get(`/product/isfavorite/${id}`).then((resp) => dispatch(setIsFavorite(resp.data)));
   }, [isFavorite]);
   const changeFavoriteHandler = () => {
-    // console.log('Handler', isFavorite, id);
     isFavorite
       ? dispatch(deleteFavoriteAsync(id, setIsFavorite)) : dispatch(setFavorite(id, setIsFavorite));
-    // ? axios.put(`/product/favorite/${id}`).then((resp) => setIsFavorite(resp.data))
-    // : axios.delete(`/product/favorite/${id}`).then((resp) => setIsFavorite(resp.data));
   };
   return (
     <div style={{ margin: '2rem 2rem 0rem 2rem' }}>
@@ -59,13 +54,23 @@ export default function Card({ product }) {
             </Swiper>
           </div>
           <div className="item__info">
-
             <Link
               to={`/item/
           ${id}`}
               style={{ textDecoration: 'none' }}
             >
-              <h1 className="item__title">{productName}</h1>
+              <h1 className="item__title">
+                {!product.status ? (
+                  <svg height="55" width="35">
+                    <circle cx="15" cy="25" r="5" fill="red" />
+                  </svg>
+                ) : (
+                  <svg height="55" width="35">
+                    <circle cx="15" cy="25" r="5" fill="#25FF1E" />
+                  </svg>
+                )}
+                {productName}
+              </h1>
 
             </Link>
             <p className="item__desc">{smallDescr}</p>

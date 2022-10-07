@@ -1,7 +1,6 @@
 import * as React from 'react';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
 import Typography from '@mui/material/Typography';
-// import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import { Link } from 'react-router-dom';
@@ -22,7 +21,7 @@ export default function BreadCrumps({ night, itemName, category }) {
       key="2"
       color="inherit"
       style={!night === true ? ({ textDecoration: 'none', color: 'black' }) : ({ textDecoration: 'none', color: 'white' })}
-      to="/material-ui/getting-started/installation/" // линка на категорию
+      to="/allproducts"
     >
       {category}
     </Link>,

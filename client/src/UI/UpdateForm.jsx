@@ -17,7 +17,6 @@ export default function UpdateForm({ night }) {
   const [inputs, setInputs] = useState({
     f_name: '', l_name: '', email: '', photo: '', telegram: '', phone: '',
   });
-  console.log(inputs);
   useEffect(() => {
     const newInputs = { ...user };
     delete newInputs.id;
@@ -37,7 +36,7 @@ export default function UpdateForm({ night }) {
   };
   console.log(inputs);
   return (
-    <form className="updateForm" onSubmit={(e) => dispatch(userUpdater(e, inputs, user.id))}>
+    <form className="updateForm" onSubmit={(e) => dispatch(userUpdater(e, inputs, user.id, navigate))}>
       <div
         className="form-conatainer"
         style={!night === true ? ({

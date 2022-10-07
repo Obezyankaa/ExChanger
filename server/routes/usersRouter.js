@@ -20,7 +20,7 @@ router.put('/:id', fileMiddleware.single('photo'), async (req, res) => {
       f_name, l_name, email, photo, telegram, phone,
     } = req.body;
     const arg = {
-      f_name, l_name, email, photo, telegram, phone, photo: req.file?.originalname,
+      f_name, l_name, email, telegram, phone, photo: req.file?.originalname,
     };
     console.log(arg);
     const newUser = await User.update(arg, { where: { id: req.params.id } });

@@ -7,20 +7,29 @@ import Typography from '@mui/material/Typography';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
-import { cancelOrderAsync } from '../redux/actions/orderActions';
+import { useState, useEffect } from 'react';
+import { cancelOrderAsync, setOrdering } from '../redux/actions/orderActions';
 
 export default function OrderItem({ order }) {
+  console.log(order);
   const prodId = order.RentProducts[0].product_id;
   const userRenterId = order.RentProducts[0].user_renter;
+  const [response, setResponse] = useState();
   // console.log(order.id);
   const dispatch = useDispatch();
   const acceptHandler = () => {
-    axios(`/application/accept/${prodId}`);
+    axios(`/application/accept/${prodId}`)
+      .then((res) => setResponse(res.status));
   };
+  console.log(response, '------');
   const cancelHandler = () => {
     // axios.post('/application/decline', { user_renter: userRenterId, product_id: prodId });
-    dispatch(cancelOrderAsync(order.id, userRenterId, prodId));
+    console.log(order.id, userRenterId, prodId);
+    dispatch(cancelOrderAsync(order.id, userRenterId, prodId, setResponse));
   };
+  useEffect(() => {
+    dispatch(setOrdering());
+  }, [response]);
   return (
     <Card sx={{ minWidth: 275 }}>
       <CardContent>
@@ -56,8 +65,16 @@ export default function OrderItem({ order }) {
         <Link to={`/item/${order.id}`}><Button size="small">Посмотреть карточку товара</Button></Link>
       </CardActions>
       <>
-        <Button type="button" variant="contained" onClick={acceptHandler}>Принять заявку</Button>
-        <Button type="button" variant="contained" onClick={cancelHandler}>Отклонить заявку</Button>
+        {order.status
+          ? (
+            <>
+              <Button type="button" variant="contained" onClick={acceptHandler}>Принять заявку</Button>
+              <Button type="button" variant="contained" onClick={cancelHandler}>Отклонить заявку</Button>
+            </>
+          ) : (
+            <Button type="button" variant="contained" onClick={cancelHandler}>Завершить аренду</Button>
+
+          )}
       </>
     </Card>
   );
