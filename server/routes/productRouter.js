@@ -129,4 +129,23 @@ router.put('/:id', async (req, res) => {
   }
 });
 
+router.post('/:id', async (req, res) => {
+  const { id } = req.params;
+  const update = req.body.inputs;
+  const category = await Category.findOne({ where: { id: update.category_id } });
+  const newProduct = {
+    name: update.name,
+    category_id: category.id,
+    description: update.description,
+    status: update.status,
+    price: update.price,
+    user_id: req.session.userSession.id,
+    timing: update.timing,
+  };
+  const updateProduct = await Product.update(newProduct, { where: { id: req.params.id } });
+  console.log(id);
+  console.log(update);
+  res.json(updateProduct);
+});
+
 module.exports = router;
