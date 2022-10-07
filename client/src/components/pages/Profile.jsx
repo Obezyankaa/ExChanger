@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { checkAuth } from '../../redux/actions/userAction';
 import ModalAddProd from '../../UI/ModalAddProd';
 import UserAllProducts from '../../UI/UserAllProducts';
+import AllActiveProducts from './AllActiveProducts';
 import AllFavoriteProducts from './AllFavoritesProducts';
 import './index.css';
 
@@ -33,7 +34,7 @@ export default function Profile({ night, setAddProdActive, addProdActive }) {
 
   const activesprod = () => {
     setAllProducts(false);
-    setIsSelectedFavorite(true);
+    setIsSelectedFavorite(false);
     setActive(true);
   };
 
@@ -47,9 +48,6 @@ export default function Profile({ night, setAddProdActive, addProdActive }) {
                 <p />
                 <p style={!night === true ? ({ color: 'black' }) : ({ color: 'white' })}>{user.f_name}</p>
                 <p style={!night === true ? ({ color: 'black' }) : ({ color: 'white' })}>{user.l_name}</p>
-              </div>
-              <div className="first-screen-profile__leftblock-skils">
-                <p>Свяжитесь с пользователем</p>
               </div>
               <div className="first-screen-profile__leftblock-form">
                 <form className="first-screen-profile__form" action="form\thanks\thanks.html">
@@ -91,10 +89,16 @@ export default function Profile({ night, setAddProdActive, addProdActive }) {
                   <p>Все товары</p>
                 </div>
               )}
-              <div className="stats__block-two" onClick={activesprod}>
-                <p>Активные товары</p>
-              </div>
-              {isSelectedFavorite ? (
+              {active === false ? (
+                <div className="stats__block-two" onClick={activesprod}>
+                  <p>Активные товары</p>
+                </div>
+              ) : (
+                <div className="stats__block-two" onClick={() => setActive(false)}>
+                  <p>Активные товары</p>
+                </div>
+              )}
+              {isSelectedFavorite === false ? (
                 <div className="stats__block-three" onClick={favsprod} style={{ cursor: 'pointer' }}>
                   <p>Избранное</p>
                 </div>
@@ -103,9 +107,6 @@ export default function Profile({ night, setAddProdActive, addProdActive }) {
                   <p>Избранное</p>
                 </div>
               )}
-              {/* <div className="stats__block-four">
-                <p>Отзывы</p>
-              </div> */}
             </div>
           </div>
         </div>
@@ -128,6 +129,13 @@ export default function Profile({ night, setAddProdActive, addProdActive }) {
           <AllFavoriteProducts />
           <div style={{ height: '10rem' }} />
         </div>
+        )}
+        {active === true ? (
+          <div>
+            <AllActiveProducts />
+          </div>
+        ) : (
+          <div />
         )}
       </div>
     </>

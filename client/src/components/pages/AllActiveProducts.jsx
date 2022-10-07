@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import Card from '../../UI/Card';
 
-export default function AllFavoriteProducts() {
+export default function AllActiveProducts() {
   const favorites = useSelector((state) => state.favorite);
   const [products, setProducts] = useState([]);
   const [categoryInput, setCategoryInput] = useState({});
