@@ -9,7 +9,7 @@ import Telega from '../../UI/Telega';
 import AllActiveProducts from './AllActiveProducts';
 
 export default function UserProfile({
-  modal, setModal,
+  modal, setModal, night,
   setAddProdActive, addProdActive, regActive, setRegActive, logActive, setLogActive,
 }) {
   const [btn, setBtn] = useState(false);
@@ -58,8 +58,8 @@ export default function UserProfile({
               <div className="first-screen-profile__leftblock">
                 <div className="first-screen-profile__leftblock-textarea">
                   <p />
-                  <p>{users.f_name}</p>
-                  <p>{users.l_name}</p>
+                  <p style={!night === true ? ({ color: 'black' }) : ({ color: 'white' })}>{user.f_name}</p>
+                  <p style={!night === true ? ({ color: 'black' }) : ({ color: 'white' })}>{user.l_name}</p>
                 </div>
                 <div className="first-screen-profile__leftblock-skils">
                   <p>Свяжитесь с пользователем</p>
