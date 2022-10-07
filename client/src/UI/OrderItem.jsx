@@ -22,7 +22,7 @@ export default function OrderItem({ order }) {
     dispatch(cancelOrderAsync(order.id, userRenterId, prodId));
   };
   return (
-    <Card sx={{ minWidth: 275 }}>
+    <Card sx={{ minWidth: 275, margin: '1rem' }}>
       <CardContent>
         <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
           Номер заказа:
@@ -36,8 +36,9 @@ export default function OrderItem({ order }) {
           {order.name}
           {/* </Link> */}
         </Typography>
-        <Typography sx={{ mb: 1.5 }} color="text.secondary">
+        <Typography sx={{ mt: 1.5 }} color="text.secondary">
           Сообщение от пользователя
+          {' '}
           {console.log('order', order)}
           <Link to={`/user/${order?.RentProducts[0]?.user_renter}`}>
             {order.RentProducts[0].f_name}
@@ -56,8 +57,8 @@ export default function OrderItem({ order }) {
         <Link to={`/item/${order.id}`}><Button size="small">Посмотреть карточку товара</Button></Link>
       </CardActions>
       <>
-        <Button type="button" variant="contained" onClick={acceptHandler}>Принять заявку</Button>
-        <Button type="button" variant="contained" onClick={cancelHandler}>Отклонить заявку</Button>
+        <Button type="button" variant="contained" onClick={acceptHandler} style={{ margin: '1rem' }}>Принять заявку</Button>
+        <Button type="button" variant="contained" onClick={cancelHandler} style={{ margin: '1rem' }}>Отклонить заявку</Button>
       </>
     </Card>
   );
