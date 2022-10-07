@@ -56,8 +56,8 @@ export default function OrderItem({ order }) {
         <Link to={`/item/${order.id}`}><Button size="small">Посмотреть карточку товара</Button></Link>
       </CardActions>
       <>
-        <button type="button" onClick={acceptHandler}>Принять заявку</button>
-        <button type="button" onClick={cancelHandler}>Отклонить заявку</button>
+        <Button type="button" variant="contained" onClick={acceptHandler}>Принять заявку</Button>
+        <Button type="button" variant="contained" onClick={cancelHandler}>Отклонить заявку</Button>
       </>
     </Card>
   );
