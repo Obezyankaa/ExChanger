@@ -880,6 +880,7 @@ body {
   -o-object-fit: cover;
      object-fit: cover;
 }
+
 .intro__media2::before {
   position: absolute;
   top: 0;
