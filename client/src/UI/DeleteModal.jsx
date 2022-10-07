@@ -11,10 +11,9 @@ import { deleteItemFromList } from '../redux/actions/productAction';
 
 export default function DeleteModal({ deleter, setDeleter, argProduct }) {
   const navigate = useNavigate();
-  const { name, id } = argProduct;
+  const { id } = argProduct;
 
-  console.log(id);
-  console.log(name);
+  console.log('----id----', id);
 
   const dispatch = useDispatch();
 
@@ -22,7 +21,7 @@ export default function DeleteModal({ deleter, setDeleter, argProduct }) {
     setDeleter(false);
   };
 
-  const delClose = (id, navigate) => {
+  const delClose = () => {
     dispatch(deleteItemFromList(id, navigate));
     setDeleter(false);
   };
@@ -45,7 +44,7 @@ export default function DeleteModal({ deleter, setDeleter, argProduct }) {
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Отмена</Button>
-          <Button onClick={delClose} autoFocus>
+          <Button onClick={() => delClose(id, navigate)} autoFocus>
             Да, я хочу удалить этот товар
           </Button>
         </DialogActions>

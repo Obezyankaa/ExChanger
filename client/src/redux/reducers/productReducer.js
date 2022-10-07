@@ -10,7 +10,7 @@ export default function productReducer(state = [], action) {
     case SET_PRODUCTS:
       return payload;
     case DELETE_PRODUCT:
-      return state.filter((item) => item.id !== payload);
+      return state.filter((item) => item.id !== payload.id);
     case UPDATE_PRODUCT:
       return state.map((item) => (item.id === payload.id ? payload : item));
     default:

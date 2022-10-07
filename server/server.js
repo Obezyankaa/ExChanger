@@ -15,6 +15,7 @@ const userItemsRouter = require('./routes/userItemsRouter');
 const productPageRouter = require('./routes/productPageRouter');
 const gradeProductRouter = require('./routes/gradeProductRouter');
 const orderRouter = require('./routes/orderRouter');
+const applicationRouter = require('./routes/applicationRouter');
 
 const app = express();
 const PORT = 3001;
@@ -81,5 +82,6 @@ app.use('/item-product', productPageRouter);
 app.use('/useritems', userItemsRouter);
 app.use('/grade', gradeProductRouter);
 app.use('/order', orderRouter);
+app.use('/application', applicationRouter);
 
 app.listen(PORT, () => console.log(`Server has started on PORT ${PORT}`));

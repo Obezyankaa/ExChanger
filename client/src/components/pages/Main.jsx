@@ -13,12 +13,12 @@ export default function Main({
 
   const checkLog = () => {
     setLogActive(true);
-    setRegActive(false)
+    setRegActive(false);
   };
 
   const checkReg = () => {
     setLogActive(false);
-    setRegActive(true)
+    setRegActive(true);
   };
 
   return (
@@ -61,6 +61,7 @@ export default function Main({
           <></>
         )}
       </>
+      <div style={{ height: '5rem' }} />
     </>
   );
 }

@@ -167,7 +167,7 @@ export default function ItemPage({
               )}
               {coment == false && user.id !== argProduct.user_id ? (
                 <>
-                  <button onClick={() => setComent(true)} variant="contained" color="success" type="button">Оставить комментарий</button>
+                  <Button onClick={() => setComent(true)} variant="contained" color="success" type="button">Оставить комментарий</Button>
                 </>
               ) : (
                 <></>
@@ -202,7 +202,7 @@ export default function ItemPage({
       <div className="map">
         <Map coordinates={argProduct.location} />
       </div>
-      <div>
+      <div className="comments__block">
         <CommentList id={num} />
       </div>
       {regActive === true ? (

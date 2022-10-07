@@ -31,18 +31,20 @@ export const addProduct = (e, inputs, setInputs, newStat, setSlider) => () => {
     });
 };
 
-export const productUpdater = (e, inputs, id, setUpdate) => () => {
-  e.preventDefault();
-  axios.post(`/product/${id}`, { inputs })
-    .then(() => {
-      setUpdate(false);
-    });
-};
+// export const deleteProductAsync = (id, navigate) => (dispatch) => {
+//   axios.delete(`/useritems/${id}`)
+//     .then(() => {
+//       navigate('/');
+//       dispatch(deleteProduct(id));
+//     })
+//     .catch(console.log);
+// };
 
 export const deleteItemFromList = (id, navigate) => (dispatch) => {
+  console.log('actions === id ----', id);
   axios.delete(`/useritems/${id}`)
     .then(() => {
-      navigate('/');
+      navigate('/allproducts');
       dispatch(deleteProduct(id));
     })
     .catch(console.log);

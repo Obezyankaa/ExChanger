@@ -68,7 +68,7 @@ export default function Card({ product }) {
               <div className="item__price" style={{ alignItems: 'center', display: 'flex' }}>
                 <span className="price-eth">{price}</span>
                 <p className="item__rud" style={{ margin: '0rem 0rem 0rem 0.5rem' }}>
-                  руб/сут
+                  ₽/сут
                 </p>
               </div>
               <div className="item__time">
