@@ -9,7 +9,7 @@ export default function ModalAddProd({ setAddProdActive }) {
   return (
     <div
       style={{
-        height: '100vh', width: '100%', backgroundColor: 'black', position: 'fixed', top: '0', left: '0', zIndex: '100',
+        height: '100vh', width: '100%', backgroundColor: '0000006e', position: 'fixed', top: '0', left: '0', zIndex: '100',
       }}
       onClick={(e) => {
         e.stopPropagation();
