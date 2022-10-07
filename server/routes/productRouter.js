@@ -143,8 +143,6 @@ router.post('/:id', async (req, res) => {
     timing: update.timing,
   };
   const updateProduct = await Product.update(newProduct, { where: { id: req.params.id } });
-  console.log(id);
-  console.log(update);
   res.json(updateProduct);
 });
 

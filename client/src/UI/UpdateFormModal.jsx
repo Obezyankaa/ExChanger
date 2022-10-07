@@ -1,10 +1,9 @@
 import {
-  Autocomplete, Button, Chip, ListItem, TextField,
+  Autocomplete, Button, TextField,
 } from '@mui/material';
 import { Box } from '@mui/system';
 import SendIcon from '@mui/icons-material/Send';
 import React, { useEffect, useState } from 'react';
-import { v4 as uuidv4 } from 'uuid';
 import { useDispatch, useSelector } from 'react-redux';
 import { productUpdater } from '../redux/actions/productAction';
 
