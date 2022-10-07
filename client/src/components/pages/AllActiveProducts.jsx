@@ -1,22 +1,17 @@
-import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import Card from '../../UI/Card';
-import ModalRegistration from '../../UI/ModalRegistration';
-import ModalLog from '../../UI/ModalLog';
-import ModalAddProd from '../../UI/ModalAddProd';
 
-export default function AllProducts({
-  regActive, setRegActive, setLogActive, logActive, setAddProdActive, addProdActive,
-}) {
+export default function AllActiveProducts() {
+  const favorites = useSelector((state) => state.favorite);
   const [products, setProducts] = useState([]);
-  const categories = useSelector((state) => state.categories);
-  const [findInput, setFindInput] = useState({ minRange: 0, maxRange: 10000 });
   const [categoryInput, setCategoryInput] = useState({});
+  const [findInput, setFindInput] = useState({ minRange: 0, maxRange: 5000 });
   useEffect(() => {
     axios.get('/product').then((response) => {
       setProducts(response.data.map((prod) => {
-        console.log(prod);
+        console.log(prod.status);
         const images = prod.ProductPhotos.map((el) => el.photo);
         return ({
           id: prod.id,
@@ -29,18 +24,21 @@ export default function AllProducts({
           productName: prod.name,
           date: (new Date(prod.createdAt)).toLocaleDateString([], { hour: '2-digit', minute: '2-digit' }),
           userId: prod.User.id,
+          prodStatus: prod.status,
         });
       })
+        .filter((el) => el.prodStatus === true)
         .filter((el) => Number(el.price) <= findInput.maxRange && Number(el.price) >= findInput.minRange)
         .filter(
           (el) => {
-            const keys = Object.keys(categoryInput)?.map((elem) => Number(elem));
-            return Object.values(categoryInput).includes(true) ? keys.includes(el.categoryId) && categoryInput[el.categoryId] === true : true;
+            const categoryKeys = Object.keys(categoryInput)?.map((elem) => Number(elem));
+            return Object.values(categoryInput).includes(true) ? (categoryKeys.includes(el.categoryId) && categoryInput[el.categoryId] === true) : true;
           },
         ));
     });
-  }, [categoryInput, findInput]);
+  }, [categoryInput, findInput, favorites]);
 
+  const categories = useSelector((state) => state.categories);
   const changeHandler = (e) => {
     setFindInput((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
@@ -50,9 +48,10 @@ export default function AllProducts({
 
   return (
     <div style={{ display: 'flex', marginLeft: '7rem' }}>
+
       <div style={{ marginRight: '3rem', marginTop: '1rem' }}>
         <p style={{ marginTop: '1rem', fontWeight: '500' }}>Категория</p>
-        {categories.map((el) => (
+        {categories?.map((el) => (
           <div key={el.id} className="form-check">
             <input className="form-check-input" type="checkbox" id="flexCheckDefault" onChange={changeCategoryHandler} checked={categoryInput[el.id]} value={categoryInput[el.id]} name={el.id} />
             <label className="form-check-label" htmlFor="flexCheckDefault">
@@ -64,18 +63,18 @@ export default function AllProducts({
         <div style={{ display: 'flex' }}>
           <div style={{ width: '1.2rem' }}>От</div>
           <div style={{ width: '4rem', display: 'flex', justifyContent: 'center' }}>{findInput.minRange}</div>
-          <div style={{ width: '4rem' }}>₽/сут</div>
+          <div style={{ width: '4rem' }}>руб/сут</div>
         </div>
         <div className="range-slider">
-          <input className="range-slider__range" type="range" name="minRange" value={findInput.minRange} onChange={changeHandler} min="0" max="10000" step="50" style={{ width: '80%' }} />
+          <input className="range-slider__range" type="range" name="minRange" value={findInput.minRange} onChange={changeHandler} min="0" max="5000" step="50" style={{ width: '80%' }} />
         </div>
         <div style={{ display: 'flex', marginTop: '0.5rem' }}>
           <div style={{ width: '1.2rem' }}>До</div>
           <div style={{ width: '4rem', display: 'flex', justifyContent: 'center' }}>{findInput.maxRange}</div>
-          <div style={{ width: '4rem' }}>₽/сут</div>
+          <div style={{ width: '4rem' }}>руб/сут</div>
         </div>
         <div className="range-slider">
-          <input className="range-slider__range" type="range" name="maxRange" value={findInput.maxRange} onChange={changeHandler} min="0" max="10000" step="50" style={{ width: '80%' }} />
+          <input className="range-slider__range" type="range" name="maxRange" value={findInput.maxRange} onChange={changeHandler} min="0" max="5000" step="50" style={{ width: '80%' }} />
         </div>
       </div>
 
@@ -84,25 +83,9 @@ export default function AllProducts({
           display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'center',
         }}
         >
-          {products?.map((el) => <Card product={el} key={el.id} />)}
+          { products?.map((el) => <Card product={el} key={el.id} />)}
         </div>
-        <div style={{ height: '3rem' }} />
       </div>
-      {regActive === true ? (
-        <ModalRegistration setRegActive={setRegActive} />
-      ) : (
-        <></>
-      )}
-      {logActive === true ? (
-        <ModalLog setLogActive={setLogActive} />
-      ) : (
-        <></>
-      )}
-      {addProdActive === true ? (
-        <ModalAddProd setAddProdActive={setAddProdActive} />
-      ) : (
-        <></>
-      )}
     </div>
   );
 }

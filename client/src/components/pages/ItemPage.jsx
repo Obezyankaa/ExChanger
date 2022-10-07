@@ -23,10 +23,13 @@ import ModalItemRent from '../../UI/ModalItemRent';
 import CommentsModalka from '../../UI/CommentsModalka';
 import './index.css';
 import CommentList from '../../UI/CommentList';
+import DeleteModal from '../../UI/DeleteModal';
+import UpdateModal from '../../UI/UpdateModal';
 
 export default function ItemPage({
   modal, setModal,
   night, regActive, setRegActive, logActive, setLogActive,
+
 }) {
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
@@ -39,12 +42,17 @@ export default function ItemPage({
   const [rent, setRent] = useState(false);
   const [send, setSend] = useState(false);
   const [coment, setComent] = useState(false);
-  // const [modul, setModul] = useState(false);
+  const [deleter, setDeleter] = useState(false);
+  const [update, setUpdate] = useState(false);
   const [inputs, setInputs] = useState({ timing: 1 });
   const starRating = useSelector((state) => state.gradeProduct);
   useEffect(() => {
     dispatch(countGradeProd(id));
   }, [starRating.state]);
+
+  useEffect(() => {
+    dispatch(productArg(argProduct.id));
+  }, [update]);
 
   const changeHandler = (e) => {
     setInputs((prev) => ({
@@ -181,8 +189,8 @@ export default function ItemPage({
                 </>
               ) : (
                 <>
-                  <Button type="submit" variant="contained" onClick={modalopen}>Изменить данные о товаре</Button>
-                  <Button type="submit" variant="contained">Снять с доски</Button>
+                  <Button type="submit" variant="contained" onClick={() => setUpdate(true)}>Изменить данные о товаре</Button>
+                  <Button type="submit" onClick={() => setDeleter(true)} variant="contained">Снять с доски</Button>
                 </>
               )}
             </div>
@@ -222,6 +230,16 @@ export default function ItemPage({
       )}
       {user.id && rent == true ? (
         <ModalItemRent input={inputs} id={num} setRent={setRent} setSend={setSend} />
+      ) : (
+        <></>
+      )}
+      {user.id == argProduct.user_id && deleter == true ? (
+        <DeleteModal deleter={deleter} setDeleter={setDeleter} argProduct={argProduct} />
+      ) : (
+        <></>
+      )}
+      {update == true ? (
+        <UpdateModal setUpdate={setUpdate} argProduct={argProduct} />
       ) : (
         <></>
       )}

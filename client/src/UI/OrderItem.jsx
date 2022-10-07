@@ -5,8 +5,22 @@ import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
+import { useDispatch } from 'react-redux';
+import { cancelOrderAsync } from '../redux/actions/orderActions';
 
 export default function OrderItem({ order }) {
+  const prodId = order.RentProducts[0].product_id;
+  const userRenterId = order.RentProducts[0].user_renter;
+  // console.log(order.id);
+  const dispatch = useDispatch();
+  const acceptHandler = () => {
+    axios(`/application/accept/${prodId}`);
+  };
+  const cancelHandler = () => {
+    // axios.post('/application/decline', { user_renter: userRenterId, product_id: prodId });
+    dispatch(cancelOrderAsync(order.id, userRenterId, prodId));
+  };
   return (
     <Card sx={{ minWidth: 275 }}>
       <CardContent>
@@ -24,8 +38,8 @@ export default function OrderItem({ order }) {
         </Typography>
         <Typography sx={{ mb: 1.5 }} color="text.secondary">
           Сообщение от пользователя
-          {' '}
-          <Link to={`/user/${order.RentProducts[0].user_renter}`}>
+          {console.log('order', order)}
+          <Link to={`/user/${order?.RentProducts[0]?.user_renter}`}>
             {order.RentProducts[0].f_name}
             {' '}
             {order.RentProducts[0].l_name}
@@ -41,6 +55,10 @@ export default function OrderItem({ order }) {
       <CardActions>
         <Link to={`/item/${order.id}`}><Button size="small">Посмотреть карточку товара</Button></Link>
       </CardActions>
+      <>
+        <Button type="button" variant="contained" onClick={acceptHandler}>Принять заявку</Button>
+        <Button type="button" variant="contained" onClick={cancelHandler}>Отклонить заявку</Button>
+      </>
     </Card>
   );
 }

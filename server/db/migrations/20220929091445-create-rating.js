@@ -14,6 +14,7 @@ module.exports = {
           model: 'Users',
           key: 'id',
         },
+        onDelete: 'CASCADE',
       },
       user_buyer: {
         type: Sequelize.INTEGER,

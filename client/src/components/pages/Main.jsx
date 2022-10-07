@@ -11,6 +11,17 @@ export default function Main({
   regActive, logActive, setRegActive, setLogActive, setAddProdActive, addProdActive,
 }) {
   const user = useSelector((state) => state.user);
+
+  const checkLog = () => {
+    setLogActive(true);
+    setRegActive(false);
+  };
+
+  const checkReg = () => {
+    setLogActive(false);
+    setRegActive(true);
+  };
+
   return (
     <>
       {/* style={!night === true ? ({ backgroundColor: 'white', color: 'white', height: '100vh' }) : ({ backgroundColor: '#202124', color: 'white', height: '100vh' })} */}
@@ -25,8 +36,8 @@ export default function Main({
             {!user.id
             && (
             <>
-              <button onClick={() => setLogActive(true)} type="button" className="btn-padding border-button" style={{ marginRight: '10px' }}>Войти</button>
-              <button onClick={() => setRegActive(true)} type="button" className="border-button" style={{ marginLeft: '10px' }}>Регистрация</button>
+              <button onClick={checkLog} type="button" className="btn-padding border-button" style={{ marginRight: '10px' }}>Войти</button>
+              <button onClick={checkReg} type="button" className="border-button" style={{ marginLeft: '10px' }}>Регистрация</button>
             </>
             )}
           </div>
@@ -52,6 +63,7 @@ export default function Main({
           <></>
         )}
       </>
+      <div style={{ height: '5rem' }} />
     </>
   );
 }

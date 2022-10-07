@@ -10,8 +10,13 @@ export default function Card({ product }) {
   const {
     photos, userName, userPhoto, description, productName, price, date, userId, id,
   } = product;
-  // console.log(photos, '-----------------');
-  // console.log('product liked:', product);
+  console.log(product);
+  let smallDescr = '';
+  if (description.length > 50) {
+    smallDescr = `${description.substr(0, 47)}...`;
+  } else {
+    smallDescr = description;
+  }
   const dispatch = useDispatch();
   const [isFavorite, setIsFavorite] = useState(false);
   // const isFavorite = useSelector((state) => state.changeFavoriteState);
@@ -63,12 +68,12 @@ export default function Card({ product }) {
               <h1 className="item__title">{productName}</h1>
 
             </Link>
-            <p className="item__desc">{description}</p>
+            <p className="item__desc">{smallDescr}</p>
             <div className="item__price__time">
               <div className="item__price" style={{ alignItems: 'center', display: 'flex' }}>
                 <span className="price-eth">{price}</span>
                 <p className="item__rud" style={{ margin: '0rem 0rem 0rem 0.5rem' }}>
-                  руб/сут
+                  ₽/сут
                 </p>
               </div>
               <div className="item__time">

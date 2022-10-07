@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useNavigate } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import SendIcon from '@mui/icons-material/Send';
 import Box from '@mui/material/Box';
@@ -10,11 +11,13 @@ import { userUpdater } from '../redux/actions/usersAction';
 import './index.css';
 
 export default function UpdateForm({ night }) {
+  const navigate = useNavigate();
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const [inputs, setInputs] = useState({
     f_name: '', l_name: '', email: '', photo: '', telegram: '', phone: '',
   });
+  console.log(inputs);
   useEffect(() => {
     const newInputs = { ...user };
     delete newInputs.id;
@@ -35,7 +38,6 @@ export default function UpdateForm({ night }) {
   console.log(inputs);
   return (
     <form className="updateForm" onSubmit={(e) => dispatch(userUpdater(e, inputs, user.id))}>
-      {/* style={!night === true ? ({ backgroundColor: 'white', color: 'white', height: '100vh' }) : ({ backgroundColor: '#202124', color: 'white', height: '100vh' })} */}
       <div
         className="form-conatainer"
         style={!night === true ? ({
@@ -57,19 +59,12 @@ export default function UpdateForm({ night }) {
           <TextField name="email" onChange={changeHandler} id="standard-basic" value={inputs.email} label="Новая почта" variant="standard" style={{ width: '100%' }} />
           <TextField name="phone" onChange={changeHandler} id="standard-basic" value={inputs.phone} label="Новый телефон" variant="standard" style={{ width: '100%' }} />
           <TextField name="telegram" onChange={changeHandler} id="standard-basic" value={inputs.telegram} label="Новый телеграм" variant="standard" style={{ width: '100%' }} />
-          <Button
-            className="updateForm__Btn"
-            variant="contained"
-            // component="label"
-          >
-            Загрузите новое фото
-            <input
-              name="photo"
-              type="file"
-              hidden
-              onChange={changeHandlerPhoto}
-            />
-          </Button>
+          Загрузите новое фото
+          <input
+            name="photo"
+            type="file"
+            onChange={changeHandlerPhoto}
+          />
         </Box>
         <Button className="updateForm__btn" type="submit" variant="contained" endIcon={<SendIcon />}>
           Отправить

@@ -65,7 +65,7 @@ export default function AllFavoriteProducts() {
         <div className="range-slider">
           <input className="range-slider__range" type="range" name="minRange" value={findInput.minRange} onChange={changeHandler} min="0" max="5000" step="50" style={{ width: '80%' }} />
         </div>
-        <div style={{ display: 'flex', marginTop: '0.5rem', fontWeight: '500' }}>
+        <div style={{ display: 'flex', marginTop: '0.5rem' }}>
           <div style={{ width: '1.2rem' }}>До</div>
           <div style={{ width: '4rem', display: 'flex', justifyContent: 'center' }}>{findInput.maxRange}</div>
           <div style={{ width: '4rem' }}>руб/сут</div>

@@ -5,8 +5,8 @@ import { fetchUsers } from '../../redux/actions/usersAction';
 import ModalAddProd from '../../UI/ModalAddProd';
 import ModalLog from '../../UI/ModalLog';
 import ModalRegistration from '../../UI/ModalRegistration';
-import OtherAllProducts from '../../UI/OtherAllProducts';
 import Telega from '../../UI/Telega';
+import AllActiveProducts from './AllActiveProducts';
 
 export default function UserProfile({
   modal, setModal,
@@ -14,6 +14,9 @@ export default function UserProfile({
 }) {
   const [btn, setBtn] = useState(false);
   const [num, setNum] = useState(true);
+  const [allProducts, setAllProducts] = useState(false);
+  const [isSelectedFavorite, setIsSelectedFavorite] = useState(false);
+  const [active, setActive] = useState(false);
   const navigate = useNavigate();
   const { id } = useParams();
   const users = useSelector((state) => state.users);
@@ -27,6 +30,24 @@ export default function UserProfile({
       navigate('/profile');
     }
   }, [user]);
+
+  const allprod = () => {
+    setAllProducts(true);
+    setIsSelectedFavorite(false);
+    setActive(false);
+  };
+
+  const favsprod = () => {
+    setAllProducts(false);
+    setIsSelectedFavorite(true);
+    setActive(false);
+  };
+
+  const activesprod = () => {
+    setAllProducts(false);
+    setIsSelectedFavorite(false);
+    setActive(true);
+  };
 
   return (
     <>
@@ -66,15 +87,33 @@ export default function UserProfile({
           <div className="stats__body">
             <div className="stats__content">
               <div className="stats__block">
-                <div className="stats__block-one">
-                  <p>Все товары</p>
-                </div>
-                <div className="stats__block-two">
-                  <p>Активные товары</p>
-                </div>
-                <div className="stats__block-four">
-                  <p>Отзывы</p>
-                </div>
+                {allProducts === false ? (
+                  <div className="stats__block-one" onClick={allprod} style={{ cursor: 'pointer' }}>
+                    <p>Все товары</p>
+                  </div>
+                ) : (
+                  <div className="stats__block-one" onClick={() => setAllProducts(false)} style={{ cursor: 'pointer' }}>
+                    <p>Все товары</p>
+                  </div>
+                )}
+                {active === false ? (
+                  <div className="stats__block-two" onClick={activesprod}>
+                    <p>Активные товары</p>
+                  </div>
+                ) : (
+                  <div className="stats__block-two" onClick={() => setActive(false)}>
+                    <p>Активные товары</p>
+                  </div>
+                )}
+                {isSelectedFavorite === false ? (
+                  <div className="stats__block-three" onClick={favsprod} style={{ cursor: 'pointer' }}>
+                    <p>Избранное</p>
+                  </div>
+                ) : (
+                  <div className="stats__block-three" onClick={() => setIsSelectedFavorite(false)} style={{ cursor: 'pointer' }}>
+                    <p>Избранное</p>
+                  </div>
+                )}
               </div>
             </div>
           </div>
@@ -96,9 +135,13 @@ export default function UserProfile({
           <></>
         )}
       </>
-      <div>
-        <OtherAllProducts id={id} />
-      </div>
+      {active === true ? (
+        <div>
+          <AllActiveProducts />
+        </div>
+      ) : (
+        <div />
+      )}
     </>
   );
 }
