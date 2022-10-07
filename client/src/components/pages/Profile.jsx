@@ -125,11 +125,13 @@ export default function Profile({ night, setAddProdActive, addProdActive }) {
         ) : (
           <div />
         )}
-        {isSelectedFavorite && (
-        <div>
-          <AllFavoriteProducts />
-          <div style={{ height: '10rem' }} />
-        </div>
+        {isSelectedFavorite == true ? (
+          <div>
+            <AllFavoriteProducts />
+            <div style={{ height: '10rem' }} />
+          </div>
+        ) : (
+          <></>
         )}
         {active === true ? (
           <div>

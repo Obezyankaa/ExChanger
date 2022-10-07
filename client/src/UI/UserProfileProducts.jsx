@@ -3,11 +3,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchUserItems } from '../redux/actions/userItemsAction';
 import CardUser from './CardUser';
 
-export default function UserAllProducts() {
-  const user = useSelector((state) => state.user);
+export default function UserProfileProducts({ id }) {
   const dispatch = useDispatch();
-  const { id } = user;
-  const items = useSelector((state) => state.userItems.filter((el) => el.user_id === id));
+  const items = useSelector((state) => state.userItems.filter((el) => el.user_id == id));
   useEffect(() => {
     dispatch(fetchUserItems());
   }, [items.status]);

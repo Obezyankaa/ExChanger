@@ -163,7 +163,7 @@ export default function ItemPage({
                 <>
                 </>
               )}
-              {coment == false && user.id !== argProduct.user_id ? (
+              {user.id && coment == false && user.id !== argProduct.user_id ? (
                 <>
                   <Button onClick={() => setComent(true)} variant="contained" color="success" type="button">Оставить комментарий</Button>
                 </>
