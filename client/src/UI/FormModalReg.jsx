@@ -5,13 +5,17 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';
+import { Chip, ListItem } from '@mui/material';
+import { v4 as uuidv4 } from 'uuid';
 import { signupUser } from '../redux/actions/userAction';
 
 export default function FormModalReg({ setRegActive }) {
   const dispatch = useDispatch();
   const [inputs, setInputs] = useState({
-    f_name: '', l_name: '', password: '', email: '', photo: null, telegram: '', phone: '',
+    dropPhoto: [], f_name: '', l_name: '', password: '', email: '', photo: null, telegram: '', phone: '',
   });
+  console.log(inputs);
+  // console.log(dropPhoto);
   const changeHandler = (e) => {
     setInputs((prev) => ({
       ...prev,
@@ -60,6 +64,18 @@ export default function FormModalReg({ setRegActive }) {
           ) : (
             <TextField name="telegram" onChange={changeHandler} id="standard-basic" label="Ваш Telegram" variant="standard" style={{ width: '100%' }} />
           )}
+          <ListItem style={{ marginTop: '1px', overflow: 'hidden', width: '100%' }}>
+            {inputs.photo
+            && (
+            <Chip
+              label={inputs.photo.name}
+              variant="outlined"
+              style={{ marginRight: '5px' }}
+              key={uuidv4()}
+            />
+            )}
+
+          </ListItem>
           <Button
             variant="contained"
             component="label"
