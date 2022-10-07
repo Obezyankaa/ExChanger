@@ -45,7 +45,7 @@ export default function Main({
       </div>
       <>
         <div>
-          <Slider />
+          <Slider night={night} />
         </div>
         {regActive === true ? (
           <ModalRegistration setRegActive={setRegActive} />
@@ -63,7 +63,7 @@ export default function Main({
           <></>
         )}
       </>
-      <div style={{ height: '5rem' }} />
+      {/* <div style={{ height: '5rem' }} /> */}
     </>
   );
 }
