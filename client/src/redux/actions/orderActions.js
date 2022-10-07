@@ -22,14 +22,15 @@ export const addOrdering = (e, message, user, product, timer, setModal, setSend)
 export const setOrdering = () => (dispatch) => {
   axios.get('/order')
     .then((res) => {
-      console.log('экшн на ордер', res.data);
       dispatch(setOrder(res.data));
     })
     .catch(console.log);
 };
 
-export const cancelOrderAsync = (id, userRenterId, prodId) => (dispatch) => {
+export const cancelOrderAsync = (id, userRenterId, prodId, setResponse) => (dispatch) => {
+  console.log(id, userRenterId, prodId);
   axios.post('/application/decline', { user_renter: userRenterId, product_id: prodId })
+    .then((res) => dispatch(setResponse(!res.status)))
     .then(() => dispatch(cancelOrder(id)))
     .catch(console.log);
 };

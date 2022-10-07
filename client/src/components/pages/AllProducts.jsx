@@ -16,7 +16,6 @@ export default function AllProducts({
   useEffect(() => {
     axios.get('/product').then((response) => {
       setProducts(response.data.map((prod) => {
-        console.log(prod);
         const images = prod.ProductPhotos.map((el) => el.photo);
         return ({
           id: prod.id,
@@ -29,6 +28,7 @@ export default function AllProducts({
           productName: prod.name,
           date: (new Date(prod.createdAt)).toLocaleDateString([], { hour: '2-digit', minute: '2-digit' }),
           userId: prod.User.id,
+          status: prod.status,
         });
       })
         .filter((el) => Number(el.price) <= findInput.maxRange && Number(el.price) >= findInput.minRange)
