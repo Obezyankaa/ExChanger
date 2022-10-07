@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import Card from '../../UI/Card';
@@ -8,31 +9,33 @@ export default function AllFavoriteProducts() {
   const [categoryInput, setCategoryInput] = useState({});
   const [findInput, setFindInput] = useState({ minRange: 0, maxRange: 5000 });
   useEffect(() => {
-    setProducts(
-      favorites
-        .map((prod) => {
-          const images = prod?.Product?.ProductPhotos?.map((el) => el.photo);
-          return {
-            id: prod.Product.id,
-            categoryId: prod.Product.Category.id,
-            photos: images,
-            userName: prod.Product.User.f_name,
-            price: prod.Product.price,
-            userPhoto: prod.Product.User.photo,
-            description: prod.Product.description,
-            productName: prod.Product.name,
-            date: (new Date(prod.Product.createdAt)).toLocaleDateString([], { hour: '2-digit', minute: '2-digit' }),
-            userId: prod.Product.user_id,
-          };
-        })
+    axios.get('/product').then((response) => {
+      setProducts(response.data.map((prod) => {
+        console.log(prod.status);
+        const images = prod.ProductPhotos.map((el) => el.photo);
+        return ({
+          id: prod.id,
+          categoryId: prod.Category.id,
+          photos: images,
+          userName: prod.User.f_name,
+          price: prod.price,
+          userPhoto: prod.User.photo,
+          description: prod.description,
+          productName: prod.name,
+          date: (new Date(prod.createdAt)).toLocaleDateString([], { hour: '2-digit', minute: '2-digit' }),
+          userId: prod.User.id,
+          prodStatus: prod.status,
+        });
+      })
+        .filter((el) => el.prodStatus === true)
         .filter((el) => Number(el.price) <= findInput.maxRange && Number(el.price) >= findInput.minRange)
         .filter(
           (el) => {
             const categoryKeys = Object.keys(categoryInput)?.map((elem) => Number(elem));
             return Object.values(categoryInput).includes(true) ? (categoryKeys.includes(el.categoryId) && categoryInput[el.categoryId] === true) : true;
           },
-        ),
-    );
+        ));
+    });
   }, [categoryInput, findInput, favorites]);
 
   const categories = useSelector((state) => state.categories);
