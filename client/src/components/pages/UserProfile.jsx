@@ -6,7 +6,8 @@ import ModalAddProd from '../../UI/ModalAddProd';
 import ModalLog from '../../UI/ModalLog';
 import ModalRegistration from '../../UI/ModalRegistration';
 import Telega from '../../UI/Telega';
-import AllActiveProducts from './AllActiveProducts';
+import UserProfileFavorites from '../../UI/UserProfileFavorites';
+import UserProfileProducts from '../../UI/UserProfileProducts';
 
 export default function UserProfile({
   modal, setModal,
@@ -135,9 +136,16 @@ export default function UserProfile({
           <></>
         )}
       </>
-      {active === true ? (
+      {allProducts === true ? (
         <div>
-          <AllActiveProducts />
+          <UserProfileProducts id={id} />
+        </div>
+      ) : (
+        <div />
+      )}
+      {isSelectedFavorite === true ? (
+        <div>
+          <UserProfileFavorites id={id} />
         </div>
       ) : (
         <div />
