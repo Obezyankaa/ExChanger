@@ -11,7 +11,7 @@ export const fetchUsers = (id) => (dispatch) => {
     .catch(console.log);
 };
 
-export const userUpdater = (e, inputs, id) => (dispatch) => {
+export const userUpdater = (e, inputs, id, navigate) => (dispatch) => {
   e.preventDefault();
   const data = new FormData();
   data.append('f_name', inputs.f_name);
@@ -22,6 +22,7 @@ export const userUpdater = (e, inputs, id) => (dispatch) => {
   data.append('phone', inputs.phone);
   axios.put(`/user/${id}`, data)
     .then((res) => {
+      navigate('/profile');
       dispatch(userUpdate(res.data));
       dispatch(setAuthUser(res.data));
     })

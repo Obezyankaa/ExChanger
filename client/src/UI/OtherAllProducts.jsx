@@ -1,11 +1,14 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchUserItems } from '../redux/actions/userItemsAction';
 import CardUser from './CardUser';
 
 export default function OtherAllProducts({ id }) {
-  console.log(id);
+  const dispatch = useDispatch();
   const items = useSelector((state) => state.userItems.filter((el) => el.user_id == id));
-  console.log(items, id);
+  useEffect(() => {
+    dispatch(fetchUserItems());
+  }, [items]);
   return (
     <div style={{ backgroundColor: 'red' }}>
       <div style={{
