@@ -50,7 +50,7 @@ export default function Navbar({
   };
   return (
     <>
-      <AppBar style={{ borderBottomLeftRadius: '1rem', borderBottomRightRadius: '1rem' }} position="sticky" color="">
+      <AppBar style={night === true ? ({ borderBottomLeftRadius: '1rem', borderBottomRightRadius: '1rem', backgroundColor: '#08233c' }) : ({ borderBottomLeftRadius: '1rem', borderBottomRightRadius: '1rem' })} position="sticky" color="">
         <Container maxWidth="xl">
           <Toolbar disableGutters>
             <AllInclusiveIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1, color: '#3277ff' }} />

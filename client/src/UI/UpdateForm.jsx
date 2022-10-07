@@ -10,7 +10,7 @@ import { userUpdater } from '../redux/actions/usersAction';
 // import SliderMylter from './SliderMylter';
 import './index.css';
 
-export default function UpdateForm() {
+export default function UpdateForm({ night }) {
   const navigate = useNavigate();
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
@@ -37,8 +37,15 @@ export default function UpdateForm() {
   };
   console.log(inputs);
   return (
-    <form className="updateForm" onSubmit={(e) => dispatch(userUpdater(e, inputs, user.id, navigate))}>
-      <div className="form-conatainer" style={{ display: 'flex', flexDirection: 'column' }}>
+    <form className="updateForm" onSubmit={(e) => dispatch(userUpdater(e, inputs, user.id))}>
+      <div
+        className="form-conatainer"
+        style={!night === true ? ({
+          display: 'flex', flexDirection: 'column', borderRadius: '1rem', padding: '15px',
+        }) : ({
+          display: 'flex', flexDirection: 'column', backgroundColor: 'white', borderRadius: '1rem', padding: '15px',
+        })}
+      >
         <Box
           sx={{
             '& > :not(style)': { m: 1, width: '25ch' },
@@ -47,7 +54,7 @@ export default function UpdateForm() {
           autoComplete="off"
           style={{ display: 'flex', flexDirection: 'column' }}
         >
-          <TextField className="test" name="f_name" onChange={changeHandler} id="standard-basic" value={inputs.f_name} label="Новое имя" variant="standard" style={{ width: '100%' }} />
+          <TextField name="f_name" onChange={changeHandler} id="standard-basic" value={inputs.f_name} label="Новое имя" variant="standard" style={{ width: '100%' }} />
           <TextField name="l_name" onChange={changeHandler} id="standard-basic" value={inputs.l_name} label="Новая фамилия" variant="standard" style={{ width: '100%' }} />
           <TextField name="email" onChange={changeHandler} id="standard-basic" value={inputs.email} label="Новая почта" variant="standard" style={{ width: '100%' }} />
           <TextField name="phone" onChange={changeHandler} id="standard-basic" value={inputs.phone} label="Новый телефон" variant="standard" style={{ width: '100%' }} />

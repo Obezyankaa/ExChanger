@@ -7,6 +7,7 @@ import ModalRegistration from '../../UI/ModalRegistration';
 import './index.css';
 
 export default function Main({
+  night,
   regActive, logActive, setRegActive, setLogActive, setAddProdActive, addProdActive,
 }) {
   const user = useSelector((state) => state.user);
@@ -23,8 +24,9 @@ export default function Main({
 
   return (
     <>
+      {/* style={!night === true ? ({ backgroundColor: 'white', color: 'white', height: '100vh' }) : ({ backgroundColor: '#202124', color: 'white', height: '100vh' })} */}
       <div className="intro">
-        <div className="intro__media">
+        <div className={!night === true ? ('intro__media') : ('intro__media2')}>
           <video src="12.mp4" autoPlay muted loop />
         </div>
         <div className="intro__content">

@@ -52,7 +52,7 @@ export default function Profile({ night, setAddProdActive, addProdActive }) {
               <div className="first-screen-profile__leftblock-form">
                 <form className="first-screen-profile__form" action="form\thanks\thanks.html">
                   <a target="blank" className="first-screen-profile__link" href={`https://t.me/${user.telegram}`}>
-                    <button type="button">
+                    <button className="first-screen-profile__btn" type="button">
                       Вы указали профиль
                       {' '}
                       {user.telegram}
@@ -60,9 +60,9 @@ export default function Profile({ night, setAddProdActive, addProdActive }) {
                   </a>
                   <>
                     {btn === true ? (
-                      <Link to="/myorders"><button className="first-screen-profile__btn__profile" type="button">Заявки</button></Link>
+                      <Link to="/myorders"><button className="first-screen-profile__btn__profile first-screen-profile__btn" type="button">Мои заказы</button></Link>
                     ) : (
-                      <button onClick={() => setBtn(true)} type="button">{user.phone}</button>
+                      <button className="first-screen-profile__btn" onClick={() => setBtn(true)} type="button">{user.phone}</button>
                     )}
                   </>
                 </form>
@@ -116,7 +116,7 @@ export default function Profile({ night, setAddProdActive, addProdActive }) {
       ) : (
         <div />
       )}
-      <div>
+      <div style={!night === true ? ({ backgroundColor: 'white', color: 'white' }) : ({ backgroundColor: '#202124', color: 'white' })}>
         {allProducts === true ? (
           <div>
             <UserAllProducts />

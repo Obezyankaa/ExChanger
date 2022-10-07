@@ -34,7 +34,6 @@ export default function ItemPage({
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const argProduct = useSelector((state) => state.prodItemPage);
-  console.log(argProduct);
   const { id } = useParams();
   const num = id;
   const [cheker, setChecker] = useState(false);
@@ -70,7 +69,6 @@ export default function ItemPage({
     setRent(true);
     setChecker(true);
   };
-
   return (
     <>
       <div style={{ marginTop: '2%', marginLeft: '2%' }}>
@@ -202,8 +200,8 @@ export default function ItemPage({
       <div className="map">
         <Map coordinates={argProduct.location} />
       </div>
-      <div className="comments__block">
-        <CommentList id={num} />
+      <div style={!night === true ? ({ backgroundColor: 'white', color: 'white' }) : ({ backgroundColor: '#202124', color: 'white' })} className="comments__block">
+        <CommentList night={night} id={num} />
       </div>
       {regActive === true ? (
         <ModalRegistration setRegActive={setRegActive} />

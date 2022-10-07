@@ -72,6 +72,10 @@
     width: 50px;
   }
 
+  .first-screen-profile__btn {
+    border-radius: 1rem;
+  }
+
   .updateForm {
     width: 700px;
     padding-right: 100px;
@@ -80,7 +84,6 @@
   .updateForm__btn {
     margin-left: 8px;
     width: 300px;
-
   }
 
   .updateForm__Btn {

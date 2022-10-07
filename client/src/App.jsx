@@ -43,7 +43,7 @@ function App() {
         night={night}
       />
       <Routes>
-        <Route path="/" element={<Main regActive={regActive} setRegActive={setRegActive} setLogActive={setLogActive} logActive={logActive} setAddProdActive={setAddProdActive} addProdActive={addProdActive} />} />
+        <Route path="/" element={<Main night={night} regActive={regActive} setRegActive={setRegActive} setLogActive={setLogActive} logActive={logActive} setAddProdActive={setAddProdActive} addProdActive={addProdActive} />} />
         <Route path="/settings" element={<Settings night={night} setAddProdActive={setAddProdActive} addProdActive={addProdActive} />} />
         <Route path="*" element={<Page404 regActive={regActive} setRegActive={setRegActive} setLogActive={setLogActive} logActive={logActive} setAddProdActive={setAddProdActive} addProdActive={addProdActive} to="/404" replace />} />
         <Route path="/item/:id" element={<ItemPage night={night} regActive={regActive} setRegActive={setRegActive} setLogActive={setLogActive} logActive={logActive} setAddProdActive={setAddProdActive} addProdActive={addProdActive} />} />

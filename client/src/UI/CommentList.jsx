@@ -4,7 +4,7 @@ import { fetchComments } from '../redux/actions/CommentsAction';
 import CommentOne from './CommentOne';
 import './index.css';
 
-export default function CommentList({ id }) {
+export default function CommentList({ id, night }) {
   const dispatch = useDispatch();
   const comments = useSelector((state) => state.comments);
   useEffect(() => {
@@ -12,13 +12,13 @@ export default function CommentList({ id }) {
   }, []);
   console.log(comments);
   return (
-    <>
+    <div>
       <h2 className="comments__heading">Комменты</h2>
       {comments?.map((el) => (
         <>
-          <CommentOne el={el} key={el.id} />
+          <CommentOne night={night} el={el} key={el.id} />
         </>
       ))}
-    </>
+    </div>
   );
 }
