@@ -7,7 +7,6 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
-import { Link } from 'react-router-dom';
 
 export default function Telega({
   btn, setBtn, name, telega,
@@ -39,12 +38,12 @@ export default function Telega({
           <Button autoFocus onClick={handleClose}>
             Отменить
           </Button>
-          <Link style={{ textDecoration: 'none' }} to={`https://t.me/${telega}`}>
+          <a style={{ textDecoration: 'none' }} href={`https://t.me/${telega}`}>
             <Button style={{ textDecoration: 'none' }} onClick={handleClose} autoFocus>
               Перейти в телеграм
             </Button>
 
-          </Link>
+          </a>
         </DialogActions>
       </Dialog>
     </div>

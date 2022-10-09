@@ -59,8 +59,8 @@ export default function UserProfile({
               <div className="first-screen-profile__leftblock">
                 <div className="first-screen-profile__leftblock-textarea">
                   <p />
-                  <p style={!night === true ? ({ color: 'black' }) : ({ color: 'white' })}>{user.f_name}</p>
-                  <p style={!night === true ? ({ color: 'black' }) : ({ color: 'white' })}>{user.l_name}</p>
+                  <p style={!night === true ? ({ color: 'black' }) : ({ color: 'white' })}>{users.f_name}</p>
+                  <p style={!night === true ? ({ color: 'black' }) : ({ color: 'white' })}>{users.l_name}</p>
                 </div>
                 <div className="first-screen-profile__leftblock-skils">
                   <p>Свяжитесь с пользователем</p>
