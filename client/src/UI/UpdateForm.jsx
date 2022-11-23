@@ -4,6 +4,7 @@ import Button from '@mui/material/Button';
 import SendIcon from '@mui/icons-material/Send';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
+import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useState, useEffect } from 'react';
 import { userUpdater } from '../redux/actions/usersAction';
@@ -11,7 +12,7 @@ import { userUpdater } from '../redux/actions/usersAction';
 import './index.css';
 
 export default function UpdateForm({ night }) {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const [inputs, setInputs] = useState({
