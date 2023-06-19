@@ -71,7 +71,7 @@ app.use(session({
     httpOnly: true,
   },
 }));
-///adada
+
 app.use('/auth', authRouter);
 app.use('/api/v1', apiRouter);
 app.use('/favorite', favoriteRouter);
